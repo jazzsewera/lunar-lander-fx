@@ -31,12 +31,10 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'lunar_lander.App'
+    mainClassName = 'lunarlander.Main'
 }
 
 javafx {
     version = '11.0.2'
     modules = [ 'javafx.controls' ]
 }
-
-mainClassName = 'HelloFX'
