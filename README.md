@@ -1,5 +1,13 @@
 # Lunar Lander
 
+## First stage
+
+Project design brief and first stage details are specified in
+[design_brief](design_brief.md) Markdown file.
+
+
+## Description
+
 A simple 2D game written in Java 11 and JavaFX 11 in which you
 have to touch down on the Moon with low enough velocity and
 angle to the ground until you run out of fuel.
