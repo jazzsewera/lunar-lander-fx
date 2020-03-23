@@ -25,6 +25,8 @@ rocks and trying to reach the ground to gustily - otherwise you will lose one
 of your 3 vehicles. You have to watch your fuel levels, which are shared
 between the fleet. When fuel meter indicates 0, you won't be able to change
 the course and lander's velocity, which will likely result in crash.
+Sometimes there will appear fuel tanks on the map. Landing on them will reward 
+you with additional resources for next stages.
 
 
 ## Levels and score
@@ -49,7 +51,9 @@ App starts with main menu window **(picture 1)**. Here you can choose:
     the *Go back to the main menu* button with your mouse you end the
     current session with a pop-up dialog in which you can input your name to
     have your score saved in a scoreboard. Scoreboard holds up to 20 nicknames
-    of the best players. It will be stored in a text file for now.
+    of the best players. It will be stored in a text file for now. Server address 
+    and port will be stored in a json file under "server_address" and "server_port" keys.
+    If a port is not specified, the default will be used.
 - Rules
   * Moves to view of all the rules listed **(picture 4)** above.
 - Scoreboard
