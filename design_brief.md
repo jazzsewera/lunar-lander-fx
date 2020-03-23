@@ -52,7 +52,7 @@ App starts with main menu window **(picture 1)**. Here you can choose:
     current session with a pop-up dialog in which you can input your name to
     have your score saved in a scoreboard. Scoreboard holds up to 20 nicknames
     of the best players. It will be stored in a text file for now. Server address 
-    and port will be stored in a json file under "server_address" and "server_port" keys.
+    and port will be stored in a json file under `server_address` and `server_port` keys.
     If a port is not specified, the default will be used.
 - Rules
   * Moves to view of all the rules listed **(picture 4)** above.
