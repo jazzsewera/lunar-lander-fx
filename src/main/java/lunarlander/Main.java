@@ -19,7 +19,12 @@ public class Main extends Application {
   }
 
   public static void main(String[] args) {
+
     launch();
+
+    Configuration conf = new Configuration();
+    SomePrimitives ja = new SomePrimitives();
+    System.out.println(conf.serialize(ja));
   }
 
 }
