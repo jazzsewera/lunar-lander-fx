@@ -24,7 +24,27 @@ public class Main extends Application {
 
     Configuration conf = new Configuration();
     SomePrimitives ja = new SomePrimitives();
-    System.out.println(conf.serialize(ja));
+
+    // serializtion
+    String json;
+    json = conf.serialize(ja);
+    System.out.println("JSON content after successful serialization: ");
+    System.out.println(json);
+
+    // saving serialized obj to file
+    conf.toFile(json);
+
+    // reading config file
+    System.out.println("\nExtracting configuration.json content: ");
+    conf.fromFile("src/main/resources/lunarlander/configuration.json");
+
+    // deserialization
+    SomePrimitives obj2;
+    obj2 = conf.deserialize(json);
+    System.out.println("\nExample obj2 field after successful deserialiation: ");
+    System.out.println(obj2.getName());
+
+
   }
 
 }
