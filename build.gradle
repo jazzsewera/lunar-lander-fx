@@ -25,7 +25,7 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.1-jre'
 
-    // This dependency is providing met````hods
+    // This dependency is providing methods
     // to convert Java objects to JSON and vice-versa
     implementation 'com.google.code.gson:gson:2.8.6'
 
