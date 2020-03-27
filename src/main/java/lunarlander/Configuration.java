@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.CharSink;
 import com.google.common.io.CharSource;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.FileWriter;
@@ -12,7 +13,7 @@ import java.io.IOException;
 
 public class Configuration {
 
-  Gson gson = new Gson();
+  Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
   // Method converting Java obj to JSON
   public String serialize(SomePrimitives obj) {
