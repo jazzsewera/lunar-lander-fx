@@ -16,6 +16,12 @@ public class Main extends Application {
 
     Label levelLabel = new Label("Level 2");
     levelLabel.getStyleClass().add("ctrl-label-primary");
+    Label optionalLevelCaption = new Label("");
+    optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
+
+    VBox levelVbox = new VBox();
+    levelVbox.getChildren().addAll(levelLabel, optionalLevelCaption);
+    levelVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     // There will be images of Landers indicating number of lives
@@ -27,6 +33,7 @@ public class Main extends Application {
 
     VBox livesVbox = new VBox();
     livesVbox.getChildren().addAll(livesStateLabel, livesCaptionLabel);
+    livesVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     Label fuelStateLabel = new Label("350");
@@ -42,6 +49,7 @@ public class Main extends Application {
 
     VBox fuelVbox = new VBox();
     fuelVbox.getChildren().addAll(fuelHbox, fuelCaptionLabel);
+    fuelVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     Label velocityStateLabel = new Label("2.5");
@@ -57,6 +65,7 @@ public class Main extends Application {
 
     VBox velocityVbox = new VBox();
     velocityVbox.getChildren().addAll(velocityHbox, velocityCaptionLabel);
+    velocityVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     Label heightStateLabel = new Label("15.0");
@@ -72,6 +81,7 @@ public class Main extends Application {
 
     VBox heightVbox = new VBox();
     heightVbox.getChildren().addAll(heightHbox, heightCaptionLabel);
+    heightVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     Label scoreStateLabel = new Label("69420");
@@ -82,11 +92,12 @@ public class Main extends Application {
 
     VBox scoreVbox = new VBox();
     scoreVbox.getChildren().addAll(scoreStateLabel, scoreCaptionLabel);
+    scoreVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     VBox verticalLayoutVbox = new VBox();
-    verticalLayoutVbox.getStyleClass().add("main-vertical-layout");
-    verticalLayoutVbox.getChildren().addAll(levelLabel,
+    verticalLayoutVbox.getStyleClass().add("ctrl-main-vertical-layout");
+    verticalLayoutVbox.getChildren().addAll(levelVbox,
                                             livesVbox,
                                             fuelVbox,
                                             velocityVbox,
@@ -100,6 +111,8 @@ public class Main extends Application {
 
     stage.setScene(scene);
     stage.setTitle("Lunar Lander");
+    stage.setWidth(280);
+    stage.setHeight(600);
     stage.show();
   }
 

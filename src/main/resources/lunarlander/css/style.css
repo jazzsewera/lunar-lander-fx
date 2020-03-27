@@ -1,4 +1,4 @@
-.main-vertical-layout {
+.ctrl-main-vertical-layout {
   -fx-background-color: #2a2a2a;
   -fx-spacing: 10px;
   -fx-padding: 50px 0 0 69px;
@@ -19,8 +19,12 @@
   -fx-font-size: 36px;
 }
 
+.ctrl-gauge-vbox {
+  -fx-spacing: -5px;
+}
+
 .ctrl-label-hbox {
-  -fx-spacing: 2px;
+  -fx-spacing: 3px;
 }
 
 .ctrl-label-caption {
