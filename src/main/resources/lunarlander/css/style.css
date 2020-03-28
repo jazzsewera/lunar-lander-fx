@@ -29,7 +29,7 @@
 }
 
 .ctrl-gauge-vbox {
-  -fx-spacing: -5px;
+  -fx-spacing: 0;
 }
 
 .ctrl-label-hbox {
@@ -41,7 +41,10 @@
   -fx-font-size: 20px;
 }
 
-/*Status bar for further stylizing*/
+.ctrl-lives-state-hbox {
+  -fx-spacing: 10px;
+}
+
 .ctrl-bottom-status-bar {
   -fx-padding: 5px 10px 5px 10px;
   -fx-background-color: #1C3C8A;

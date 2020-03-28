@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Priority;
@@ -28,13 +30,21 @@ public class Main extends Application {
 
 
     // There will be images of Landers indicating number of lives
-    Label[] livesStateLabels = {new Label("*"), new Label("*"), new Label("*")};
+    Image landerImage = new Image("lunarlander/assets/lander.png");
+    Label[] livesStateLabels = {
+      new Label("", new ImageView(landerImage)),
+      new Label("", new ImageView(landerImage)),
+      new Label("", new ImageView(landerImage))
+    };
     for (Label label : livesStateLabels) {
       label.getStyleClass().add("ctrl-label-primary");
     }
+    // You can quickly remove one lander with this statement:
+    // livesStateLabels[2].setGraphic(null);
 
     HBox livesStateHbox = new HBox();
     livesStateHbox.getChildren().addAll(livesStateLabels[0], livesStateLabels[1], livesStateLabels[2]);
+    livesStateHbox.getStyleClass().add("ctrl-lives-state-hbox");
 
     Label livesCaptionLabel = new Label("Lives");
     livesCaptionLabel.getStyleClass().add("ctrl-label-caption");
@@ -105,12 +115,14 @@ public class Main extends Application {
 
     VBox verticalLayoutVbox = new VBox();
     verticalLayoutVbox.getStyleClass().add("ctrl-main-vertical-layout");
-    verticalLayoutVbox.getChildren().addAll(levelVbox,
-                                            livesVbox,
-                                            fuelVbox,
-                                            velocityVbox,
-                                            heightVbox,
-                                            scoreVbox);
+    verticalLayoutVbox.getChildren().addAll(
+      levelVbox,
+      livesVbox,
+      fuelVbox,
+      velocityVbox,
+      heightVbox,
+      scoreVbox
+    );
     // Variable margins between elements so that they stay evenly distributed
     for (Node child : verticalLayoutVbox.getChildren()) {
       VBox.setVgrow(child, Priority.ALWAYS);
