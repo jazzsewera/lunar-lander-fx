@@ -143,6 +143,9 @@ public class Main extends Application {
     upKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
     Label rightKbdIndicatorLabel = new Label("right");
     rightKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+    // You can switch an indicator to "on" with those statements:
+    // leftKbdIndicatorLabel.getStyleClass().clear();
+    // leftKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-primary");
 
     HBox kbdIndicatorHbox = new HBox();
     kbdIndicatorHbox.getChildren().addAll(leftKbdIndicatorLabel, upKbdIndicatorLabel, rightKbdIndicatorLabel);
