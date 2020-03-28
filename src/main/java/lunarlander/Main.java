@@ -1,11 +1,17 @@
 package lunarlander;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Priority;
@@ -166,6 +172,13 @@ public class Main extends Application {
     Scene scene = new Scene(root);
 
     scene.getStylesheets().add("lunarlander/css/style.css");
+
+    final KeyCombination ctrlQuit = new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN);
+    scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+      if (ctrlQuit.match(event)) {
+        Platform.exit();
+      }
+    });
 
     stage.setScene(scene);
     stage.setTitle("Lunar Lander");
