@@ -38,7 +38,3 @@ javafx {
   version = '11.0.2'
   modules = [ 'javafx.controls' ]
 }
-
-task printClasspath {
-  project.logger.lifecycle(sourceSets.main.runtimeClasspath.asPath)
-}

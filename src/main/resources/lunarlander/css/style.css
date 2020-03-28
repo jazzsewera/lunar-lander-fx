@@ -39,20 +39,20 @@
 
 /*Status bar for further stylizing*/
 .ctrl-bottom-status-bar {
-  -fx-padding: 3px;
-  -fx-background-color: #4444ff;
+  -fx-padding: 5px 10px 5px 10px;
+  -fx-background-color: #1C3C8A;
 }
 
 .ctrl-label-status-bar-primary {
-  -fx-font-size: 16px;
-  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+  -fx-text-fill: #92B2FF;
 }
 
 .ctrl-label-status-bar-secondary {
-  -fx-font-size: 16px;
-  -fx-text-fill: #eeeeee;
+  -fx-font-size: 14px;
+  -fx-text-fill: #4B73D5;
 }
 
 .ctrl-kbd-indicator-hbox {
-  -fx-spacing: 4px;
+  -fx-spacing: 8px;
 }

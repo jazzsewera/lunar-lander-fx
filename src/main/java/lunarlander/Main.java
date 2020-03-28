@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Priority;
@@ -28,14 +27,19 @@ public class Main extends Application {
 
 
     // There will be images of Landers indicating number of lives
-    Label livesStateLabel = new Label("***");
-    livesStateLabel.getStyleClass().add("ctrl-label-primary");
+    Label[] livesStateLabels = {new Label("*"), new Label("*"), new Label("*")};
+    for (Label label : livesStateLabels) {
+      label.getStyleClass().add("ctrl-label-primary");
+    }
+
+    HBox livesStateHbox = new HBox();
+    livesStateHbox.getChildren().addAll(livesStateLabels[0], livesStateLabels[1], livesStateLabels[2]);
 
     Label livesCaptionLabel = new Label("Lives");
     livesCaptionLabel.getStyleClass().add("ctrl-label-caption");
 
     VBox livesVbox = new VBox();
-    livesVbox.getChildren().addAll(livesStateLabel, livesCaptionLabel);
+    livesVbox.getChildren().addAll(livesStateHbox, livesCaptionLabel);
     livesVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
