@@ -2,9 +2,12 @@ package lunarlander;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -103,9 +106,44 @@ public class Main extends Application {
                                             velocityVbox,
                                             heightVbox,
                                             scoreVbox);
+    // Variable margins between elements so that they stay evenly distributed
+    for (Node child : verticalLayoutVbox.getChildren()) {
+      VBox.setVgrow(child, Priority.ALWAYS);
+    }
 
 
-    Scene scene = new Scene(verticalLayoutVbox);
+    Label networkCaptionLabel = new Label("Network sync: ");
+    networkCaptionLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+    Label networkStatusLabel = new Label("disabled");
+    networkStatusLabel.getStyleClass().add("ctrl-label-status-bar-primary");
+
+    HBox networkStatusHbox = new HBox();
+    networkStatusHbox.getChildren().addAll(networkCaptionLabel, networkStatusLabel);
+
+    Label leftKbdIndicatorLabel = new Label("left");
+    leftKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+    Label upKbdIndicatorLabel = new Label("up");
+    upKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+    Label rightKbdIndicatorLabel = new Label("right");
+    rightKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+
+    HBox kbdIndicatorHbox = new HBox();
+    kbdIndicatorHbox.getChildren().addAll(leftKbdIndicatorLabel, upKbdIndicatorLabel, rightKbdIndicatorLabel);
+    kbdIndicatorHbox.getStyleClass().add("ctrl-kbd-indicator-hbox");
+
+    HBox bottomStatusBarHbox = new HBox();
+    bottomStatusBarHbox.getStyleClass().add("ctrl-bottom-status-bar");
+    bottomStatusBarHbox.getChildren().addAll(networkStatusHbox, kbdIndicatorHbox);
+    // Variable margin between network and kbd labels, so that kbd stays on the right
+    HBox.setHgrow(networkStatusHbox, Priority.ALWAYS);
+
+
+    BorderPane root = new BorderPane();
+    root.getStyleClass().add("ctrl-root");
+    root.setCenter(verticalLayoutVbox);
+    root.setBottom(bottomStatusBarHbox);
+
+    Scene scene = new Scene(root);
 
     scene.getStylesheets().add("lunarlander/css/style.css");
 

@@ -1,12 +1,17 @@
-.ctrl-main-vertical-layout {
+.ctrl-root {
   -fx-background-color: #2a2a2a;
-  -fx-spacing: 10px;
-  -fx-padding: 50px 0 0 69px;
-}
-
-.ctrl-label-primary, .ctrl-label-secondary, .ctrl-label-caption {
   -fx-font-family: 'Roboto';
   -fx-font-weight: 700;
+}
+
+.ctrl-main-vertical-layout {
+  -fx-spacing: 10px;
+  -fx-padding: 50px 0 50px 69px;
+}
+
+.ctrl-label-primary,
+.ctrl-label-secondary,
+.ctrl-label-caption {
 }
 
 .ctrl-label-primary {
@@ -30,4 +35,24 @@
 .ctrl-label-caption {
   -fx-text-fill: #828282;
   -fx-font-size: 20px;
+}
+
+/*Status bar for further stylizing*/
+.ctrl-bottom-status-bar {
+  -fx-padding: 3px;
+  -fx-background-color: #4444ff;
+}
+
+.ctrl-label-status-bar-primary {
+  -fx-font-size: 16px;
+  -fx-text-fill: #ffffff;
+}
+
+.ctrl-label-status-bar-secondary {
+  -fx-font-size: 16px;
+  -fx-text-fill: #eeeeee;
+}
+
+.ctrl-kbd-indicator-hbox {
+  -fx-spacing: 4px;
 }
