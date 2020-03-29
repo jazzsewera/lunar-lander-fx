@@ -2,8 +2,9 @@ package lunarlander;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+// unused
+// import javafx.scene.control.Label;
+// import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
 import javafx.scene.Group;
@@ -18,8 +19,14 @@ public class Main extends Application {
 
     Random rand = new Random();
     double heightLimit = 200D;
+    // Polyline needs to be changed to a Polygon
+    // where two of the points are the corners of the Pane,
+    // so (0.0, pane.height) and (pane.width, pane.height)
     Polyline polyline = new Polyline();
 
+    // 480.0 needs to be changed to some sort of
+    // pane.height and [0.0, 50.0, 75.0] need to be 
+    // changed to [0.0*pane.width, 0.05*pane.width, ...]
     polyline.getPoints().addAll(new Double[]{
       0.0, 480.0 - 25.0,
       50.0, 480.0 - 25.0,
