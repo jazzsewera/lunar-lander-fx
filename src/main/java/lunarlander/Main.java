@@ -16,8 +16,6 @@ import java.util.Arrays;
 import java.util.Random;
 import javafx.beans.value.ObservableValue;
 
-public class Main {
-/*
 public class Main extends Application {
 
   @Override
@@ -54,16 +52,14 @@ public class Main extends Application {
         double moonSurfaceStartY = (newValue.doubleValue()/2)-(height);
         root.setLayoutY(moonSurfaceStartY);
       }
-    });
+    });*/
 
     stage.setScene(scene);
     stage.show();
-  }*/
+  }
 
   public static void main(String[] args) {
-    //launch();
-    Moon moon = new Moon();
-    System.out.println(Arrays.toString(moon.getMoonSurfacePoints()));
+    launch();
   }
 
 }
