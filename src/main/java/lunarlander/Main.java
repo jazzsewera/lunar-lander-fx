@@ -24,6 +24,7 @@ public class Main extends Application {
 
     Configuration conf = new Configuration();
     SomePrimitives ja = new SomePrimitives();
+    SomePrimitives jaRazyDwa = new SomePrimitives();
 
     // serializtion
     String json;
@@ -38,12 +39,17 @@ public class Main extends Application {
     System.out.println("\nExtracting configuration.json content: ");
     conf.fromFile("src/main/resources/lunarlander/configuration.json");
 
+    // saving 2nd object in configuration.json to check if overwriting works just fine
+    String json2;
+    json2 = conf.serialize(jaRazyDwa);
+    conf.toFile(json2);
+    conf.fromFile("src/main/resources/lunarlander/configuration.json");
+
     // deserialization
     SomePrimitives obj2;
     obj2 = conf.deserialize(json);
     System.out.println("\nExample obj2 field after successful deserialiation: ");
     System.out.println(obj2.getName());
-
 
   }
 
