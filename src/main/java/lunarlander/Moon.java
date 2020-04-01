@@ -19,16 +19,20 @@ public class Moon {
     ArrayList<Double> points = new ArrayList<Double>();
 
     double step = 0.02 * width; // we make x coordinates based on steps
-    double maxHeight = 0.5 * height *  0.025 * lvl; // and y coordinates based on variation
+    double maxHeight = 0.5 * height *  0.25 * lvl; // and y coordinates based on variation
                                                     // that depends on 0.5*height
                                                     // and lvl-based multiplication
     Random rand = new Random();
 
+    points.add(0.0);
+    points.add(height);
     for(double currentStep = 0; currentStep <= width; currentStep += step) {
-
       points.add(currentStep); // adding first coordinate (width)
-      points.add(maxHeight * rand.nextDouble());
+      points.add(480 - (maxHeight * rand.nextDouble()));
     }
+    points.add(width);
+    points.add(height);
+
 
     //change some values to the same ones todo
 

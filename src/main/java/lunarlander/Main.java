@@ -34,7 +34,6 @@ public class Main extends Application {
     // setting color of our shape
     moonSurface.setFill(Color.DARKBLUE);
 
-
     Scene scene = new Scene(root, 640, 480);
 
     /*
