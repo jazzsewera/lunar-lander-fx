@@ -10,7 +10,7 @@ public class Moon {
   private Double[] moonSurfacePoints;
 
   Moon() {
-    moonSurfacePoints = calculateSurfacePoints(640,480,1);
+    moonSurfacePoints = calculateSurfacePoints(640, 480, 20);
   }
 
   protected Double[] calculateSurfacePoints(double width, double height, int lvl) {
@@ -19,9 +19,11 @@ public class Moon {
     ArrayList<Double> points = new ArrayList<Double>();
 
     double step = 0.02 * width; // we make x coordinates based on steps
-    double maxHeight = 0.5 * height *  0.25 * lvl; // and y coordinates based on variation
+    double maxHeight = 0.035 * height * (lvl + 3); // and y coordinates based on variation
                                                     // that depends on 0.5*height
                                                     // and lvl-based multiplication
+    if (maxHeight > 0.035*height*15) maxHeight = 0.035*height*15;
+
     Random rand = new Random();
 
     points.add(0.0);
