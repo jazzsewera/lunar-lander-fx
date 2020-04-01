@@ -26,14 +26,15 @@ public class Moon {
 
     for(double currentStep = 0; currentStep <= width; currentStep += step) {
 
-      points.add(new Double(currentStep)); // adding first coordinate (width)
-      points.add(new Double(maxHeight * rand.nextDouble()));
+      points.add(currentStep); // adding first coordinate (width)
+      points.add(maxHeight * rand.nextDouble());
     }
 
     //change some values to the same ones todo
 
     // we go back with List to double array, bcs polygon accepcts only that container
-    return (Double[]) points.toArray();
+    Double[] result = points.toArray(new Double[points.size()]);
+    return result;
   }
 
   public Double[] getMoonSurfacePoints() {
