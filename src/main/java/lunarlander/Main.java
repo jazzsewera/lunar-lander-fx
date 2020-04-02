@@ -32,10 +32,11 @@ public class Main extends Application {
     Pane root = new Pane(moonSurface);
 
     // setting color of our shape
-    moonSurface.setFill(Color.DARKBLUE);
+    moonSurface.setFill(Color.LIGHTGRAY);
 
     Scene scene = new Scene(root, 640, 480);
 
+    scene.setFill(Color.BLACK);
     /*
     root.widthProperty().addListener(new ChangeListener<Number>() {
       @Override
