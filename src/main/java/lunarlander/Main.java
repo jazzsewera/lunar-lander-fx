@@ -34,9 +34,19 @@ public class Main extends Application {
     // setting color of our shape
     moonSurface.setFill(Color.LIGHTGRAY);
 
-    Scene scene = new Scene(root, 640, 480);
+    double width = 640;
+    double height = 480;
+    Scene scene = new Scene(root, width, height);
 
     scene.setFill(Color.BLACK);
+
+    // listener that checks width and height after window resizing
+    ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
+      System.out.println(stage.getWidth() + ", " + stage.getHeight());
+
+    stage.widthProperty().addListener(stageSizeListener);
+    stage.heightProperty().addListener(stageSizeListener);
+
     /*
     root.widthProperty().addListener(new ChangeListener<Number>() {
       @Override
