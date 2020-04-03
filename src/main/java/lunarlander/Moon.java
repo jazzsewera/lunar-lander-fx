@@ -1,8 +1,6 @@
 package lunarlander;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class Moon {
@@ -10,7 +8,7 @@ public class Moon {
   private Double[] moonSurfacePoints;
 
   Moon() {
-    moonSurfacePoints = calculateSurfacePoints(640, 480, 1);
+    moonSurfacePoints = calculateSurfacePoints(640, 480, 5);
   }
 
   protected Double[] calculateSurfacePoints(double width, double height, int lvl) {
