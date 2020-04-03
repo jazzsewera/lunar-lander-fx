@@ -8,29 +8,29 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 
 public class SidePane {
-
-  public static BorderPane createSidePane() {
-    Label levelLabel = new Label("Level 2");
-    levelLabel.getStyleClass().add("ctrl-label-primary");
-    Label optionalLevelCaption = new Label("");
-    optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
+  public SidePane() {
+    this.levelLabel = new Label("Level 2");
+    this.levelLabel.getStyleClass().add("ctrl-label-primary");
+    this.optionalLevelCaption = new Label("");
+    this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
 
     VBox levelVbox = new VBox();
-    levelVbox.getChildren().addAll(levelLabel, optionalLevelCaption);
+    levelVbox.getChildren().addAll(this.levelLabel, this.optionalLevelCaption);
     levelVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     // There will be images of Landers indicating number of lives
-    Image landerImage = new Image("lunarlander/assets/lander.png");
-    Label[] livesStateLabels = {
-        new Label("", new ImageView(landerImage)),
-        new Label("", new ImageView(landerImage)),
-        new Label("", new ImageView(landerImage))
+    this.landerImage = new Image("lunarlander/assets/lander.png");
+    this.livesStateLabels = new Label[] {
+        new Label("", new ImageView(this.landerImage)),
+        new Label("", new ImageView(this.landerImage)),
+        new Label("", new ImageView(this.landerImage))
     };
-    for (Label label : livesStateLabels) {
+    for (Label label : this.livesStateLabels) {
       label.getStyleClass().add("ctrl-label-primary");
     }
     // You can quickly remove one lander with this statement:
@@ -38,9 +38,9 @@ public class SidePane {
 
     HBox livesStateHbox = new HBox();
     livesStateHbox.getChildren().addAll(
-        livesStateLabels[0],
-        livesStateLabels[1],
-        livesStateLabels[2]
+        this.livesStateLabels[0],
+        this.livesStateLabels[1],
+        this.livesStateLabels[2]
     );
     livesStateHbox.getStyleClass().add("ctrl-lives-state-hbox");
 
@@ -52,12 +52,12 @@ public class SidePane {
     livesVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    Label fuelStateLabel = new Label("350");
-    fuelStateLabel.getStyleClass().add("ctrl-label-primary");
-    Label fuelMaxCapacityLabel = new Label("/400");
-    fuelMaxCapacityLabel.getStyleClass().add("ctrl-label-secondary");
+    this.fuelStateLabel = new Label("350");
+    this.fuelStateLabel.getStyleClass().add("ctrl-label-primary");
+    this.fuelMaxCapacityLabel = new Label("/400");
+    this.fuelMaxCapacityLabel.getStyleClass().add("ctrl-label-secondary");
     HBox fuelHbox = new HBox();
-    fuelHbox.getChildren().addAll(fuelStateLabel, fuelMaxCapacityLabel);
+    fuelHbox.getChildren().addAll(this.fuelStateLabel, this.fuelMaxCapacityLabel);
     fuelHbox.getStyleClass().add("ctrl-label-hbox");
 
     Label fuelCaptionLabel = new Label("Fuel");
@@ -68,12 +68,12 @@ public class SidePane {
     fuelVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    Label velocityStateLabel = new Label("2.5");
-    velocityStateLabel.getStyleClass().add("ctrl-label-primary");
+    this.velocityStateLabel = new Label("2.5");
+    this.velocityStateLabel.getStyleClass().add("ctrl-label-primary");
     Label velocityUnitLabel = new Label(" m/s");
     velocityUnitLabel.getStyleClass().add("ctrl-label-secondary");
     HBox velocityHbox = new HBox();
-    velocityHbox.getChildren().addAll(velocityStateLabel, velocityUnitLabel);
+    velocityHbox.getChildren().addAll(this.velocityStateLabel, velocityUnitLabel);
     velocityHbox.getStyleClass().add("ctrl-label-hbox");
 
     Label velocityCaptionLabel = new Label("Velocity");
@@ -84,12 +84,12 @@ public class SidePane {
     velocityVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    Label heightStateLabel = new Label("15.0");
-    heightStateLabel.getStyleClass().add("ctrl-label-primary");
+    this.heightStateLabel = new Label("15.0");
+    this.heightStateLabel.getStyleClass().add("ctrl-label-primary");
     Label heightUnitLabel = new Label(" m");
     heightUnitLabel.getStyleClass().add("ctrl-label-secondary");
     HBox heightHbox = new HBox();
-    heightHbox.getChildren().addAll(heightStateLabel, heightUnitLabel);
+    heightHbox.getChildren().addAll(this.heightStateLabel, heightUnitLabel);
     heightHbox.getStyleClass().add("ctrl-label-hbox");
 
     Label heightCaptionLabel = new Label("Height");
@@ -100,26 +100,26 @@ public class SidePane {
     heightVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    Label scoreStateLabel = new Label("69420");
-    scoreStateLabel.getStyleClass().add("ctrl-label-primary");
+    this.scoreStateLabel = new Label("69420");
+    this.scoreStateLabel.getStyleClass().add("ctrl-label-primary");
 
     Label scoreCaptionLabel = new Label("Score");
     scoreCaptionLabel.getStyleClass().add("ctrl-label-caption");
 
     VBox scoreVbox = new VBox();
-    scoreVbox.getChildren().addAll(scoreStateLabel, scoreCaptionLabel);
+    scoreVbox.getChildren().addAll(this.scoreStateLabel, scoreCaptionLabel);
     scoreVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
     VBox verticalLayoutVbox = new VBox();
     verticalLayoutVbox.getStyleClass().add("ctrl-main-vertical-layout");
     verticalLayoutVbox.getChildren().addAll(
-        levelVbox,
-        livesVbox,
-        fuelVbox,
-        velocityVbox,
-        heightVbox,
-        scoreVbox
+      levelVbox,
+      livesVbox,
+      fuelVbox,
+      velocityVbox,
+      heightVbox,
+      scoreVbox
     );
     // Variable margins between elements so that they stay evenly distributed
     for (Node child : verticalLayoutVbox.getChildren()) {
@@ -129,27 +129,27 @@ public class SidePane {
 
     Label networkCaptionLabel = new Label("Network sync: ");
     networkCaptionLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
-    Label networkStatusLabel = new Label("disabled");
-    networkStatusLabel.getStyleClass().add("ctrl-label-status-bar-primary");
+    this.networkStatusLabel = new Label("disabled");
+    this.networkStatusLabel.getStyleClass().add("ctrl-label-status-bar-primary");
 
     HBox networkStatusHbox = new HBox();
     networkStatusHbox.getChildren().addAll(networkCaptionLabel, networkStatusLabel);
 
-    Label leftKbdIndicatorLabel = new Label("left");
-    leftKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
-    Label upKbdIndicatorLabel = new Label("up");
-    upKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
-    Label rightKbdIndicatorLabel = new Label("right");
-    rightKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+    this.leftKbdIndicatorLabel = new Label("left");
+    this.leftKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+    this.upKbdIndicatorLabel = new Label("up");
+    this.upKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
+    this.rightKbdIndicatorLabel = new Label("right");
+    this.rightKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
     // You can switch an indicator to "on" with those statements:
     // leftKbdIndicatorLabel.getStyleClass().clear();
     // leftKbdIndicatorLabel.getStyleClass().add("ctrl-label-status-bar-primary");
 
     HBox kbdIndicatorHbox = new HBox();
     kbdIndicatorHbox.getChildren().addAll(
-        leftKbdIndicatorLabel,
-        upKbdIndicatorLabel,
-        rightKbdIndicatorLabel
+        this.leftKbdIndicatorLabel,
+        this.upKbdIndicatorLabel,
+        this.rightKbdIndicatorLabel
     );
     kbdIndicatorHbox.getStyleClass().add("ctrl-kbd-indicator-hbox");
 
@@ -160,11 +160,51 @@ public class SidePane {
     HBox.setHgrow(networkStatusHbox, Priority.ALWAYS);
 
 
-    BorderPane root = new BorderPane();
-    root.getStyleClass().add("ctrl-root");
-    root.setCenter(verticalLayoutVbox);
-    root.setBottom(bottomStatusBarHbox);
-
-    return root;
+    this.sideBorderPane = new BorderPane();
+    this.sideBorderPane.getStyleClass().add("ctrl-root");
+    this.sideBorderPane.setCenter(verticalLayoutVbox);
+    this.sideBorderPane.setBottom(bottomStatusBarHbox);
   }
+
+  public void setLevel(int lvl) {
+    this.levelLabel.setText("Level " + lvl);
+  }
+
+  public void setKbdUpPressed() {
+    this.upKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
+  }
+  public void setKbdUpReleased() {
+    this.upKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
+  }
+  public void setKbdLeftPressed() {
+    this.leftKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
+  }
+  public void setKbdLeftReleased() {
+    this.leftKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
+  }
+  public void setKbdRightPressed() {
+    this.rightKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
+  }
+  public void setKbdRightReleased() {
+    this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
+  }
+
+  public BorderPane getSideBorderPane() {
+    return sideBorderPane;
+  }
+
+  private Label levelLabel;
+  private Label optionalLevelCaption;
+  private final Image landerImage;
+  private Label[] livesStateLabels;
+  private Label fuelStateLabel;
+  private Label fuelMaxCapacityLabel;
+  private Label velocityStateLabel;
+  private Label heightStateLabel;
+  private Label scoreStateLabel;
+  private Label networkStatusLabel;
+  private Label leftKbdIndicatorLabel;
+  private Label upKbdIndicatorLabel;
+  private Label rightKbdIndicatorLabel;
+  private final BorderPane sideBorderPane;
 }
