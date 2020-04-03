@@ -6,13 +6,20 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 
 public class ApplicationWindow {
 
   public ApplicationWindow() {
+    GamePane gamePane = new GamePane();
     SidePane sidePane = new SidePane();
+    HBox applicationWindowHbox = new HBox();
+    applicationWindowHbox.getChildren().addAll(
+      gamePane.getMoonSurfacePane(),
+      sidePane.getSideBorderPane()
+    );
 
-    this.mainGameScene = new Scene(sidePane.getSideBorderPane());
+    this.mainGameScene = new Scene(applicationWindowHbox);
 
     this.mainGameScene.getStylesheets().add("lunarlander/css/style.css");
 

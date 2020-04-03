@@ -4,9 +4,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.layout.Pane;
 
-public class GameWindow {
+public class GamePane {
 
-  public GameWindow() {
+  public GamePane() {
     Moon moon = new Moon();
     Polygon moonSurface = new Polygon();
 
