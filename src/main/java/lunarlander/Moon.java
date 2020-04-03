@@ -10,7 +10,7 @@ public class Moon {
   private Double[] moonSurfacePoints;
 
   Moon() {
-    moonSurfacePoints = calculateSurfacePoints(640, 480, 3);
+    moonSurfacePoints = calculateSurfacePoints(640, 480, 1);
   }
 
   protected Double[] calculateSurfacePoints(double width, double height, int lvl) {
@@ -48,8 +48,8 @@ public class Moon {
     int landingRandomCenter
       = 2 * ( // we want every second number, because we want the height
           rand.nextInt( // randomly generated landing spot to make the game thrilling
-              pointsInWindow - landingWidth/2) // we generate the CENTER point of the landing area
-          + landingWidth/2 - 1) // trim half a width from both sides so that our index won't be out of bounds
+              pointsInWindow - landingWidth - 1) // we generate the CENTER point of the landing area
+          + landingWidth/2 + 1) // trim half a width from both sides so that our index won't be out of bounds
       + 1; // we only want the height, so only odd numbers
 
     // Set all the surrounding points of a random center to the same height as the center itself
