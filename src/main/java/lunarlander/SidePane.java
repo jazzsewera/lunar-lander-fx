@@ -164,6 +164,9 @@ public class SidePane {
     this.sideBorderPane.getStyleClass().add("ctrl-root");
     this.sideBorderPane.setCenter(verticalLayoutVbox);
     this.sideBorderPane.setBottom(bottomStatusBarHbox);
+    this.sideBorderPane.setMinWidth(280);
+    this.sideBorderPane.setPrefWidth(280);
+    this.sideBorderPane.setMaxWidth(280);
   }
 
   public void setLevel(int lvl) {

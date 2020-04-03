@@ -7,17 +7,26 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 
 public class ApplicationWindow {
 
   public ApplicationWindow() {
     GamePane gamePane = new GamePane();
     SidePane sidePane = new SidePane();
+
+    Pane moonSurfacePane = gamePane.getMoonSurfacePane();
+    Pane sideBorderPane = sidePane.getSideBorderPane();
+
     HBox applicationWindowHbox = new HBox();
     applicationWindowHbox.getChildren().addAll(
-      gamePane.getMoonSurfacePane(),
-      sidePane.getSideBorderPane()
+      moonSurfacePane,
+      sideBorderPane
     );
+
+    HBox.setHgrow(moonSurfacePane, Priority.ALWAYS);
+    HBox.setHgrow(sideBorderPane, Priority.NEVER);
 
     this.mainGameScene = new Scene(applicationWindowHbox);
 
