@@ -41,11 +41,13 @@ public class Main extends Application {
     scene.setFill(Color.BLACK);
 
     // listener that checks width and height after window resizing
-    ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
-      System.out.println(stage.getWidth() + ", " + stage.getHeight());
-
-    stage.widthProperty().addListener(stageSizeListener);
-    stage.heightProperty().addListener(stageSizeListener);
+/*
+ *     ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
+ *       System.out.println(stage.getWidth() + ", " + stage.getHeight());
+ *
+ *     stage.widthProperty().addListener(stageSizeListener);
+ *     stage.heightProperty().addListener(stageSizeListener);
+ */
 
     /*
     root.widthProperty().addListener(new ChangeListener<Number>() {
