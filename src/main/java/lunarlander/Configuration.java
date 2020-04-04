@@ -7,24 +7,31 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.common.io.Files;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 
 
 public class Configuration {
-
-  Gson gson = new GsonBuilder().setPrettyPrinting().create();
+  // Serialize and deserialize only Configuration fields, that is
+  // moonMaps and params
+  //
+  // SomePrimitives needs to be deleted
+  //
+  // Serialize and deserialize should be included in toFile and fromFile,
+  // we don't need a json anywhere outside of this class.
+  //
+  // Keep the fields at the bottom of classes
 
   // Method converting Java obj to JSON
   public String serialize(SomePrimitives obj) {
-    String json = gson.toJson(obj);
+    String json = this.gson.toJson(obj);
     return json;
   }
 
   // Method converting JSON to Java obj
   public SomePrimitives deserialize(String json) {
-    SomePrimitives obj2 = gson.fromJson(json, SomePrimitives.class);
-    return obj2;
+    SomePrimitives obj = this.gson.fromJson(json, SomePrimitives.class);
+    return obj;
   }
 
   public static void toFile(String json) {
@@ -53,4 +60,15 @@ public class Configuration {
     }
   }
 
+  public Double[] getMoonMap(int lvl) {
+    // Search moonMaps HashMap and if the map exists, return it.
+    // If not, generate new moonMap with a generator in class Moon.
+    return new Double[] {0.0};
+  }
+
+  private Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+  private HashMap<Integer, Double[]> moonMaps; // We will keep level maps in it
+  // For future use:
+  private HashMap<String, String> params; // for example for server ip and port
 }
