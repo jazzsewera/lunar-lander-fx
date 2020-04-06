@@ -111,3 +111,9 @@ hs_err_pid*
 
 # Ignore Gradle build output directory
 build
+
+# Ignore eclipse-plugin files
+.classpath
+.project
+.settings/
+bin/
