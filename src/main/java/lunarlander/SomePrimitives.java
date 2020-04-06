@@ -6,7 +6,11 @@ public class SomePrimitives {
   private int age = 20;
   private int id = 2137;
 
-  SomePrimitives() {}
+  public SomePrimitives(String name, int age, int id) {
+    this.name = name;
+    this.age = age;
+    this.id = id;
+  }
 
 
   public String getName() {

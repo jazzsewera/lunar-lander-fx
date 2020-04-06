@@ -14,27 +14,16 @@ import java.util.HashMap;
 public class Configuration {
   // Serialize and deserialize only Configuration fields, that is
   // moonMaps and params
-  //
+
   // SomePrimitives needs to be deleted
-  //
-  // Serialize and deserialize should be included in toFile and fromFile,
-  // we don't need a json anywhere outside of this class.
-  //
+
   // Keep the fields at the bottom of classes
 
-  // Method converting Java obj to JSON
-  public String serialize(SomePrimitives obj) {
+
+  public void toFile(SomePrimitives obj) {
+    // serialization
     String json = this.gson.toJson(obj);
-    return json;
-  }
-
-  // Method converting JSON to Java obj
-  public SomePrimitives deserialize(String json) {
-    SomePrimitives obj = this.gson.fromJson(json, SomePrimitives.class);
-    return obj;
-  }
-
-  public static void toFile(String json) {
+    // saving to file
     File file = new File("src/main/resources/lunarlander/configuration.json");
     try {
       CharSink sink = Files.asCharSink(file, Charsets.UTF_8);
@@ -47,17 +36,20 @@ public class Configuration {
     }
   }
 
-  public static void fromFile(String filePath) {
+  public SomePrimitives fromFile(String filePath) {
     File file = new File(filePath);
     CharSource source = Files.asCharSource(file, Charsets.UTF_8);
     try {
       String result = source.read();
-      System.out.println(result);
+      SomePrimitives obj = this.gson.fromJson(result, SomePrimitives.class);
+      return obj;
     } catch (IOException e) {
       System.out.println("Something went wrong. Possible reasons: ");
       System.out.println("1) Folder your are trying to open does not exist.");
       System.out.println("2) You don't have permissions to open that file.");
     }
+    SomePrimitives obj = new SomePrimitives("0",0,0);
+    return obj;
   }
 
   public Double[] getMoonMap(int lvl) {
