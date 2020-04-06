@@ -23,12 +23,11 @@ public class Main extends Application {
     launch();
 
     Configuration conf = new Configuration();
-    SomePrimitives ja = new SomePrimitives("Mateusz", 12, 3005);
+    Double[] coords = conf.calculateSurfacePoints(640,480, 2);
 
-    conf.toFile(ja);
+    conf.toFile(coords);
 
-    SomePrimitives obj2 = conf.fromFile("src/main/resources/lunarlander/configuration.json");
-    System.out.println(obj2.getAge());
+    Double[] coords2 = conf.fromFile("src/main/resources/lunarlander/configuration.json");
   }
 
 }
