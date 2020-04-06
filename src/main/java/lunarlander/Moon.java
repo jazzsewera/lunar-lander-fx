@@ -5,10 +5,19 @@ import java.util.Random;
 
 public class Moon {
 
-  private Double[] moonSurfacePoints;
+  public Moon(int lvl, Double[] moonSurfacePoints) {
+    this.lvl = lvl;
+    this.moonSurfacePoints = moonSurfacePoints;
+  }
 
-  Moon() {
-    moonSurfacePoints = calculateSurfacePoints(640, 480, 5);
+  public Moon(int lvl) {
+    this.lvl = lvl;
+    this.moonSurfacePoints = calculateSurfacePoints(800, 600, lvl);
+  }
+
+  public Moon(int lvl, double initialWidth, double initialHeight) {
+    this.lvl = lvl;
+    this.moonSurfacePoints = calculateSurfacePoints(initialWidth, initialHeight, lvl);
   }
 
   protected Double[] calculateSurfacePoints(double width, double height, int lvl) {
@@ -71,4 +80,7 @@ public class Moon {
 
   public void recalculateHeight(double height) {
   }
+
+  private Double[] moonSurfacePoints;
+  private int lvl;
 }

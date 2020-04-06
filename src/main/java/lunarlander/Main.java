@@ -21,8 +21,6 @@ public class Main extends Application {
   public static void main(String[] args) {
     launch(args);
 
-    launch();
-
     Configuration conf = new Configuration();
     Double[] coords = conf.calculateSurfacePoints(640,480, 2);
 
