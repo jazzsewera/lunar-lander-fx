@@ -7,7 +7,17 @@ import javafx.scene.layout.Pane;
 public class GamePane {
 
   public GamePane() {
-    Moon moon = new Moon();
+
+    Configuration configuration = new Configuration();
+
+    for (int i = 1; i <= 15; i++) {
+      configuration.generateLevel(i);
+    }
+    configuration.toFile();
+
+    configuration.fromFile("src/main/resources/lunarlander/configuration.json");
+
+    Moon moon = configuration.getMoonMap(19);
     Polygon moonSurface = new Polygon();
 
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
