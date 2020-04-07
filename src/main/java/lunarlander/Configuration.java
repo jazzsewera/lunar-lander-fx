@@ -53,9 +53,7 @@ public class Configuration {
   }
 
   public Moon getMoonMap(int lvl) {
-    // Search moonMaps HashMap and if the map exists, return it.
-    // If not, generate new moonMap with a generator in class Moon.
-    return new Moon(lvl); // search through the list and filter one level out
+    return moonMaps.get(lvl-1);
   }
 
   public void generateLevel(int lvl) {
