@@ -13,7 +13,7 @@ public class Main extends Application {
     ApplicationWindow window = new ApplicationWindow();
     stage.setScene(window.getMainGameScene());
     stage.setTitle("Lunar Lander");
-    stage.setWidth(280);
+    stage.setWidth(1080);
     stage.setHeight(600);
     stage.show();
   }

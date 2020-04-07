@@ -10,12 +10,14 @@ public class GamePane {
 
     Configuration configuration = new Configuration();
 
+
     /*
-    for (int i = 1; i <= 3; i++) {
-      configuration.generateLevel(i);
-    }
-    configuration.toFile();
-*/
+     * for (int i = 1; i <= 3; i++) {
+     *   configuration.generateLevel(i);
+     * }
+     * configuration.toFile();
+     */
+
     configuration.fromFile("src/main/resources/lunarlander/configuration.json");
 
     Moon moon = configuration.getMoonMap(3);
