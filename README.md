@@ -3,7 +3,13 @@
 ## First stage
 
 Project design brief and first stage details are specified in
-[design_brief](design_brief.md) Markdown file.
+[design_brief](docs/design_brief.md) Markdown file.
+
+
+## Second stage
+
+Project changelog and class diagram is specified in
+[second_stage](docs/second_stage.md) Markdown file.
 
 
 ## Description
