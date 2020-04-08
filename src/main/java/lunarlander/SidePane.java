@@ -20,7 +20,6 @@ import javafx.scene.paint.Color;
     SidePane sp = new SidePane();
     BorderPane sideBorderPane = sp.getSideBorderPane();
  *  </pre>
- * </p>
  *
  * @author Błażej Sewera 
  * @author Mateusz Winnicki
@@ -208,7 +207,6 @@ public class SidePane {
       this.mainGameScene.setOnKeyPressed(event -&gt; {
         if (event.getCode() == KeyCode.UP) sidePane.setKbdUpPressed();
       </pre>
-   * </p>
    */
   public void setKbdUpPressed() {
     this.upKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
@@ -225,7 +223,6 @@ public class SidePane {
       this.mainGameScene.setOnKeyReleased(event -&gt; {
         if (event.getCode() == KeyCode.UP) sidePane.setKbdUpReleased();
       </pre>
-   * </p>
    */
   public void setKbdUpReleased() {
     this.upKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
@@ -242,7 +239,6 @@ public class SidePane {
       this.mainGameScene.setOnKeyPressed(event -&gt; {
         if (event.getCode() == KeyCode.LEFT) sidePane.setKbdLeftPressed();
       </pre>
-   * </p>
    */
   public void setKbdLeftPressed() {
     this.leftKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
@@ -259,7 +255,6 @@ public class SidePane {
       this.mainGameScene.setOnKeyReleased(event -&gt; {
         if (event.getCode() == KeyCode.LEFT) sidePane.setKbdLeftReleased();
       </pre>
-   * </p>
    */
   public void setKbdLeftReleased() {
     this.leftKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
@@ -276,7 +271,6 @@ public class SidePane {
       this.mainGameScene.setOnKeyPressed(event -&gt; {
         if (event.getCode() == KeyCode.RIGHT) sidePane.setKbdRightPressed();
       </pre>
-   * </p>
    */
   public void setKbdRightPressed() {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
@@ -293,7 +287,6 @@ public class SidePane {
       this.mainGameScene.setOnKeyReleased(event -&gt; {
         if (event.getCode() == KeyCode.RIGHT) sidePane.setKbdRightReleased();
       </pre>
-   * </p>
    */
   public void setKbdRightReleased() {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
