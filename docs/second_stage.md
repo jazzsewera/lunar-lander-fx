@@ -1,12 +1,17 @@
 # Lunar Lander, second stage
 
 
-## Class diagram
+## File structure
+
+![Class diagram](class_diagram.jpg)
+
+
+## UML Class diagram
 
 The class diagram presented below is a probable structure of our project
 implemented in the next stages.
 
-![Class diagram](class_diagram.jpg)
+![UML diagram](uml_diagram.jpg)
 
 
 ## GUI prototype
