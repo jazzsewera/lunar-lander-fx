@@ -46,12 +46,15 @@ public class Moon {
   }
 
   /**
-   * Method generating moonSurfacePoints.
+   * Method generating moonSurfacePoints - list of points forming shape of Moon.
+   * They are created in process of randomisation based on how high level
+   * are we forming Moon for. The higher level - the more unfavorable
+   * shape will be generated.
    *
-   * @param width
-   * @param height
-   * @param lvl
-   * @return
+   * @param width Determines width of an area on which we are generating points, double.
+   * @param height Determines height of an area on which we are generating points, double.
+   * @param lvl Determines for which level we want to generate points.
+   * @return Double[] list of generated points.
    */
   protected Double[] calculateSurfacePoints(double width, double height, int lvl) {
     // in order to make universal array without presupposing about its size
@@ -103,6 +106,12 @@ public class Moon {
     return result;
   }
 
+  /**
+   * Getter that is used in process of extracting chosen Moon map of an array
+   * in configuration files, {@link Configuration}.
+   *
+   * @return moonSurfacePoints - list of points forming shape of Moon, Double[].
+   */
   public Double[] getMoonSurfacePoints() {
     return moonSurfacePoints;
   }
