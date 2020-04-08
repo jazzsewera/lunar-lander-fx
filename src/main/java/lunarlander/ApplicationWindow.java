@@ -10,8 +10,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
+/**
+ * Main game window class gathering gamePane and sidePane into
+ * a single root pane that can be rendered in the {@link Stage}.
+ *
+ * @author Błażej Sewera
+ * @author Mateusz Winnicki
+ */
 public class ApplicationWindow {
 
+  /**
+   * Constructor setting up all the neccessary components of
+   * the Game Window.
+   */
   public ApplicationWindow() {
     GamePane gamePane = new GamePane();
     SidePane sidePane = new SidePane();
@@ -55,6 +66,12 @@ public class ApplicationWindow {
     });
   }
 
+  /**
+   * Method to get an actual scene that contains the root pane
+   * and can be rendered in the window.
+   *
+   * @return mainGameScene, {@link Scene}
+   */
   public Scene getMainGameScene() {
     return mainGameScene;
   }

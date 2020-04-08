@@ -11,7 +11,25 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 
+/**
+ * Gui component - a pane with game state gauges.
+ *
+ * <p>
+ *  Sample usage:
+ *  <pre>
+    SidePane sp = new SidePane();
+    BorderPane sideBorderPane = sp.getSideBorderPane();
+ *  </pre>
+ * </p>
+ *
+ * @author Błażej Sewera 
+ * @author Mateusz Winnicki
+ * @see BorderPane
+ */
 public class SidePane {
+  /**
+   * Constructor setting up all the components of the pane.
+   */
   public SidePane() {
     this.levelLabel = new Label("Level 2");
     this.levelLabel.getStyleClass().add("ctrl-label-primary");
@@ -169,29 +187,123 @@ public class SidePane {
     this.sideBorderPane.setMaxWidth(280);
   }
 
+  /**
+   * Method setting current level number on the Level indicator
+   * on the top of the Pane.
+   *
+   * @param lvl a level number to set, integer
+   */
   public void setLevel(int lvl) {
     this.levelLabel.setText("Level " + lvl);
   }
 
+  /**
+   * Method setting 'up' keyboard indicator in the control strip
+   * on the bottom of the Pane to active (brighter color).
+   *
+   * <p>
+   *  Intended use in an event handler, when the 'up' key is
+   *  pressed on a keyboard. For example:
+      <pre>
+      this.mainGameScene.setOnKeyPressed(event -&gt; {
+        if (event.getCode() == KeyCode.UP) sidePane.setKbdUpPressed();
+      </pre>
+   * </p>
+   */
   public void setKbdUpPressed() {
     this.upKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
   }
+
+  /**
+   * Method setting 'up' keyboard indicator in the control strip
+   * on the bottom of the Pane to inactive (dimmer color).
+   *
+   * <p>
+   *  Intended use in an event handler, when the 'up' key is
+   *  released on a keyboard. For example:
+      <pre>
+      this.mainGameScene.setOnKeyReleased(event -&gt; {
+        if (event.getCode() == KeyCode.UP) sidePane.setKbdUpReleased();
+      </pre>
+   * </p>
+   */
   public void setKbdUpReleased() {
     this.upKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
   }
+
+  /**
+   * Method setting 'left' keyboard indicator in the control strip
+   * on the bottom of the Pane to active (brighter color).
+   *
+   * <p>
+   *  Intended use in an event handler, when the 'left' key is
+   *  pressed on a keyboard. For example:
+      <pre>
+      this.mainGameScene.setOnKeyPressed(event -&gt; {
+        if (event.getCode() == KeyCode.LEFT) sidePane.setKbdLeftPressed();
+      </pre>
+   * </p>
+   */
   public void setKbdLeftPressed() {
     this.leftKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
   }
+
+  /**
+   * Method setting 'left' keyboard indicator in the control strip
+   * on the bottom of the Pane to inactive (dimmer color).
+   *
+   * <p>
+   *  Intended use in an event handler, when the 'left' key is
+   *  released on a keyboard. For example:
+      <pre>
+      this.mainGameScene.setOnKeyReleased(event -&gt; {
+        if (event.getCode() == KeyCode.LEFT) sidePane.setKbdLeftReleased();
+      </pre>
+   * </p>
+   */
   public void setKbdLeftReleased() {
     this.leftKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
   }
+
+  /**
+   * Method setting 'right' keyboard indicator in the control strip
+   * on the bottom of the Pane to active (brighter color).
+   *
+   * <p>
+   *  Intended use in an event handler, when the 'right' key is
+   *  pressed on a keyboard. For example:
+      <pre>
+      this.mainGameScene.setOnKeyPressed(event -&gt; {
+        if (event.getCode() == KeyCode.RIGHT) sidePane.setKbdRightPressed();
+      </pre>
+   * </p>
+   */
   public void setKbdRightPressed() {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#92B2FF"));
   }
+
+  /**
+   * Method setting 'right' keyboard indicator in the control strip
+   * on the bottom of the Pane to inactive (dimmer color).
+   *
+   * <p>
+   *  Intended use in an event handler, when the 'right' key is
+   *  released on a keyboard. For example:
+      <pre>
+      this.mainGameScene.setOnKeyReleased(event -&gt; {
+        if (event.getCode() == KeyCode.RIGHT) sidePane.setKbdRightReleased();
+      </pre>
+   * </p>
+   */
   public void setKbdRightReleased() {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
   }
 
+  /**
+   * Method to get an actual pane that can be rendered in the window.
+   *
+   * @return sideBorderPane, {@link BorderPane}
+   */
   public BorderPane getSideBorderPane() {
     return sideBorderPane;
   }
