@@ -12,18 +12,18 @@ import javafx.scene.layout.Priority;
 
 /**
  * Main game window class gathering gamePane and sidePane into
- * a single root pane that can be rendered in the {@link Stage}.
+ * a single root pane that can be rendered in the stage.
  *
  * @author Błażej Sewera
  * @author Mateusz Winnicki
  */
-public class ApplicationWindow {
+public class GameWindow {
 
   /**
-   * Constructor setting up all the neccessary components of
+   * Constructor setting up all the necessary components of
    * the Game Window.
    */
-  public ApplicationWindow() {
+  public GameWindow() {
     GamePane gamePane = new GamePane();
     SidePane sidePane = new SidePane();
 

@@ -6,13 +6,13 @@ import javafx.scene.layout.Pane;
 
 /**
  * Class preparing a Pane of a game screen we are
- * displaying in ApplicationWindow, {@link ApplicationWindow}.
+ * displaying in ApplicationWindow, {@link GameWindow}.
  */
 public class GamePane {
 
   /**
    * Constructor reading configuration.json file, {@link Configuration},
-   * and creating a Pane of moonSuface of chosen Moon, {@link Moon}.
+   * and creating a Pane of moonSurface of chosen Moon, {@link Moon}.
    */
   public GamePane() {
     Configuration configuration = new Configuration();

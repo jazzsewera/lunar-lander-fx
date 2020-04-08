@@ -51,7 +51,7 @@ public class Configuration {
   }
 
   /**
-   * Method reading configuration.json file and deserialising its
+   * Method reading configuration.json file and deserializing its
    * content back into moonMaps ArrayList.
    *
    * @param filePath Specifying where does configuration.json exist, String.
@@ -81,7 +81,7 @@ public class Configuration {
   }
 
   /**
-   * Method adding or overwritting moonMap of chosen level.
+   * Method adding or overwriting moonMap of chosen level.
    *
    * @param lvl Number of level we want to create moon surface with, int.
    */

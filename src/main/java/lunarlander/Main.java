@@ -10,7 +10,7 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
 
-    ApplicationWindow window = new ApplicationWindow();
+    GameWindow window = new GameWindow();
     stage.setScene(window.getMainGameScene());
     stage.setTitle("Lunar Lander");
     stage.setWidth(1080);
