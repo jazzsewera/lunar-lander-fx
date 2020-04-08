@@ -12,15 +12,27 @@ import java.io.IOException;
 // import java.util.HashMap;
 import java.util.ArrayList;
 
-
+/**
+ * Class operating on attributes and methods linked to
+ * the configuration.json file that stores initial game state.
+ */
 public class Configuration {
   // Serialize and deserialize only Configuration fields, that is
   // moonMaps and params
 
+  /**
+   * Constructor making ArrayList of Moon class objects {@link Moon} -
+   * each Moon has its own surface shape. We will store
+   * them in moonMaps.
+   */
   public Configuration() {
     this.moonMaps = new ArrayList<Moon>();
   }
 
+  /**
+   * Method serialising moonMaps into Json and saving it
+   * in configuration.json file.
+   */
   public void toFile() {
     // serialization
     Moon[] moonMapsArray = this.moonMaps.toArray(new Moon[this.moonMaps.size()]);
@@ -38,6 +50,12 @@ public class Configuration {
     }
   }
 
+  /**
+   * Method reading configuration.json file and deserialising its
+   * content back into moonMaps ArrayList.
+   *
+   * @param filePath Specifying where does configuration.json exist, String.
+   */
   public void fromFile(String filePath) {
     File file = new File(filePath);
     CharSource source = Files.asCharSource(file, Charsets.UTF_8);
@@ -52,13 +70,25 @@ public class Configuration {
     }
   }
 
+  /**
+   * Method returning moonMap of chosen level.
+   *
+   * @param lvl Number of level we want to get surface shape of, int.
+   * @return Moon of moonMaps at lvl-1 index, {@link Moon}.
+   */
   public Moon getMoonMap(int lvl) {
     return moonMaps.get(lvl-1);
   }
 
+  /**
+   * Method adding or overwritting moonMap of chosen level.
+   *
+   * @param lvl Number of level we want to create moon surface with, int.
+   */
   public void generateLevel(int lvl) {
     this.moonMaps.add(new Moon(lvl));
   }
+
 
   private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 

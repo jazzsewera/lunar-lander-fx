@@ -3,23 +3,56 @@ package lunarlander;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class creating Moon objects and operating on their attributes
+ * which are describing Moon size and shape.
+ */
 public class Moon {
 
+  /**
+   * Constructor with explicit moonSurfacePoints declaration.
+   * Used in reading moonMap from a configuration.json file.
+   *
+   * @param lvl Specifies which Moon we are referring to, int.
+   * @param moonSurfacePoints List of points forming shape of Moon, Double[].
+   */
   public Moon(int lvl, Double[] moonSurfacePoints) {
     this.lvl = lvl;
     this.moonSurfacePoints = moonSurfacePoints;
   }
 
+  /**
+   * Constructor with automatic moonSurfacePoint generation.
+   * Used to generate new moonMap (moonSurfacePoints array).
+   *
+   * @param lvl Determines for which level we want to generate new Moon, int.
+   */
   public Moon(int lvl) {
     this.lvl = lvl;
     this.moonSurfacePoints = calculateSurfacePoints(800, 600, lvl);
   }
 
+  /**
+   * Constructor with automatic moonSurfacePoint generation.
+   * Used to generate new moonMap (moonSurfacePoints array).
+   *
+   * @param lvl Determines for which level we want to generate new Moon, int.
+   * @param initialWidth Determines width of area of created Moon, double.
+   * @param initialHeight Determines height of area of created Moon, double.
+   */
   public Moon(int lvl, double initialWidth, double initialHeight) {
     this.lvl = lvl;
     this.moonSurfacePoints = calculateSurfacePoints(initialWidth, initialHeight, lvl);
   }
 
+  /**
+   * Method generating moonSurfacePoints.
+   *
+   * @param width
+   * @param height
+   * @param lvl
+   * @return
+   */
   protected Double[] calculateSurfacePoints(double width, double height, int lvl) {
     // in order to make universal array without presupposing about its size
     // we make it from the list that we will convert to an array
