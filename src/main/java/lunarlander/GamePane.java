@@ -35,8 +35,16 @@ public class GamePane {
     moonSurface.setFill(Color.LIGHTGRAY);
     moonSurfacePane.setStyle("-fx-background-color: black;");
 
-    this.moonSurfacePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> System.out.println("Width: " + newSceneWidth));
-    this.moonSurfacePane.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> System.out.println("Height: " + newSceneHeight));
+    this.moonSurfacePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
+      System.out.println("Width: " + newSceneWidth);
+      moon.recalculateWidth(newSceneWidth.doubleValue());
+      moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
+    });
+    this.moonSurfacePane.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
+      System.out.println("Height: " + newSceneHeight);
+      moon.recalculateHeight(newSceneHeight.doubleValue());
+      moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
+    });
 
   }
 

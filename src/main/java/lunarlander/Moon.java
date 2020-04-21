@@ -10,43 +10,52 @@ import java.util.Random;
 public class Moon {
 
   /**
-   * Constructor with explicit moonSurfacePoints declaration.
+   * Constructor with explicit initialMoonSurfacePoints declaration.
    * Used in reading moonMap from a configuration.json file.
    *
    * @param lvl Specifies which Moon we are referring to, int.
-   * @param moonSurfacePoints List of points forming shape of Moon, Double[].
+   * @param initialMoonSurfacePoints List of points forming shape of Moon, Double[].
    */
-  public Moon(int lvl, Double[] moonSurfacePoints) {
+  public Moon(int lvl, Double[] initialMoonSurfacePoints) {
+    this.initialWidth = 800.0;
+    this.initialHeight = 600.0;
     this.lvl = lvl;
-    this.moonSurfacePoints = moonSurfacePoints;
+    this.initialMoonSurfacePoints = initialMoonSurfacePoints;
+    this.moonSurfacePoints = this.initialMoonSurfacePoints.clone();
   }
 
   /**
    * Constructor with automatic moonSurfacePoint generation.
-   * Used to generate new moonMap (moonSurfacePoints array).
+   * Used to generate new moonMap (initialMoonSurfacePoints array).
    *
    * @param lvl Determines for which level we want to generate new Moon, int.
    */
   public Moon(int lvl) {
+    this.initialWidth = 800.0;
+    this.initialHeight = 600.0;
     this.lvl = lvl;
-    this.moonSurfacePoints = calculateSurfacePoints(800, 600, lvl);
+    this.initialMoonSurfacePoints = calculateSurfacePoints(800.0, 600.0, lvl);
+    this.moonSurfacePoints = this.initialMoonSurfacePoints.clone();
   }
 
   /**
    * Constructor with automatic moonSurfacePoint generation.
-   * Used to generate new moonMap (moonSurfacePoints array).
+   * Used to generate new moonMap (initialMoonSurfacePoints array).
    *
    * @param lvl Determines for which level we want to generate new Moon, int.
    * @param initialWidth Determines width of area of created Moon, double.
    * @param initialHeight Determines height of area of created Moon, double.
    */
   public Moon(int lvl, double initialWidth, double initialHeight) {
+    this.initialWidth = initialWidth;
+    this.initialHeight = initialHeight;
     this.lvl = lvl;
-    this.moonSurfacePoints = calculateSurfacePoints(initialWidth, initialHeight, lvl);
+    this.initialMoonSurfacePoints = calculateSurfacePoints(initialWidth, initialHeight, lvl);
+    this.moonSurfacePoints = this.initialMoonSurfacePoints.clone();
   }
 
   /**
-   * Method generating moonSurfacePoints - list of points forming shape of Moon.
+   * Method generating initialMoonSurfacePoints - list of points forming shape of Moon.
    * They are created in process of randomisation based on how high level
    * are we forming Moon for. The higher level - the more unfavorable
    * shape will be generated.
@@ -110,19 +119,32 @@ public class Moon {
    * Getter that is used in process of extracting chosen Moon map of an array
    * in configuration files, {@link Configuration}.
    *
-   * @return moonSurfacePoints - list of points forming shape of Moon, Double[].
+   * @return initialMoonSurfacePoints - list of points forming shape of Moon, Double[].
    */
   public Double[] getMoonSurfacePoints() {
     return moonSurfacePoints;
   }
 
-  public void recalculateWidth(double width) {
+  public void recalculateWidth(double newWidth) {
     // height stays the same but width is calculated with the same step but new
+    double factor = newWidth / this.initialWidth;
+    for (int currentIndexX = 2; currentIndexX < this.initialMoonSurfacePoints.length - 1; currentIndexX += 2) {
+      moonSurfacePoints[currentIndexX] = initialMoonSurfacePoints[currentIndexX] * factor;
+    }
+    // needs some viable resizing idea
+    for (int currentIndexY = 3; currentIndexY < this.initialMoonSurfacePoints.length - 1; currentIndexY += 2) {
+      moonSurfacePoints[currentIndexY] = initialMoonSurfacePoints[currentIndexY] * factor + 50*factor;
+    }
   }
 
-  public void recalculateHeight(double height) {
+  public void recalculateHeight(double newHeight) {
+    this.moonSurfacePoints[1] = newHeight;
+    this.moonSurfacePoints[this.moonSurfacePoints.length - 1] = newHeight;
   }
 
+  private Double[] initialMoonSurfacePoints;
   private Double[] moonSurfacePoints;
   private int lvl;
+  private double initialWidth;
+  private double initialHeight;
 }
