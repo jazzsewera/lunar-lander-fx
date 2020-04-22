@@ -1,6 +1,7 @@
 package lunarlander;
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.layout.Pane;
 
@@ -27,9 +28,20 @@ public class GamePane {
     configuration.fromFile("src/main/resources/lunarlander/configuration.json");
 
     Moon moon = configuration.getMoonMap(3);
-    Polygon moonSurface = new Polygon();
+    Lander lander = new Lander(100, 100, 0, 100);
 
+    Polygon moonSurface = new Polygon();
+    Polygon landerON = new Polygon();
+
+    //w skrócie chuja sie dzieje, probuje to robic analogicznie ale wychodzi soczyste nic
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
+    landerON.getPoints().addAll(50.0, 50.0,
+      50.0, 75.0,
+      75.0, 50.0,
+      75.0, 75.0);
+
+    this.landerPane = new Pane(landerON);
+    landerON.setFill(new ImagePattern(lander.getLander()));
 
     this.moonSurfacePane = new Pane(moonSurface);
     moonSurface.setFill(Color.LIGHTGRAY);
@@ -59,4 +71,5 @@ public class GamePane {
   }
 
   private final Pane moonSurfacePane;
+  private Pane landerPane;
 }
