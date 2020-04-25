@@ -28,20 +28,21 @@ public class GamePane {
     configuration.fromFile("src/main/resources/lunarlander/configuration.json");
 
     Moon moon = configuration.getMoonMap(3);
-    Lander lander = new Lander(100, 100, 0, 100);
+    Lander lander = new Lander(250, 250, 0, 100);
 
     Polygon moonSurface = new Polygon();
     Polygon landerON = new Polygon();
 
-    //w skrócie chuja sie dzieje, probuje to robic analogicznie ale wychodzi soczyste nic
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
     landerON.getPoints().addAll(50.0, 50.0,
-      50.0, 75.0,
       75.0, 50.0,
+      50.0, 75.0,
       75.0, 75.0);
 
     this.landerPane = new Pane(landerON);
-    landerON.setFill(new ImagePattern(lander.getLander()));
+    landerON.setFill(new ImagePattern(lander.getLanderImage()));
+    landerPane.setStyle("-fx-background-color: blue;");
+
 
     this.moonSurfacePane = new Pane(moonSurface);
     moonSurface.setFill(Color.LIGHTGRAY);
@@ -69,6 +70,10 @@ public class GamePane {
   public Pane getMoonSurfacePane() {
     return moonSurfacePane;
   }
+  public Pane getLanderPane() {
+    return landerPane;
+  }
+
 
   private final Pane moonSurfacePane;
   private Pane landerPane;

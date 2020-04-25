@@ -28,11 +28,13 @@ public class GameWindow {
     SidePane sidePane = new SidePane();
 
     Pane moonSurfacePane = gamePane.getMoonSurfacePane();
+    Pane landerPane = gamePane.getLanderPane();
     Pane sideBorderPane = sidePane.getSideBorderPane();
 
     HBox applicationWindowHbox = new HBox();
     applicationWindowHbox.getChildren().addAll(
       moonSurfacePane,
+      landerPane,
       sideBorderPane
     );
 

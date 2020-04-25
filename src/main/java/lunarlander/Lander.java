@@ -1,16 +1,14 @@
 package lunarlander;
 
 import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-
-import java.awt.*;
+//import javafx.scene.paint.ImagePattern;
+//import java.awt.*;
 
 public class Lander {
 
   public Lander(double xCoords, double yCoords, double angle, double fuel) {
 
-    this.setLander(new Image("lunarlander/assets/lander.png",25,25,false,false));
-
+    this.landerImage = new Image("lunarlander/assets/lander.png",25,25,false,false);
     this.xCoords = xCoords;
     this.yCoords = yCoords;
     this.angle = angle;
@@ -19,9 +17,7 @@ public class Lander {
 
 
 
-  public double getxCoords() {
-    return xCoords;
-  }
+  public double getxCoords() { return xCoords; }
 
   public void setxCoords(double xCoords) {
     this.xCoords = xCoords;
@@ -51,16 +47,11 @@ public class Lander {
     this.fuel = fuel;
   }
 
-  public Image getLander() {
-    return lander;
-  }
+  public Image getLanderImage() { return landerImage; }
 
-  public void setLander(Image lander) {
-    this.lander = lander;
-  }
+  public void setLanderImage(Image lander) { this.landerImage = landerImage; }
 
-  private Image lander;
-
+  private Image landerImage;
   private double xCoords;
   private double yCoords;
   private double vx;
