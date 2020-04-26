@@ -16,7 +16,6 @@ public class Lander {
   }
 
 
-
   public double getxCoords() { return xCoords; }
 
   public void setxCoords(double xCoords) {

@@ -1,10 +1,22 @@
 package lunarlander;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.RotateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
+
+
 
 /**
  * Class preparing a Pane of a game screen we are
@@ -70,7 +82,32 @@ public class GamePane {
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
 
+    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), landerPane);
+    leftRotate.setAxis(Rotate.Z_AXIS);
+    leftRotate.setByAngle(-2);
+    leftRotate.setAutoReverse(false);
+    leftRotate.stop();
+
+    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), landerPane);
+    rightRotate.setAxis(Rotate.Z_AXIS);
+    rightRotate.setByAngle(2);
+    rightRotate.setAutoReverse(false);
+    rightRotate.stop();
+
   }
+  private EventHandler<KeyEvent> inputReleased = new EventHandler<KeyEvent>() {
+    @Override
+    public void handle(KeyEvent event) {
+      if (event.getCode() == KeyCode.SPACE) {
+        freeFall = true;
+        //mediaPlayer.stop();
+      } else if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
+        isLeftRotate = false;
+      } else if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
+        isRightRotate = false;
+      }
+    }
+  };
 
   /**
    * Getter used in ApplicationWindow class in order to put
@@ -92,4 +129,9 @@ public class GamePane {
   private final Pane moonSurfacePane;
   private Pane landerPane;
   private AnchorPane gamePane;
+
+  private boolean isLeftRotate = false;
+  private boolean isRightRotate = false;
+  private boolean freeFall = false;
+
 }
