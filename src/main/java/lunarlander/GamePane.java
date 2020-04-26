@@ -3,6 +3,7 @@ package lunarlander;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -34,19 +35,29 @@ public class GamePane {
     Polygon landerON = new Polygon();
 
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
-    landerON.getPoints().addAll(50.0, 50.0,
-      75.0, 50.0,
-      50.0, 75.0,
-      75.0, 75.0);
+    landerON.getPoints().addAll(
+      0.0, 0.0,
+      0.0, 25.0,
+      25.0, 25.0,
+      25.0, 0.0);
 
     this.landerPane = new Pane(landerON);
     landerON.setFill(new ImagePattern(lander.getLanderImage()));
-    landerPane.setStyle("-fx-background-color: blue;");
 
 
     this.moonSurfacePane = new Pane(moonSurface);
     moonSurface.setFill(Color.LIGHTGRAY);
     moonSurfacePane.setStyle("-fx-background-color: black;");
+
+    this.gamePane = new AnchorPane();
+    gamePane.getChildren().addAll(moonSurfacePane, landerPane);
+    AnchorPane.setTopAnchor(moonSurfacePane, 0.0);
+    AnchorPane.setLeftAnchor(moonSurfacePane, 0.0);
+    AnchorPane.setBottomAnchor(moonSurfacePane, 0.0);
+    AnchorPane.setRightAnchor(moonSurfacePane, 0.0);
+
+    AnchorPane.setLeftAnchor(landerPane, 300.0); // Distance from the left border of a window to lander
+    AnchorPane.setTopAnchor(landerPane, 150.0);  // Distance from the top border of a window to lander
 
     this.moonSurfacePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
       System.out.println("Width: " + newSceneWidth);
@@ -73,8 +84,12 @@ public class GamePane {
   public Pane getLanderPane() {
     return landerPane;
   }
+  public AnchorPane getGamePane() {
+    return gamePane;
+  }
 
 
   private final Pane moonSurfacePane;
   private Pane landerPane;
+  private AnchorPane gamePane;
 }

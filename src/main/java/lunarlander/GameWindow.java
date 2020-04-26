@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -24,21 +25,21 @@ public class GameWindow {
    * the Game Window.
    */
   public GameWindow() {
-    GamePane gamePane = new GamePane();
-    SidePane sidePane = new SidePane();
+    GamePane _gamePane = new GamePane();
+    SidePane _sidePane = new SidePane();
 
-    Pane moonSurfacePane = gamePane.getMoonSurfacePane();
-    Pane landerPane = gamePane.getLanderPane();
-    Pane sideBorderPane = sidePane.getSideBorderPane();
+    // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
+    // Pane landerPane = gamePane.getLanderPane();
+    Pane sideBorderPane = _sidePane.getSideBorderPane();
+    AnchorPane gamePane = _gamePane.getGamePane();
 
     HBox applicationWindowHbox = new HBox();
     applicationWindowHbox.getChildren().addAll(
-      moonSurfacePane,
-      landerPane,
+      gamePane,
       sideBorderPane
     );
 
-    HBox.setHgrow(moonSurfacePane, Priority.ALWAYS);
+    HBox.setHgrow(gamePane, Priority.ALWAYS);
     HBox.setHgrow(sideBorderPane, Priority.NEVER);
 
     this.mainGameScene = new Scene(applicationWindowHbox);
@@ -53,18 +54,18 @@ public class GameWindow {
     });
 
     this.mainGameScene.setOnKeyPressed(event -> {
-      if (event.getCode() == KeyCode.UP) sidePane.setKbdUpPressed();
-      if (event.getCode() == KeyCode.LEFT) sidePane.setKbdLeftPressed();
-      if (event.getCode() == KeyCode.RIGHT) sidePane.setKbdRightPressed();
+      if (event.getCode() == KeyCode.UP) _sidePane.setKbdUpPressed();
+      if (event.getCode() == KeyCode.LEFT) _sidePane.setKbdLeftPressed();
+      if (event.getCode() == KeyCode.RIGHT) _sidePane.setKbdRightPressed();
       // Only for presentation purposes
-      if (event.getCode() == KeyCode.L) sidePane.setLevel(5);
+      if (event.getCode() == KeyCode.L) _sidePane.setLevel(5);
     });
     this.mainGameScene.setOnKeyReleased(event -> {
-      if (event.getCode() == KeyCode.UP) sidePane.setKbdUpReleased();
-      if (event.getCode() == KeyCode.LEFT) sidePane.setKbdLeftReleased();
-      if (event.getCode() == KeyCode.RIGHT) sidePane.setKbdRightReleased();
+      if (event.getCode() == KeyCode.UP) _sidePane.setKbdUpReleased();
+      if (event.getCode() == KeyCode.LEFT) _sidePane.setKbdLeftReleased();
+      if (event.getCode() == KeyCode.RIGHT) _sidePane.setKbdRightReleased();
       // Only for presentation purposes
-      if (event.getCode() == KeyCode.L) sidePane.setLevel(2);
+      if (event.getCode() == KeyCode.L) _sidePane.setLevel(2);
     });
   }
 
