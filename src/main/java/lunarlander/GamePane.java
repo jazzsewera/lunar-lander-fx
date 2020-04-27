@@ -4,21 +4,13 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-
 
 
 /**
@@ -74,14 +66,14 @@ public class GamePane {
     RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
-      if (isLeftRotate() && lander.getAngle() >= -180) {
+      if (isLeftRotate() && !isRightRotate() &&lander.getAngle() >= -180) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
         lander.setAngle(lander.getAngle()-4);
         leftRotate.setAutoReverse(false);
         leftRotate.play();
       }
-      if (isRightRotate() && lander.getAngle() <= 180) {
+      if (isRightRotate() && !isLeftRotate() &&lander.getAngle() <= 180) {
         rightRotate.setAxis(Rotate.Z_AXIS);
         rightRotate.setByAngle(4);
         lander.setAngle(lander.getAngle()+4);
@@ -121,8 +113,6 @@ public class GamePane {
   public void stopRotateLanderAnticlockwise() {
     isLeftRotate = false;
   }
-
-
 
 
   /**
