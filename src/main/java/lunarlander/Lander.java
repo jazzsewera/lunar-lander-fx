@@ -56,7 +56,11 @@ public class Lander {
 
   public Image getLanderOFFImage() { return landerOFFImage; }
 
-  public void setLanderOFFImage(Image landerImage) { this.landerOFFImage = landerImage; }
+  //public void setLanderOFFImage(Image landerImage) { this.landerOFFImage = landerImage; }
+
+  public Image getLanderONImage() { return landerONImage; }
+
+  //public void setLanderONImage(Image landerONImage) { this.landerONImage = landerONImage; }
 
   private double xCoords;
   private double yCoords;
@@ -67,6 +71,7 @@ public class Lander {
   private double fuel;
 
   private Image landerOFFImage;
+  private Image landerONImage;
 
   //how to get actual polygon if i made it private? asking coz with getter i can only GET, not setFill or whatsoever
   Polygon lander = new Polygon();

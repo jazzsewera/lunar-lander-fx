@@ -89,15 +89,15 @@ public class GamePane {
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
 
-    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), landerPane);
+    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), lander.lander);
     leftRotate.setAxis(Rotate.Z_AXIS);
-    leftRotate.setByAngle(-2);
+    leftRotate.setByAngle(-45);
     leftRotate.setAutoReverse(false);
     leftRotate.stop();
 
-    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), landerPane);
+    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), lander.lander);
     rightRotate.setAxis(Rotate.Z_AXIS);
-    rightRotate.setByAngle(2);
+    rightRotate.setByAngle(45);
     rightRotate.setAutoReverse(false);
     rightRotate.stop();
 
@@ -105,13 +105,11 @@ public class GamePane {
   private EventHandler<KeyEvent> inputReleased = new EventHandler<KeyEvent>() {
     @Override
     public void handle(KeyEvent event) {
-      if (event.getCode() == KeyCode.SPACE) {
-        freeFall = true;
-        //mediaPlayer.stop();
-      } else if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
-        isLeftRotate = false;
-      } else if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
-        isRightRotate = false;
+      if (event.getCode() == KeyCode.LEFT) {
+
+
+      } else if (event.getCode() == KeyCode.RIGHT) {
+
       }
     }
   };
