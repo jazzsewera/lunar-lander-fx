@@ -1,7 +1,9 @@
 package lunarlander;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -42,14 +44,14 @@ public class GamePane {
     configuration.fromFile("src/main/resources/lunarlander/configuration.json");
 
     Moon moon = configuration.getMoonMap(3);
-    Lander lander = new Lander(250, 250, 0, 100);
 
     Polygon moonSurface = new Polygon();
+    setLanderOFF(lander.lander);
 
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
     Group group = new Group();
-    group.getChildren().addAll(moonSurface, lander.lander);
+    group.getChildren().addAll(moonSurface, landerOFF);
 
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
@@ -67,6 +69,28 @@ public class GamePane {
       moon.recalculateHeight(newSceneHeight.doubleValue());
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
+
+    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
+    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
+
+    KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
+      if (isLeftRotate()) {
+        leftRotate.setAxis(Rotate.Z_AXIS);
+        leftRotate.setByAngle(-4);
+        leftRotate.setAutoReverse(false);
+        leftRotate.play();
+      }
+      if (isRightRotate()) {
+        rightRotate.setAxis(Rotate.Z_AXIS);
+        rightRotate.setByAngle(4);
+        rightRotate.setAutoReverse(false);
+        rightRotate.play();
+      }
+    });
+    timeline.getKeyFrames().add(keyframe);
+
+    timeline.setCycleCount(Animation.INDEFINITE);
+    timeline.play();
   }
 
   /*
@@ -79,18 +103,25 @@ public class GamePane {
   public void stopLanderThrustOn() {
     System.out.println("lander thrust off");
   }
+
   public void startRotateLanderClockwise() {
-    System.out.println("startRotateLanderClockwise");
+    this.isRightRotate = true;
   }
+
   public void stopRotateLanderClockwise() {
-    System.out.println("stopRotateLanderClockwise");
+    isRightRotate = false;
   }
+
   public void startRotateLanderAnticlockwise() {
-    System.out.println("startRotateLanderAnticlockwise");
+    this.isLeftRotate = true;
   }
+
   public void stopRotateLanderAnticlockwise() {
-    System.out.println("stopRotateLanderAnticlockwise");
+    isLeftRotate = false;
   }
+
+
+
 
   /**
    * Getter used in ApplicationWindow class in order to put
@@ -98,19 +129,33 @@ public class GamePane {
    *
    * @return gamePane - Pane presenting game view.
    */
-  public Pane getGamePane() {
-    return gamePane;
-  }
-  public Pane getLanderPane() {
-    return landerPane;
-  }
+  public Pane getGamePane() { return gamePane; }
+
+  public boolean isLeftRotate() { return isLeftRotate; }
+
+  public boolean isRightRotate() { return isRightRotate; }
+
+  public Polygon getLanderOFF() { return landerOFF; }
+
+  public Polygon getLanderON() { return landerON; }
+
+  public void setLanderOFF(Polygon landerOFF) { this.landerOFF = landerOFF; }
+
+  public void setLanderON(Polygon landerON) { this.landerON = landerON; }
 
 
-  private Pane landerPane;
   private Pane gamePane;
 
+  private Polygon landerOFF;
+  private Polygon landerON;
+
+  Lander lander = new Lander(250, 250, 0, 100);
+
+  RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
+  RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
   private boolean freeFall = false;
 
+  private Timeline timeline = new Timeline();
 }
