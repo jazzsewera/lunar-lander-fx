@@ -89,30 +89,36 @@ public class GamePane {
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
 
-    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), lander.lander);
-    leftRotate.setAxis(Rotate.Z_AXIS);
-    leftRotate.setByAngle(-45);
-    leftRotate.setAutoReverse(false);
-    leftRotate.stop();
-
-    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), lander.lander);
-    rightRotate.setAxis(Rotate.Z_AXIS);
-    rightRotate.setByAngle(45);
-    rightRotate.setAutoReverse(false);
-    rightRotate.stop();
-
-  }
-  private EventHandler<KeyEvent> inputReleased = new EventHandler<KeyEvent>() {
-    @Override
-    public void handle(KeyEvent event) {
+/*    this.gamePane.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.LEFT) {
-
+        System.out.println("Kurwa");
+        RotateTransition leftRotate = new RotateTransition(Duration.millis(32), lander.lander);
+        leftRotate.setAxis(Rotate.Z_AXIS);
+        leftRotate.setByAngle(-45);
+        leftRotate.setAutoReverse(false);
+        leftRotate.stop();
 
       } else if (event.getCode() == KeyCode.RIGHT) {
+        RotateTransition leftRotate = new RotateTransition(Duration.millis(32), lander.lander);
+        leftRotate.setAxis(Rotate.Z_AXIS);
+        leftRotate.setByAngle(45);
+        leftRotate.setAutoReverse(false);
+        leftRotate.stop();
+      }
+    });*/
 
+  }
+
+  private EventHandler<KeyEvent> input = new EventHandler<KeyEvent>() {
+    @Override
+    public void handle(KeyEvent event) {
+      if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
+        System.out.println("Kurwa");
+      } else if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
+        System.out.println("Kurwa");
       }
     }
-  };
+    };
 
   /**
    * Getter used in ApplicationWindow class in order to put
