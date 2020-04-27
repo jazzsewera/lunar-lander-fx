@@ -45,24 +45,19 @@ public class GamePane {
     Lander lander = new Lander(250, 250, 0, 100);
 
     Polygon moonSurface = new Polygon();
-    Polygon landerON = new Polygon();
 
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
-    landerON.getPoints().addAll(
-      0.0, 0.0,
-      0.0, 25.0,
-      25.0, 25.0,
-      25.0, 0.0);
 
     Group group = new Group();
-    group.getChildren().addAll(moonSurface, landerON);
+    group.getChildren().addAll(moonSurface, lander.lander);
 
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
 
     this.moonSurfacePane = new Pane();
     moonSurface.setFill(Color.LIGHTGRAY);
-    landerON.setFill(new ImagePattern(lander.getLanderImage()));
+    //here i would do it with getter not with public object
+    lander.lander.setFill(new ImagePattern(lander.getLanderOFFImage()));
     this.gamePane.setStyle("-fx-background-color: black;");
 
 /*

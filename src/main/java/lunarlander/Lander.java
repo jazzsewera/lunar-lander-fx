@@ -1,6 +1,7 @@
 package lunarlander;
 
 import javafx.scene.image.Image;
+import javafx.scene.shape.Polygon;
 //import javafx.scene.paint.ImagePattern;
 //import java.awt.*;
 
@@ -8,11 +9,18 @@ public class Lander {
 
   public Lander(double xCoords, double yCoords, double angle, double fuel) {
 
-    this.landerImage = new Image("lunarlander/assets/lander.png", 25, 25, false, false);
+    this.landerOFFImage = new Image("lunarlander/assets/lander.png", 25, 25, false, false);
     this.xCoords = xCoords;
     this.yCoords = yCoords;
     this.angle = angle;
     this.fuel = fuel;
+
+    lander.getPoints().addAll(new Double[]{
+      0.0, 0.0,
+      0.0, 25.0,
+      25.0, 25.0,
+      25.0, 0.0,
+    });
   }
 
 
@@ -46,11 +54,10 @@ public class Lander {
     this.fuel = fuel;
   }
 
-  public Image getLanderImage() { return landerImage; }
+  public Image getLanderOFFImage() { return landerOFFImage; }
 
-  public void setLanderImage(Image landerImage) { this.landerImage = landerImage; }
+  public void setLanderOFFImage(Image landerImage) { this.landerOFFImage = landerImage; }
 
-  private Image landerImage;
   private double xCoords;
   private double yCoords;
   private double vx;
@@ -59,6 +66,9 @@ public class Lander {
   private double angle;
   private double fuel;
 
-  // needs Polygon here
+  private Image landerOFFImage;
+
+  //how to get actual polygon if i made it private? asking coz with getter i can only GET, not setFill or whatsoever
+  Polygon lander = new Polygon();
 
 }
