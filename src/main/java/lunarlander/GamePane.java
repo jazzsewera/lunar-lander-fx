@@ -54,31 +54,10 @@ public class GamePane {
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
 
-    this.moonSurfacePane = new Pane();
     moonSurface.setFill(Color.LIGHTGRAY);
     //here i would do it with getter not with public object
     lander.lander.setFill(new ImagePattern(lander.getLanderOFFImage()));
     this.gamePane.setStyle("-fx-background-color: black;");
-
-/*
- *     this.landerPane = new Pane(landerON);
- *     landerON.setFill(new ImagePattern(lander.getLanderImage()));
- *
- *
- *     this.moonSurfacePane = new Pane(moonSurface);
- *     moonSurface.setFill(Color.LIGHTGRAY);
- *     moonSurfacePane.setStyle("-fx-background-color: black;");
- *
- *     this.gamePane = new AnchorPane();
- *     gamePane.getChildren().addAll(moonSurfacePane, landerON);
- *     AnchorPane.setTopAnchor(moonSurfacePane, 0.0);
- *     AnchorPane.setLeftAnchor(moonSurfacePane, 0.0);
- *     AnchorPane.setBottomAnchor(moonSurfacePane, 0.0);
- *     AnchorPane.setRightAnchor(moonSurfacePane, 0.0);
- *
- *     AnchorPane.setLeftAnchor(landerON, 300.0); // Distance from the left border of a window to lander
- *     AnchorPane.setTopAnchor(landerON, 150.0);  // Distance from the top border of a window to lander
- */
 
     this.gamePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
       moon.recalculateWidth(newSceneWidth.doubleValue());
@@ -88,56 +67,45 @@ public class GamePane {
       moon.recalculateHeight(newSceneHeight.doubleValue());
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
-
-/*    this.gamePane.setOnKeyPressed(event -> {
-      if (event.getCode() == KeyCode.LEFT) {
-        System.out.println("Kurwa");
-        RotateTransition leftRotate = new RotateTransition(Duration.millis(32), lander.lander);
-        leftRotate.setAxis(Rotate.Z_AXIS);
-        leftRotate.setByAngle(-45);
-        leftRotate.setAutoReverse(false);
-        leftRotate.stop();
-
-      } else if (event.getCode() == KeyCode.RIGHT) {
-        RotateTransition leftRotate = new RotateTransition(Duration.millis(32), lander.lander);
-        leftRotate.setAxis(Rotate.Z_AXIS);
-        leftRotate.setByAngle(45);
-        leftRotate.setAutoReverse(false);
-        leftRotate.stop();
-      }
-    });*/
-
   }
 
-  private EventHandler<KeyEvent> input = new EventHandler<KeyEvent>() {
-    @Override
-    public void handle(KeyEvent event) {
-      if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
-        System.out.println("Kurwa");
-      } else if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
-        System.out.println("Kurwa");
-      }
-    }
-    };
+  /*
+   * Event handling in methods below
+   * Event triggering in GamePane setOnKeyPressed and setOnKeyReleased.
+   */
+  public void startLanderThrustOn() {
+    System.out.println("lander thrust on");
+  }
+  public void stopLanderThrustOn() {
+    System.out.println("lander thrust off");
+  }
+  public void startRotateLanderClockwise() {
+    System.out.println("startRotateLanderClockwise");
+  }
+  public void stopRotateLanderClockwise() {
+    System.out.println("stopRotateLanderClockwise");
+  }
+  public void startRotateLanderAnticlockwise() {
+    System.out.println("startRotateLanderAnticlockwise");
+  }
+  public void stopRotateLanderAnticlockwise() {
+    System.out.println("stopRotateLanderAnticlockwise");
+  }
 
   /**
    * Getter used in ApplicationWindow class in order to put
    * prepared Pane in a Scene.
    *
-   * @return moonSurfacePane - Pane presenting a surface of chosen Moon.
+   * @return gamePane - Pane presenting game view.
    */
-  public Pane getMoonSurfacePane() {
-    return moonSurfacePane;
+  public Pane getGamePane() {
+    return gamePane;
   }
   public Pane getLanderPane() {
     return landerPane;
   }
-  public Pane getGamePane() {
-    return gamePane;
-  }
 
 
-  private final Pane moonSurfacePane;
   private Pane landerPane;
   private Pane gamePane;
 

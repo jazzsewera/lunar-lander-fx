@@ -7,35 +7,42 @@ import javafx.scene.shape.Polygon;
 
 public class Lander {
 
-  public Lander(double xCoords, double yCoords, double angle, double fuel) {
+  public Lander(double xCoord, double yCoord, double angle, double fuel) {
 
     this.landerOFFImage = new Image("lunarlander/assets/lander.png", 25, 25, false, false);
-    this.xCoords = xCoords;
-    this.yCoords = yCoords;
+    this.xCoord = xCoord;
+    this.yCoord = yCoord;
     this.angle = angle;
     this.fuel = fuel;
 
-    lander.getPoints().addAll(new Double[]{
-      0.0, 0.0,
-      0.0, 25.0,
-      25.0, 25.0,
-      25.0, 0.0,
+    // lander.getPoints().addAll(new Double[]{
+    //   0.0, 0.0,
+    //   0.0, 25.0,
+    //   25.0, 25.0,
+    //   25.0, 0.0,
+    // });
+
+    lander.getPoints().addAll(new Double[] {
+      this.xCoord, this.yCoord,
+      this.xCoord, this.yCoord+25.0,
+      this.xCoord+25.0, this.yCoord+25.0,
+      this.xCoord+25.0, this.yCoord,
     });
   }
 
 
-  public double getxCoords() { return xCoords; }
+  public double getxCoords() { return xCoord; }
 
-  public void setxCoords(double xCoords) {
-    this.xCoords = xCoords;
+  public void setxCoords(double xCoord) {
+    this.xCoord = xCoord;
   }
 
   public double getyCoords() {
-    return yCoords;
+    return yCoord;
   }
 
-  public void setyCoords(double yCoords) {
-    this.yCoords = yCoords;
+  public void setyCoords(double yCoord) {
+    this.yCoord = yCoord;
   }
 
   public double getAngle() {
@@ -62,8 +69,8 @@ public class Lander {
 
   //public void setLanderONImage(Image landerONImage) { this.landerONImage = landerONImage; }
 
-  private double xCoords;
-  private double yCoords;
+  private double xCoord;
+  private double yCoord;
   private double vx;
   private double xy;
 

@@ -53,16 +53,34 @@ public class GameWindow {
     });
 
     this.mainGameScene.setOnKeyPressed(event -> {
-      if (event.getCode() == KeyCode.UP) _sidePane.setKbdUpPressed();
-      if (event.getCode() == KeyCode.LEFT) _sidePane.setKbdLeftPressed();
-      if (event.getCode() == KeyCode.RIGHT) _sidePane.setKbdRightPressed();
+      if (event.getCode() == KeyCode.UP) {
+        _sidePane.setKbdUpPressed();
+        _gamePane.startLanderThrustOn();
+      }
+      if (event.getCode() == KeyCode.LEFT) {
+        _sidePane.setKbdLeftPressed();
+        _gamePane.startRotateLanderAnticlockwise();
+      }
+      if (event.getCode() == KeyCode.RIGHT) {
+        _sidePane.setKbdRightPressed();
+        _gamePane.startRotateLanderClockwise();
+      }
       // Only for presentation purposes
       if (event.getCode() == KeyCode.L) _sidePane.setLevel(5);
     });
     this.mainGameScene.setOnKeyReleased(event -> {
-      if (event.getCode() == KeyCode.UP) _sidePane.setKbdUpReleased();
-      if (event.getCode() == KeyCode.LEFT) _sidePane.setKbdLeftReleased();
-      if (event.getCode() == KeyCode.RIGHT) _sidePane.setKbdRightReleased();
+      if (event.getCode() == KeyCode.UP) {
+        _sidePane.setKbdUpReleased();
+        _gamePane.stopLanderThrustOn();
+      }
+      if (event.getCode() == KeyCode.LEFT) {
+        _sidePane.setKbdLeftReleased();
+        _gamePane.stopRotateLanderAnticlockwise();
+      }
+      if (event.getCode() == KeyCode.RIGHT) {
+        _sidePane.setKbdRightReleased();
+        _gamePane.stopRotateLanderClockwise();
+      }
       // Only for presentation purposes
       if (event.getCode() == KeyCode.L) _sidePane.setLevel(2);
     });
