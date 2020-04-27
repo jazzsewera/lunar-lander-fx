@@ -30,12 +30,9 @@ public class Lander {
     });
   }
 
-
   public double getxCoords() { return xCoord; }
 
-  public void setxCoords(double xCoord) {
-    this.xCoord = xCoord;
-  }
+  public void setxCoords(double xCoord) { this.xCoord = xCoord; }
 
   public double getyCoords() {
     return yCoord;

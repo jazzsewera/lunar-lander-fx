@@ -74,15 +74,17 @@ public class GamePane {
     RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
-      if (isLeftRotate()) {
+      if (isLeftRotate() && lander.getAngle() >= -180) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
+        lander.setAngle(lander.getAngle()-4);
         leftRotate.setAutoReverse(false);
         leftRotate.play();
       }
-      if (isRightRotate()) {
+      if (isRightRotate() && lander.getAngle() <= 180) {
         rightRotate.setAxis(Rotate.Z_AXIS);
         rightRotate.setByAngle(4);
+        lander.setAngle(lander.getAngle()+4);
         rightRotate.setAutoReverse(false);
         rightRotate.play();
       }
