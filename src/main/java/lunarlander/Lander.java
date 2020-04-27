@@ -8,7 +8,7 @@ public class Lander {
 
   public Lander(double xCoords, double yCoords, double angle, double fuel) {
 
-    this.landerImage = new Image("lunarlander/assets/lander.png",25,25,false,false);
+    this.landerImage = new Image("lunarlander/assets/lander.png", 25, 25, false, false);
     this.xCoords = xCoords;
     this.yCoords = yCoords;
     this.angle = angle;
@@ -48,7 +48,7 @@ public class Lander {
 
   public Image getLanderImage() { return landerImage; }
 
-  public void setLanderImage(Image lander) { this.landerImage = landerImage; }
+  public void setLanderImage(Image landerImage) { this.landerImage = landerImage; }
 
   private Image landerImage;
   private double xCoords;
@@ -58,5 +58,7 @@ public class Lander {
 
   private double angle;
   private double fuel;
+
+  // needs Polygon here
 
 }

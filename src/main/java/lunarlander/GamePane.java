@@ -5,6 +5,7 @@ import javafx.animation.RotateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -53,31 +54,42 @@ public class GamePane {
       25.0, 25.0,
       25.0, 0.0);
 
-    this.landerPane = new Pane(landerON);
-    landerON.setFill(new ImagePattern(lander.getLanderImage()));
+    Group group = new Group();
+    group.getChildren().addAll(moonSurface, landerON);
 
+    this.gamePane = new Pane();
+    gamePane.getChildren().add(group);
 
-    this.moonSurfacePane = new Pane(moonSurface);
+    this.moonSurfacePane = new Pane();
     moonSurface.setFill(Color.LIGHTGRAY);
-    moonSurfacePane.setStyle("-fx-background-color: black;");
+    landerON.setFill(new ImagePattern(lander.getLanderImage()));
+    this.gamePane.setStyle("-fx-background-color: black;");
 
-    this.gamePane = new AnchorPane();
-    gamePane.getChildren().addAll(moonSurfacePane, landerPane);
-    AnchorPane.setTopAnchor(moonSurfacePane, 0.0);
-    AnchorPane.setLeftAnchor(moonSurfacePane, 0.0);
-    AnchorPane.setBottomAnchor(moonSurfacePane, 0.0);
-    AnchorPane.setRightAnchor(moonSurfacePane, 0.0);
+/*
+ *     this.landerPane = new Pane(landerON);
+ *     landerON.setFill(new ImagePattern(lander.getLanderImage()));
+ *
+ *
+ *     this.moonSurfacePane = new Pane(moonSurface);
+ *     moonSurface.setFill(Color.LIGHTGRAY);
+ *     moonSurfacePane.setStyle("-fx-background-color: black;");
+ *
+ *     this.gamePane = new AnchorPane();
+ *     gamePane.getChildren().addAll(moonSurfacePane, landerON);
+ *     AnchorPane.setTopAnchor(moonSurfacePane, 0.0);
+ *     AnchorPane.setLeftAnchor(moonSurfacePane, 0.0);
+ *     AnchorPane.setBottomAnchor(moonSurfacePane, 0.0);
+ *     AnchorPane.setRightAnchor(moonSurfacePane, 0.0);
+ *
+ *     AnchorPane.setLeftAnchor(landerON, 300.0); // Distance from the left border of a window to lander
+ *     AnchorPane.setTopAnchor(landerON, 150.0);  // Distance from the top border of a window to lander
+ */
 
-    AnchorPane.setLeftAnchor(landerPane, 300.0); // Distance from the left border of a window to lander
-    AnchorPane.setTopAnchor(landerPane, 150.0);  // Distance from the top border of a window to lander
-
-    this.moonSurfacePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
-      System.out.println("Width: " + newSceneWidth);
+    this.gamePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
       moon.recalculateWidth(newSceneWidth.doubleValue());
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
-    this.moonSurfacePane.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
-      System.out.println("Height: " + newSceneHeight);
+    this.gamePane.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
       moon.recalculateHeight(newSceneHeight.doubleValue());
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
@@ -121,14 +133,14 @@ public class GamePane {
   public Pane getLanderPane() {
     return landerPane;
   }
-  public AnchorPane getGamePane() {
+  public Pane getGamePane() {
     return gamePane;
   }
 
 
   private final Pane moonSurfacePane;
   private Pane landerPane;
-  private AnchorPane gamePane;
+  private Pane gamePane;
 
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;

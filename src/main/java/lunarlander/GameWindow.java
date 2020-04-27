@@ -6,7 +6,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -31,7 +30,7 @@ public class GameWindow {
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
     // Pane landerPane = gamePane.getLanderPane();
     Pane sideBorderPane = _sidePane.getSideBorderPane();
-    AnchorPane gamePane = _gamePane.getGamePane();
+    Pane gamePane = _gamePane.getGamePane();
 
     HBox applicationWindowHbox = new HBox();
     applicationWindowHbox.getChildren().addAll(
