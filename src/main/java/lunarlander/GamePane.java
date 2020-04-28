@@ -36,21 +36,18 @@ public class GamePane {
     configuration.fromFile("src/main/resources/lunarlander/configuration.json");
 
     Moon moon = configuration.getMoonMap(3);
-
     Polygon moonSurface = new Polygon();
-    setLanderOFF(lander.lander);
-
+    setLander(landerModel.landerModel);
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
     Group group = new Group();
-    group.getChildren().addAll(moonSurface, landerOFF);
+    group.getChildren().addAll(moonSurface, lander);
 
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
 
     moonSurface.setFill(Color.LIGHTGRAY);
-    //here i would do it with getter not with public object
-    lander.lander.setFill(new ImagePattern(lander.getLanderOFFImage()));
+    lander.setFill(new ImagePattern(landerModel.getLanderOFFImage()));
     this.gamePane.setStyle("-fx-background-color: black;");
 
     this.gamePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
@@ -62,27 +59,33 @@ public class GamePane {
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
 
-    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
-    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
+    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLander());
+    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLander());
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
-      if (isLeftRotate() && !isRightRotate() &&lander.getAngle() >= -180) {
+      if (isLeftRotate() && !isRightRotate() &&landerModel.getAngle() >= -180) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
-        lander.setAngle(lander.getAngle()-4);
+        landerModel.setAngle(landerModel.getAngle()-4);
         leftRotate.setAutoReverse(false);
         leftRotate.play();
       }
-      if (isRightRotate() && !isLeftRotate() &&lander.getAngle() <= 180) {
+      if (isRightRotate() && !isLeftRotate() &&landerModel.getAngle() <= 180) {
         rightRotate.setAxis(Rotate.Z_AXIS);
         rightRotate.setByAngle(4);
-        lander.setAngle(lander.getAngle()+4);
+        landerModel.setAngle(landerModel.getAngle()+4);
         rightRotate.setAutoReverse(false);
         rightRotate.play();
       }
+      if(isThrustON()) {
+        lander.setFill(new ImagePattern(landerModel.getLanderONImage()));
+      }
+      if(!isThrustON()) {
+        lander.setFill(new ImagePattern(landerModel.getLanderOFFImage()));
+      }
     });
-    timeline.getKeyFrames().add(keyframe);
 
+    timeline.getKeyFrames().add(keyframe);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
   }
@@ -92,27 +95,20 @@ public class GamePane {
    * Event triggering in GamePane setOnKeyPressed and setOnKeyReleased.
    */
   public void startLanderThrustOn() {
-    System.out.println("lander thrust on");
+    this.isThrustON = true;
   }
+
   public void stopLanderThrustOn() {
-    System.out.println("lander thrust off");
+    this.isThrustON = false;
   }
 
-  public void startRotateLanderClockwise() {
-    this.isRightRotate = true;
-  }
+  public void startRotateLanderClockwise() { this.isRightRotate = true; }
 
-  public void stopRotateLanderClockwise() {
-    isRightRotate = false;
-  }
+  public void stopRotateLanderClockwise() { this.isRightRotate = false; }
 
-  public void startRotateLanderAnticlockwise() {
-    this.isLeftRotate = true;
-  }
+  public void startRotateLanderAnticlockwise() { this.isLeftRotate = true; }
 
-  public void stopRotateLanderAnticlockwise() {
-    isLeftRotate = false;
-  }
+  public void stopRotateLanderAnticlockwise() { this.isLeftRotate = false; }
 
 
   /**
@@ -127,27 +123,21 @@ public class GamePane {
 
   public boolean isRightRotate() { return isRightRotate; }
 
-  public Polygon getLanderOFF() { return landerOFF; }
+  public boolean isThrustON() { return isThrustON; }
 
-  public Polygon getLanderON() { return landerON; }
+  public Polygon getLander() { return lander; }
 
-  public void setLanderOFF(Polygon landerOFF) { this.landerOFF = landerOFF; }
-
-  public void setLanderON(Polygon landerON) { this.landerON = landerON; }
+  public void setLander(Polygon lander) { this.lander = lander; }
 
 
   private Pane gamePane;
+  private Polygon lander;
+  Lander landerModel = new Lander(250, 250, 0, 100);
+  private Timeline timeline = new Timeline();
 
-  private Polygon landerOFF;
-  private Polygon landerON;
-
-  Lander lander = new Lander(250, 250, 0, 100);
-
-  RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
-  RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLanderOFF());
+  RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLander());
+  RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLander());
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
-  private boolean freeFall = false;
-
-  private Timeline timeline = new Timeline();
+  private boolean isThrustON = false;
 }

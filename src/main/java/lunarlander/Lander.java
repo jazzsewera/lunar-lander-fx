@@ -10,6 +10,7 @@ public class Lander {
   public Lander(double xCoord, double yCoord, double angle, double fuel) {
 
     this.landerOFFImage = new Image("lunarlander/assets/lander.png", 25, 25, false, false);
+    this.landerONImage = new Image("lunarlander/assets/lander_on.png", 25, 25, false, false);
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.angle = angle;
@@ -22,7 +23,7 @@ public class Lander {
     //   25.0, 0.0,
     // });
 
-    lander.getPoints().addAll(new Double[] {
+    landerModel.getPoints().addAll(new Double[] {
       this.xCoord, this.yCoord,
       this.xCoord, this.yCoord+25.0,
       this.xCoord+25.0, this.yCoord+25.0,
@@ -78,6 +79,5 @@ public class Lander {
   private Image landerONImage;
 
   //how to get actual polygon if i made it private? asking coz with getter i can only GET, not setFill or whatsoever
-  Polygon lander = new Polygon();
-
+  Polygon landerModel = new Polygon();
 }
