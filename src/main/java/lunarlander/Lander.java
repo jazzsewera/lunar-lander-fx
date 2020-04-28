@@ -7,12 +7,14 @@ import javafx.scene.shape.Polygon;
 
 public class Lander {
 
-  public Lander(double xCoord, double yCoord, double angle, double fuel) {
+  public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel) {
 
     this.landerOFFImage = new Image("lunarlander/assets/lander.png", 25, 25, false, false);
     this.landerONImage = new Image("lunarlander/assets/lander_on.png", 25, 25, false, false);
     this.xCoord = xCoord;
     this.yCoord = yCoord;
+    this.vx = vx;
+    this.vy = vy;
     this.angle = angle;
     this.fuel = fuel;
 
@@ -43,6 +45,22 @@ public class Lander {
     this.yCoord = yCoord;
   }
 
+  public double getVx() { return vx; }
+
+  public double getVy() { return vy; }
+
+  public void setVx(double vx) { this.vx = vx; }
+
+  public void setVy(double vy) { this.vy = vy; }
+
+  public double getAx() { return ax; }
+
+  public void setAx(double ax) { this.ax = ax; }
+
+  public double getAy() { return ay; }
+
+  public void setAy(double ay) { this.ay = ay; }
+
   public double getAngle() {
     return angle;
   }
@@ -70,7 +88,9 @@ public class Lander {
   private double xCoord;
   private double yCoord;
   private double vx;
-  private double xy;
+  private double vy;
+  private double ax;
+  private double ay;
 
   private double angle;
   private double fuel;

@@ -1,9 +1,6 @@
 package lunarlander;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -59,10 +56,15 @@ public class GamePane {
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
     });
 
+
+    TranslateTransition vertical = new TranslateTransition(Duration.millis(32), getLander());
+    vertical.setInterpolator(Interpolator.LINEAR);
+
     RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLander());
     RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLander());
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
+
       if (isLeftRotate() && !isRightRotate() &&landerModel.getAngle() >= -180) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
@@ -77,12 +79,24 @@ public class GamePane {
         rightRotate.setAutoReverse(false);
         rightRotate.play();
       }
-      if(isThrustON()) {
+
+      if(isThrustON() && landerModel.getFuel() > 0) {
         lander.setFill(new ImagePattern(landerModel.getLanderONImage()));
+        landerModel.setAx(Math.sin(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
+        landerModel.setAy(Math.cos(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
+        landerModel.setVy(landerModel.getVy() - landerModel.getAy());
+        landerModel.setVx(landerModel.getVx() + landerModel.getAx());
+        landerModel.setFuel(landerModel.getFuel()-0.25);
+        System.out.println(landerModel.getFuel());
       }
-      if(!isThrustON()) {
+      if(!isThrustON() || landerModel.getFuel() == 0) {
         lander.setFill(new ImagePattern(landerModel.getLanderOFFImage()));
       }
+
+      vertical.setByY(landerModel.getVy());
+      vertical.setByX(landerModel.getVx());
+      vertical.stop();
+      vertical.play();
     });
 
     timeline.getKeyFrames().add(keyframe);
@@ -94,13 +108,9 @@ public class GamePane {
    * Event handling in methods below
    * Event triggering in GamePane setOnKeyPressed and setOnKeyReleased.
    */
-  public void startLanderThrustOn() {
-    this.isThrustON = true;
-  }
+  public void startLanderThrustOn() { this.isThrustON = true; }
 
-  public void stopLanderThrustOn() {
-    this.isThrustON = false;
-  }
+  public void stopLanderThrustOn() { this.isThrustON = false; }
 
   public void startRotateLanderClockwise() { this.isRightRotate = true; }
 
@@ -132,11 +142,9 @@ public class GamePane {
 
   private Pane gamePane;
   private Polygon lander;
-  Lander landerModel = new Lander(250, 250, 0, 100);
+  Lander landerModel = new Lander(250, 250, 5, 0,0, 100);
   private Timeline timeline = new Timeline();
 
-  RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLander());
-  RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLander());
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
