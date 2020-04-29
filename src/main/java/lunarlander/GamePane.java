@@ -4,7 +4,9 @@ import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Shape;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -33,7 +35,7 @@ public class GamePane {
     configuration.fromFile("src/main/resources/lunarlander/configuration.json");
 
     Moon moon = configuration.getMoonMap(3);
-    Polygon moonSurface = new Polygon();
+    this.moonSurface = new Polygon();
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
     Group group = new Group();
@@ -62,6 +64,11 @@ public class GamePane {
     RotateTransition rightRotate = new RotateTransition(Duration.millis(32), landerModel.landerGroup);
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
+
+      if (((Path)Shape.intersect(this.landerModel.lander, this.moonSurface)).getElements().size() > 0) {
+        timeline.stop();
+        // TODO: Game ending
+      }
 
       if (isLeftRotate() && !isRightRotate() &&landerModel.getAngle() >= -150) {
         leftRotate.setAxis(Rotate.Z_AXIS);
@@ -140,11 +147,12 @@ public class GamePane {
   private Pane gamePane;
   private Lander landerModel = new Lander(250, 250, 0.5, 0, 0, 100);
   private Timeline timeline = new Timeline();
+  private Polygon moonSurface;
 
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
   private double g = 0.1;
 
-  //TODO DUŻY NIEBIESKI SNOP
+  //TODO: Nitro flame
 }
