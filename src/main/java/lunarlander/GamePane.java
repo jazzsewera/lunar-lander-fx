@@ -34,17 +34,15 @@ public class GamePane {
 
     Moon moon = configuration.getMoonMap(3);
     Polygon moonSurface = new Polygon();
-    setLander(landerModel.lander);
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
     Group group = new Group();
-    group.getChildren().addAll(moonSurface, lander);
+    group.getChildren().addAll(moonSurface, landerModel.landerGroup);
 
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
 
     moonSurface.setFill(Color.LIGHTGRAY);
-    lander.setFill(new ImagePattern(landerModel.getLanderImage()));
     this.gamePane.setStyle("-fx-background-color: black;");
 
     this.gamePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
@@ -57,11 +55,11 @@ public class GamePane {
     });
 
 
-    TranslateTransition vertical = new TranslateTransition(Duration.millis(32), getLander());
+    TranslateTransition vertical = new TranslateTransition(Duration.millis(32), landerModel.landerGroup);
     vertical.setInterpolator(Interpolator.LINEAR);
 
-    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), getLander());
-    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), getLander());
+    RotateTransition leftRotate = new RotateTransition(Duration.millis(32), landerModel.landerGroup);
+    RotateTransition rightRotate = new RotateTransition(Duration.millis(32), landerModel.landerGroup);
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
 
@@ -81,21 +79,20 @@ public class GamePane {
       }
 
       if(isThrustON() && landerModel.getFuel() > 0) {
-        setLander(landerModel.lander);
-        lander.setFill(new ImagePattern(landerModel.getLanderImage()));
         landerModel.setAx(Math.sin(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
         landerModel.setAy(Math.cos(landerModel.getAngle() * (Math.PI / 180)) * 0.2);
         landerModel.setVy(landerModel.getVy() + g - landerModel.getAy());
         landerModel.setVx(landerModel.getVx() + landerModel.getAx());
         landerModel.setFuel(landerModel.getFuel()-0.25);
+        landerModel.setFlameImage(Lander.FlameImageType.FLAME);
         System.out.println(landerModel.getFuel());
       } else {
         landerModel.setVy(landerModel.getVy() + g);
+        landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
 
       if(!isThrustON() || landerModel.getFuel() == 0) {
-        setLander(landerModel.lander);
-        lander.setFill(new ImagePattern(landerModel.getLanderImage()));
+        landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
 
       vertical.setByY(landerModel.getVy());
@@ -140,14 +137,8 @@ public class GamePane {
 
   public boolean isThrustON() { return isThrustON; }
 
-  public Polygon getLander() { return lander; }
-
-  public void setLander(Polygon lander) { this.lander = lander; }
-
-
   private Pane gamePane;
-  private Polygon lander;
-  Lander landerModel = new Lander(250, 250, 0.5, 0, 0, 100);
+  private Lander landerModel = new Lander(250, 250, 0.5, 0, 0, 100);
   private Timeline timeline = new Timeline();
 
   private boolean isLeftRotate = false;

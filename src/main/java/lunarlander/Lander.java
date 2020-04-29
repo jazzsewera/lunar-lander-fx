@@ -2,6 +2,7 @@ package lunarlander;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 //import javafx.scene.paint.ImagePattern;
 //import java.awt.*;
@@ -10,7 +11,13 @@ public class Lander {
 
   public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel) {
 
-    this.landerImage = new Image("lunarlander/assets/lander.png", 25, 25, false, false);
+    this.landerImage = new Image("lunarlander/assets/lander.png", 35, 35, false, false);
+    this.flameImage = new Image("lunarlander/assets/flame.png", 8, 47, false, false);
+    this.noFlameImage = new Image("lunarlander/assets/no_flame.png", 8, 47, false, false);
+    this.nitroFlameImage = new Image("lunarlander/assets/immortal_flame.png", 8, 47, false, false);
+    this.noFlameImagePattern = new ImagePattern(this.noFlameImage);
+    this.flameImagePattern = new ImagePattern(this.flameImage);
+    this.nitroFlameImagePattern = new ImagePattern(this.nitroFlameImage);
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.vx = vx;
@@ -40,6 +47,8 @@ public class Lander {
     });
     
     this.landerGroup.getChildren().addAll(this.lander, this.flame);
+    lander.setFill(new ImagePattern(this.landerImage));
+    flame.setFill(this.noFlameImagePattern);
   }
 
   public double getxCoords() { return xCoord; }
@@ -88,6 +97,28 @@ public class Lander {
 
   public Image getLanderImage() { return landerImage; }
 
+  public enum FlameImageType {
+    NO_FLAME,
+    FLAME,
+    NITRO_FLAME
+  }
+
+  public void setFlameImage(FlameImageType type) {
+    switch (type) {
+      case FLAME:
+        this.flame.setFill(this.flameImagePattern);
+        break;
+      case NITRO_FLAME:
+        this.flame.setFill(this.nitroFlameImagePattern);
+        break;
+      default:
+        this.flame.setFill(this.noFlameImagePattern);
+        break;
+    }
+  }
+
+  // public Group getLanderGroup() { return landerGroup; }
+
   //public void setLanderOFFImage(Image landerImage) { this.landerImage = landerImage; }
 
   //public void setLanderONImage(Image landerONImage) { this.landerONImage = landerONImage; }
@@ -103,6 +134,12 @@ public class Lander {
   private double fuel;
 
   private Image landerImage;
+  private Image flameImage;
+  private Image noFlameImage;
+  private Image nitroFlameImage;
+  private ImagePattern noFlameImagePattern;
+  private ImagePattern flameImagePattern;
+  private ImagePattern nitroFlameImagePattern;
 
   Polygon lander = new Polygon();
   Polygon flame = new Polygon();
