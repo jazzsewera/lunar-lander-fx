@@ -65,14 +65,14 @@ public class GamePane {
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
 
-      if (isLeftRotate() && !isRightRotate() &&landerModel.getAngle() >= -180) {
+      if (isLeftRotate() && !isRightRotate() &&landerModel.getAngle() >= -150) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
         landerModel.setAngle(landerModel.getAngle()-4);
         leftRotate.setAutoReverse(false);
         leftRotate.play();
       }
-      if (isRightRotate() && !isLeftRotate() &&landerModel.getAngle() <= 180) {
+      if (isRightRotate() && !isLeftRotate() &&landerModel.getAngle() <= 150) {
         rightRotate.setAxis(Rotate.Z_AXIS);
         rightRotate.setByAngle(4);
         landerModel.setAngle(landerModel.getAngle()+4);
@@ -84,12 +84,15 @@ public class GamePane {
         setLander(landerModel.landerON);
         lander.setFill(new ImagePattern(landerModel.getLanderONImage()));
         landerModel.setAx(Math.sin(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
-        landerModel.setAy(Math.cos(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
-        landerModel.setVy(landerModel.getVy() - landerModel.getAy());
+        landerModel.setAy(Math.cos(landerModel.getAngle() * (Math.PI / 180)) * 0.2);
+        landerModel.setVy(landerModel.getVy() + g - landerModel.getAy());
         landerModel.setVx(landerModel.getVx() + landerModel.getAx());
         landerModel.setFuel(landerModel.getFuel()-0.25);
         System.out.println(landerModel.getFuel());
+      } else {
+        landerModel.setVy(landerModel.getVy() + g);
       }
+
       if(!isThrustON() || landerModel.getFuel() == 0) {
         setLander(landerModel.landerOFF);
         lander.setFill(new ImagePattern(landerModel.getLanderOFFImage()));
@@ -144,10 +147,13 @@ public class GamePane {
 
   private Pane gamePane;
   private Polygon lander;
-  Lander landerModel = new Lander(250, 250, 5, 0,0, 100);
+  Lander landerModel = new Lander(50, 150, 3, 0,0, 100);
   private Timeline timeline = new Timeline();
 
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
+  private double g = 0.1;
+
+  //TODO DUŻY NIEBIESKI SNOP
 }
