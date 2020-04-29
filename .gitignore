@@ -1,8 +1,5 @@
-# Covers Visual Studio Code Java Plugins
-bin/
-.settings/
-.project
-.classpath
+# Covers comment files for pngs
+.comment
 
 *.code-workspace
 

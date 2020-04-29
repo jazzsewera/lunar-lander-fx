@@ -34,7 +34,7 @@ public class GamePane {
 
     Moon moon = configuration.getMoonMap(3);
     Polygon moonSurface = new Polygon();
-    setLander(landerModel.landerOFF);
+    setLander(landerModel.lander);
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
     Group group = new Group();
@@ -44,7 +44,7 @@ public class GamePane {
     gamePane.getChildren().add(group);
 
     moonSurface.setFill(Color.LIGHTGRAY);
-    lander.setFill(new ImagePattern(landerModel.getLanderOFFImage()));
+    lander.setFill(new ImagePattern(landerModel.getLanderImage()));
     this.gamePane.setStyle("-fx-background-color: black;");
 
     this.gamePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
@@ -81,8 +81,6 @@ public class GamePane {
       }
 
       if(isThrustON() && landerModel.getFuel() > 0) {
-        setLander(landerModel.landerON);
-        lander.setFill(new ImagePattern(landerModel.getLanderONImage()));
         landerModel.setAx(Math.sin(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
         landerModel.setAy(Math.cos(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
         landerModel.setVy(landerModel.getVy() - landerModel.getAy());
@@ -91,8 +89,8 @@ public class GamePane {
         System.out.println(landerModel.getFuel());
       }
       if(!isThrustON() || landerModel.getFuel() == 0) {
-        setLander(landerModel.landerOFF);
-        lander.setFill(new ImagePattern(landerModel.getLanderOFFImage()));
+        setLander(landerModel.lander);
+        lander.setFill(new ImagePattern(landerModel.getLanderImage()));
       }
 
       vertical.setByY(landerModel.getVy());
@@ -144,7 +142,7 @@ public class GamePane {
 
   private Pane gamePane;
   private Polygon lander;
-  Lander landerModel = new Lander(250, 250, 5, 0,0, 100);
+  Lander landerModel = new Lander(250, 250, 0.5, 0, 0, 100);
   private Timeline timeline = new Timeline();
 
   private boolean isLeftRotate = false;
