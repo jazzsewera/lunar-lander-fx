@@ -10,8 +10,10 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
 
-    GameWindow window = new GameWindow();
-    stage.setScene(window.getMainGameScene());
+    //GameWindow window = new GameWindow();
+    //stage.setScene(window.getMainGameScene())
+    MainMenuWindow menu new MainMenuWindow();
+    stage.setScene(menu.getMainMenuScene());
     stage.setTitle("Lunar Lander");
     stage.setWidth(1080);
     stage.setHeight(630);
