@@ -83,3 +83,8 @@
   -fx-text-fill: #828282;
   -fx-font-size: 36px;
 }
+
+.menu-main-vertical-layout {
+  -fx-spacing: 10px;
+  -fx-padding: 50px 0 50px 150px;
+}

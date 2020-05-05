@@ -52,7 +52,7 @@ public class MainMenuWindow {
       exitLabel
     );
 
-    mainMenuVBox.getStyleClass().addAll("ctrl-main-vertical-layout", "menu-root");
+    mainMenuVBox.getStyleClass().addAll("menu-main-vertical-layout", "menu-root");
     mainMenuVBox.setAlignment(Pos.CENTER_LEFT);
 
     this.mainMenuScene = new Scene(mainMenuVBox);
