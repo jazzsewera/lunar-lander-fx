@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
     BorderPane sideBorderPane = sp.getSideBorderPane();
  *  </pre>
  *
- * @author Błażej Sewera 
+ * @author Błażej Sewera
  * @author Mateusz Winnicki
  * @see BorderPane
  */
@@ -142,7 +142,6 @@ public class SidePane {
     for (Node child : verticalLayoutVbox.getChildren()) {
       VBox.setVgrow(child, Priority.ALWAYS);
     }
-
 
     Label networkCaptionLabel = new Label("Network sync: ");
     networkCaptionLabel.getStyleClass().add("ctrl-label-status-bar-secondary");

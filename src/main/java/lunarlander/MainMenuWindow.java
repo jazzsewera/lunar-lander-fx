@@ -1,38 +1,59 @@
 package lunarlander;
 
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class MainMenuWindow {
 
   public MainMenuWindow() {
     this.menuLabel = new Label("Lunar Lander");
-    this.menuLabel.getStyleClass().add("ctrl-label-primary");
+    this.menuLabel.getStyleClass().add("menu-label-primary");
 
-    VBox menuLabelVBox = new VBox();
-    menuLabelVBox.getChildren().addAll(menuLabel);
-    menuLabelVBox.getStyleClass().add("ctrl-gauge-vbox");
+    this.logoImage = new Image("lunarlander/assets/lander_on.png");
+    ImageView logoImageView = new ImageView(logoImage);
+    logoImageView.setRotate(logoImageView.getRotate() + 22);
+    this.logoLabel = new Label("", logoImageView);
+
+    HBox menuHBox = new HBox();
+    menuHBox.getChildren().addAll(menuLabel, logoLabel);
+    menuHBox.setSpacing(25);
 
     this.newGameLabel = new Label("Play");
-    this.newGameLabel.getStyleClass().add("ctrl-label-caption");
+    this.newGameLabel.getStyleClass().add("menu-label-secondary");
 
-    VBox newGameVBox = new VBox();
-    newGameVBox.getChildren().addAll(newGameLabel);
-    newGameVBox.getStyleClass().add("ctrl-gauge-vbox");
+    this.scoreboardLabel = new Label("Scores");
+    this.scoreboardLabel.getStyleClass().add("menu-label-secondary");
+
+    this.rulesLabel = new Label("Rules");
+    this.rulesLabel.getStyleClass().add("menu-label-secondary");
+
+    this.creditsLabel = new Label("Credits");
+    this.creditsLabel.getStyleClass().add("menu-label-secondary");
+
+    this.exitLabel = new Label("Exit");
+    this.exitLabel.getStyleClass().add("menu-label-secondary");
 
 
     VBox mainMenuVBox = new VBox();
     mainMenuVBox.getChildren().addAll(
-      menuLabelVBox,
-      newGameVBox
+      menuHBox,
+      newGameLabel,
+      scoreboardLabel,
+      rulesLabel,
+      creditsLabel,
+      exitLabel
     );
 
-    mainMenuVBox.getStyleClass().add("ctrl-main-vertical-layout");
-
+    mainMenuVBox.getStyleClass().addAll("ctrl-main-vertical-layout", "menu-root");
+    mainMenuVBox.setAlignment(Pos.CENTER_LEFT);
 
     this.mainMenuScene = new Scene(mainMenuVBox);
     this.mainMenuScene.getStylesheets().add("lunarlander/css/style.css");
@@ -44,13 +65,13 @@ public class MainMenuWindow {
   }
 
   private Scene mainMenuScene;
-  private BorderPane mainMenuPane;
 
   private Label menuLabel;
+  private Label logoLabel;
   private Label newGameLabel;
   private Label scoreboardLabel;
   private Label rulesLabel;
   private Label creditsLabel;
   private Label exitLabel;
-
+  private Image logoImage;
 }

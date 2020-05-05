@@ -63,3 +63,23 @@
 .ctrl-kbd-indicator-hbox {
   -fx-spacing: 8px;
 }
+
+.menu-root {
+  -fx-background-color: #2a2a2a;
+  -fx-font-family: "Roboto";
+  -fx-font-weight: 700;
+}
+
+.menu-label-primary,
+.menu-label-secondary {
+}
+
+.menu-label-primary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 48px;
+}
+
+.menu-label-secondary {
+  -fx-text-fill: #828282;
+  -fx-font-size: 36px;
+}
