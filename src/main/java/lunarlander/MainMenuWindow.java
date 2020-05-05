@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -55,13 +54,17 @@ public class MainMenuWindow {
 
     mainMenuVBox.getStyleClass().addAll("menu-main-vertical-layout", "menu-root");
     mainMenuVBox.setAlignment(Pos.CENTER_LEFT);
+    mainMenuVBox.setMinWidth(400);
+    mainMenuVBox.setPrefWidth(750);
+    mainMenuVBox.setMaxWidth(1200);
 
-    this.menu = new BorderPane();
+    this.menu = new HBox();
     this.menu.getStyleClass().add("menu-root");
-    this.menu.setLeft(mainMenuVBox);
-    this.menu.setMinWidth(280);
-    this.menu.setPrefWidth(280);
-    this.menu.setMaxWidth(280);
+    this.menu.getChildren().add(mainMenuVBox);
+    this.menu.setAlignment(Pos.CENTER);
+    // this.menu.setMinWidth(280);
+    // this.menu.setPrefWidth(280);
+    // this.menu.setMaxWidth(280);
 
     this.mainMenuScene = new Scene(menu);
     this.mainMenuScene.getStylesheets().add("lunarlander/css/style.css");
@@ -82,5 +85,5 @@ public class MainMenuWindow {
   private Label creditsLabel;
   private Label exitLabel;
   private Image logoImage;
-  private BorderPane menu;
+  private HBox menu;
 }
