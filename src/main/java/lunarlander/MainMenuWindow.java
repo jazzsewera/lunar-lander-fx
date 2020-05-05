@@ -1,5 +1,6 @@
 package lunarlander;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -55,7 +56,14 @@ public class MainMenuWindow {
     mainMenuVBox.getStyleClass().addAll("menu-main-vertical-layout", "menu-root");
     mainMenuVBox.setAlignment(Pos.CENTER_LEFT);
 
-    this.mainMenuScene = new Scene(mainMenuVBox);
+    this.menu = new BorderPane();
+    this.menu.getStyleClass().add("menu-root");
+    this.menu.setLeft(mainMenuVBox);
+    this.menu.setMinWidth(280);
+    this.menu.setPrefWidth(280);
+    this.menu.setMaxWidth(280);
+
+    this.mainMenuScene = new Scene(menu);
     this.mainMenuScene.getStylesheets().add("lunarlander/css/style.css");
   }
 
@@ -74,4 +82,5 @@ public class MainMenuWindow {
   private Label creditsLabel;
   private Label exitLabel;
   private Image logoImage;
+  private BorderPane menu;
 }
