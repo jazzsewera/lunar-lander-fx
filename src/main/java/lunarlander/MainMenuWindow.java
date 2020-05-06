@@ -85,6 +85,7 @@ public class MainMenuWindow {
     this.newGameLabel.setOnMouseExited(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent mouseEvent) {
+        newGameLabel.getStyleClass().clear();
         newGameLabel.getStyleClass().addAll("menu-label-secondary");
       }
     });
