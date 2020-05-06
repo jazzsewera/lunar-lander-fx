@@ -71,7 +71,8 @@
 }
 
 .menu-label-primary,
-.menu-label-secondary {
+.menu-label-secondary,
+.menu-label-hover-effect {
 }
 
 .menu-label-primary {
@@ -81,6 +82,11 @@
 
 .menu-label-secondary {
   -fx-text-fill: #828282;
+  -fx-font-size: 36px;
+}
+
+.menu-label-hover-effect {
+  -fx-text-fill: #ffffff;
   -fx-font-size: 36px;
 }
 

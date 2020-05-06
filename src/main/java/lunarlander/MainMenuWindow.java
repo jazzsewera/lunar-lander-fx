@@ -1,14 +1,13 @@
 package lunarlander;
 
-import javafx.geometry.Insets;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class MainMenuWindow {
@@ -68,14 +67,39 @@ public class MainMenuWindow {
 
     this.mainMenuScene = new Scene(menu);
     this.mainMenuScene.getStylesheets().add("lunarlander/css/style.css");
+
+    this.newGameLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent mouseEvent) {
+        setMainMenuScene(gameWindow.getMainGameScene());
+      }
+    });
+
+    this.newGameLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent mouseEvent) {
+        newGameLabel.getStyleClass().addAll("menu-label-hover-effect");
+      }
+    });
+
+    this.newGameLabel.setOnMouseExited(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent mouseEvent) {
+        newGameLabel.getStyleClass().addAll("menu-label-secondary");
+      }
+    });
   }
 
 
   public Scene getMainMenuScene() {
     return mainMenuScene;
   }
+  public void setMainMenuScene(Scene newScene) { this.mainMenuScene = newScene; }
+
 
   private Scene mainMenuScene;
+
+  GameWindow gameWindow = new GameWindow();
 
   private Label menuLabel;
   private Label logoLabel;
