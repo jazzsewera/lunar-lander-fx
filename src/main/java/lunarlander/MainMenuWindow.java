@@ -1,5 +1,6 @@
 package lunarlander;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -69,27 +70,30 @@ public class MainMenuWindow {
     this.mainMenuScene = new Scene(menuRoot);
     this.mainMenuScene.getStylesheets().add("lunarlander/css/style.css");
 
-    this.newGameLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent mouseEvent) {
-        newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.GAME));
-      }
+    this.newGameLabel.setOnMouseClicked((event) -> {
+      newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.GAME));
+    });
+    this.scoreboardLabel.setOnMouseClicked((event) -> {
+      newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.SCORES));
+    });
+    this.rulesLabel.setOnMouseClicked((event) -> {
+      newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.RULES));
+    });
+    this.creditsLabel.setOnMouseClicked((event) -> {
+      newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.CREDITS));
+    });
+    this.exitLabel.setOnMouseClicked((event) -> {
+      Platform.exit();
     });
 
     for(Node child : mainMenuVBox.getChildren()) {
-      child.setOnMouseEntered(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent mouseEvent) {
-          child.getStyleClass().addAll("menu-label-hover-effect");
-        }
+      child.setOnMouseEntered((event) -> {
+        child.getStyleClass().addAll("menu-label-hover-effect");
       });
 
-      child.setOnMouseExited(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent mouseEvent) {
-          child.getStyleClass().clear();
-          child.getStyleClass().addAll("menu-label-secondary");
-        }
+      child.setOnMouseExited((event) -> {
+        child.getStyleClass().clear();
+        child.getStyleClass().addAll("menu-label-secondary");
       });
     }
   }

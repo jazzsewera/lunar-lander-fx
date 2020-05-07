@@ -47,13 +47,13 @@ public class GameWindow {
     this.mainGameScene.getStylesheets().add("lunarlander/css/style.css");
 
     final KeyCombination ctrlQuit = new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN);
-    this.mainGameScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+    this.mainGameScene.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
       if (ctrlQuit.match(event)) {
         Platform.exit();
       }
     });
 
-    this.mainGameScene.setOnKeyPressed(event -> {
+    this.mainGameScene.setOnKeyPressed((event) -> {
       if (event.getCode() == KeyCode.UP) {
         _sidePane.setKbdUpPressed();
         _gamePane.startLanderThrustOn();
@@ -69,7 +69,7 @@ public class GameWindow {
       // Only for presentation purposes
       if (event.getCode() == KeyCode.L) _sidePane.setLevel(5);
     });
-    this.mainGameScene.setOnKeyReleased(event -> {
+    this.mainGameScene.setOnKeyReleased((event) -> {
       if (event.getCode() == KeyCode.UP) {
         _sidePane.setKbdUpReleased();
         _gamePane.stopLanderThrustOn();

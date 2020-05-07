@@ -13,7 +13,8 @@ public class Main extends Application {
     MAIN_MENU,
     GAME,
     SCORES,
-    RULES
+    RULES,
+    CREDITS
   }
 
   public static class ChangeSceneEvent extends Event {
@@ -44,7 +45,7 @@ public class Main extends Application {
     // setMainScene(mainMenuScene);
     // setMainScene(gameWindowScene);
 
-    this.mainScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, event -> {
+    this.mainScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
       switch (event.getSceneType()) {
         case MAIN_MENU:
           stage.setScene(this.mainMenuScene);
