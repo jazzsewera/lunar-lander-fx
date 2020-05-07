@@ -9,12 +9,22 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-  public static class ChangeToGameEvent extends Event {
-    ChangeToGameEvent() {
-      super(CHANGE_TO_GAME);
+  public static enum SceneType {
+    MAIN_MENU,
+    GAME
+  }
+
+  public static class ChangeSceneEvent extends Event {
+    ChangeSceneEvent(SceneType sceneType) {
+      super(CHANGE_SCENE);
+      this.sceneType = sceneType;
     }
 
-    public static final EventType<ChangeToGameEvent> CHANGE_TO_GAME = new EventType<>("CHANGE_TO_GAME");
+    public SceneType getSceneType() { return this.sceneType; }
+
+    private SceneType sceneType;
+
+    public static final EventType<ChangeSceneEvent> CHANGE_SCENE = new EventType<>("CHANGE_SCENE");
 
     public static final long serialVersionUID = 1234;
   }
@@ -30,8 +40,18 @@ public class Main extends Application {
     // setMainScene(mainMenuScene);
     // setMainScene(gameWindowScene);
 
-    this.mainScene.addEventHandler(ChangeToGameEvent.CHANGE_TO_GAME, event -> {
-      stage.setScene(this.gameWindowScene);
+    this.mainScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, event -> {
+      switch (event.getSceneType()) {
+        case MAIN_MENU:
+          stage.setScene(this.mainMenuScene);
+          break;
+        case GAME:
+          stage.setScene(this.gameWindowScene);
+          break;
+        default:
+          stage.setScene(this.mainMenuScene);
+          break;
+      }
     });
 
     stage.setScene(this.mainMenuScene);

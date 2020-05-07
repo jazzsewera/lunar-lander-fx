@@ -72,7 +72,7 @@ public class MainMenuWindow {
     this.newGameLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent mouseEvent) {
-        newGameLabel.fireEvent(new Main.ChangeToGameEvent());
+        newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.GAME));
       }
     });
 
