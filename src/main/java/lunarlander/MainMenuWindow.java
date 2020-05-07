@@ -57,21 +57,21 @@ public class MainMenuWindow {
     mainMenuVBox.setPrefWidth(750);
     mainMenuVBox.setMaxWidth(1200);
 
-    this.menu = new HBox();
-    this.menu.getStyleClass().add("menu-root");
-    this.menu.getChildren().add(mainMenuVBox);
-    this.menu.setAlignment(Pos.CENTER);
-    // this.menu.setMinWidth(280);
-    // this.menu.setPrefWidth(280);
-    // this.menu.setMaxWidth(280);
+    this.menuRoot = new HBox();
+    this.menuRoot.getStyleClass().add("menu-root");
+    this.menuRoot.getChildren().add(mainMenuVBox);
+    this.menuRoot.setAlignment(Pos.CENTER);
+    // this.menuRoot.setMinWidth(280);
+    // this.menuRoot.setPrefWidth(280);
+    // this.menuRoot.setMaxWidth(280);
 
-    this.mainMenuScene = new Scene(menu);
+    this.mainMenuScene = new Scene(menuRoot);
     this.mainMenuScene.getStylesheets().add("lunarlander/css/style.css");
 
     this.newGameLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent mouseEvent) {
-        setMainMenuScene(gameWindow.getMainGameScene());
+        newGameLabel.fireEvent(new Main.ChangeToGameEvent());
       }
     });
 
@@ -110,5 +110,5 @@ public class MainMenuWindow {
   private Label creditsLabel;
   private Label exitLabel;
   private Image logoImage;
-  private HBox menu;
+  private HBox menuRoot;
 }
