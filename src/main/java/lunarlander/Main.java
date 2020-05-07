@@ -11,7 +11,9 @@ public class Main extends Application {
 
   public static enum SceneType {
     MAIN_MENU,
-    GAME
+    GAME,
+    SCORES,
+    RULES
   }
 
   public static class ChangeSceneEvent extends Event {
@@ -33,8 +35,10 @@ public class Main extends Application {
   public void start(Stage stage) {
     MainMenuWindow _mainMenuWindow = new MainMenuWindow();
     GameWindow _gameWindow = new GameWindow();
+    RulesWindow _rulesWindow = new RulesWindow();
     this.mainMenuScene = _mainMenuWindow.getMainMenuScene();
     this.gameWindowScene = _gameWindow.getMainGameScene();
+    this.rulesScene = _rulesWindow.getRulesScene();
 
     this.mainScene = this.mainMenuScene;
     // setMainScene(mainMenuScene);
@@ -47,6 +51,9 @@ public class Main extends Application {
           break;
         case GAME:
           stage.setScene(this.gameWindowScene);
+          break;
+       case RULES:
+          stage.setScene(this.rulesScene);
           break;
         default:
           stage.setScene(this.mainMenuScene);
@@ -68,4 +75,5 @@ public class Main extends Application {
   private Scene mainScene;
   private Scene mainMenuScene;
   private Scene gameWindowScene;
+  private Scene rulesScene;
 }
