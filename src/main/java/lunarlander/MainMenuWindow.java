@@ -2,6 +2,7 @@ package lunarlander;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -75,20 +76,22 @@ public class MainMenuWindow {
       }
     });
 
-    this.newGameLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent mouseEvent) {
-        newGameLabel.getStyleClass().addAll("menu-label-hover-effect");
-      }
-    });
+    for(Node child : mainMenuVBox.getChildren()) {
+      child.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+          child.getStyleClass().addAll("menu-label-hover-effect");
+        }
+      });
 
-    this.newGameLabel.setOnMouseExited(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent mouseEvent) {
-        newGameLabel.getStyleClass().clear();
-        newGameLabel.getStyleClass().addAll("menu-label-secondary");
-      }
-    });
+      child.setOnMouseExited(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+          child.getStyleClass().clear();
+          child.getStyleClass().addAll("menu-label-secondary");
+        }
+      });
+    }
   }
 
 
