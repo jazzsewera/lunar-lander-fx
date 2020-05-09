@@ -37,9 +37,12 @@ public class Main extends Application {
     MainMenuWindow _mainMenuWindow = new MainMenuWindow();
     GameWindow _gameWindow = new GameWindow();
     RulesWindow _rulesWindow = new RulesWindow();
+    CreditsWindow _creditsWindow = new CreditsWindow();
+
     this.mainMenuScene = _mainMenuWindow.getMainMenuScene();
     this.gameWindowScene = _gameWindow.getMainGameScene();
     this.rulesScene = _rulesWindow.getRulesScene();
+    this.creditsScene = _creditsWindow.getCreditsScene();
 
     this.mainScene = this.mainMenuScene;
     // setMainScene(mainMenuScene);
@@ -55,6 +58,9 @@ public class Main extends Application {
           break;
        case RULES:
           stage.setScene(this.rulesScene);
+          break;
+        case CREDITS:
+          stage.setScene(this.creditsScene);
           break;
         default:
           stage.setScene(this.mainMenuScene);
@@ -77,4 +83,5 @@ public class Main extends Application {
   private Scene mainMenuScene;
   private Scene gameWindowScene;
   private Scene rulesScene;
+  private Scene creditsScene;
 }

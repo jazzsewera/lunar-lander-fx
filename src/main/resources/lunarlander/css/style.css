@@ -110,4 +110,28 @@
   -fx-padding: 50px 0 50px 50px;
 }
 
+.credits-label-primary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 36px;
+}
+
+.credits-label-secondary {
+  -fx-text-fill: #828282;
+  -fx-font-size: 24px;
+}
+
+.credits-vertical-layout {
+  -fx-spacing: 20px;
+  -fx-padding: 50px 0 50px 50px;
+}
+
+.back-button {
+  -fx-text-fill: #828282;
+  -fx-font-size: 28px;
+}
+
+.back-button-hover-effect {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 28px;
+}
 

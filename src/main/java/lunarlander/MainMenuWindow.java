@@ -102,11 +102,8 @@ public class MainMenuWindow {
     return mainMenuScene;
   }
 
-  public void setMainMenuScene(Scene newScene) { this.mainMenuScene = newScene; }
-
 
   private Scene mainMenuScene;
-  //GameWindow gameWindow = new GameWindow();
 
   private Label menuLabel;
   private Label logoLabel;
