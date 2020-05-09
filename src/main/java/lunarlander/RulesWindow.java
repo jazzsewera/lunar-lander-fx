@@ -31,7 +31,7 @@ public class RulesWindow {
       rulesSecondHeader,
       rulesSecondParagraph
     );
-    rulesVBox.getStyleClass().addAll("menu-main-vertical-layout", "menu-root");
+    rulesVBox.getStyleClass().addAll("rules-vertical-layout", "menu-root");
     rulesVBox.setAlignment(Pos.CENTER_LEFT);
     rulesVBox.setMinWidth(400);
     rulesVBox.setPrefWidth(750);

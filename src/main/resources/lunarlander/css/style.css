@@ -104,3 +104,10 @@
   -fx-text-fill: #828282;
   -fx-font-size: 24px;
 }
+
+.rules-vertical-layout {
+  -fx-spacing: 20px;
+  -fx-padding: 50px 0 50px 50px;
+}
+
+
