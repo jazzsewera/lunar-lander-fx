@@ -8,6 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -96,6 +100,13 @@ public class MainMenuWindow {
         child.getStyleClass().addAll("menu-label-secondary");
       });
     }
+
+    final KeyCombination ctrlQuit = new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN);
+    this.mainMenuScene.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
+      if (ctrlQuit.match(event)) {
+        Platform.exit();
+      }
+    });
   }
 
   public Scene getMainMenuScene() {
