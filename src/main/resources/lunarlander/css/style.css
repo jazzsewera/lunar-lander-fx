@@ -94,3 +94,13 @@
   -fx-spacing: 10px;
   -fx-padding: 50px 0 50px 50px;
 }
+
+.rules-text-primary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 36px;
+}
+
+.rules-text-secondary {
+  -fx-text-fill: #828282;
+  -fx-font-size: 24px;
+}
