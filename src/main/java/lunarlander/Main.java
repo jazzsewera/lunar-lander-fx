@@ -74,6 +74,12 @@ public class Main extends Application {
       }
     });
 
+    this.creditsScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
+      if(event.getSceneType() == SceneType.MAIN_MENU) {
+        stage.setScene(this.mainMenuScene);
+      }
+    });
+
     stage.setScene(this.mainMenuScene);
     stage.setTitle("Lunar Lander");
     stage.setWidth(1080);
