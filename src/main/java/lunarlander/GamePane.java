@@ -39,6 +39,8 @@ public class GamePane {
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
     Group group = new Group();
+    // TODO: Needs Lander placement based on window size!
+    this.landerModel = new Lander(0, 0, 0.5, 0, 0, 100);
     group.getChildren().addAll(moonSurface, landerModel.landerGroup);
 
     this.gamePane = new Pane();
@@ -145,7 +147,7 @@ public class GamePane {
   public boolean isThrustON() { return isThrustON; }
 
   private Pane gamePane;
-  private Lander landerModel = new Lander(50, 150, 0.5, 0, 0, 100);
+  private Lander landerModel;
   private Timeline timeline = new Timeline();
   private Polygon moonSurface;
 
