@@ -152,7 +152,7 @@ public class GamePane {
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
-  private double g = 0.1;
+  private double g = 1;
 
   //TODO: Nitro flame
 }
