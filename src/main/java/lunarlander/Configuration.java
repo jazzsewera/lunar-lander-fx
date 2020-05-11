@@ -7,10 +7,18 @@ import com.google.common.io.CharSource;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.IOException;
+import com.google.gson.JsonObject;
+
+import java.io.*;
 // import java.util.HashMap;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
 
 /**
  * Class operating on attributes and methods linked to
@@ -85,6 +93,32 @@ public class Configuration {
    *
    * @param lvl Number of level we want to create moon surface with, int.
    */
+
+  public void lunarClient() {
+    try {
+      // Opening socket chosen by client
+      Socket socket = new Socket("localhost", 21370);
+
+      // Data stream we are directing to server
+      OutputStream os = socket.getOutputStream();
+
+      // Stream writer
+      PrintWriter pw = new PrintWriter(os, true);
+
+      // Response stream
+      InputStream is = socket.getInputStream();
+
+      // Stream reader
+      BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+      System.out.println(br.readLine());
+      socket.close();
+      br.close();
+    } catch (Exception e) {
+      System.err.println("Client exception: " + e);
+    }
+  }
+
   public void generateLevel(int lvl) {
     this.moonMaps.add(new Moon(lvl));
   }

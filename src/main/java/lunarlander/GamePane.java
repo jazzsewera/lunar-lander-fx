@@ -24,7 +24,7 @@ public class GamePane {
    */
   public GamePane() {
     Configuration configuration = new Configuration();
-
+    //configuration.lunarClient();
     /*
      * for (int i = 1; i <= 3; i++) {
      *   configuration.generateLevel(i);
@@ -40,7 +40,7 @@ public class GamePane {
 
     Group group = new Group();
     // TODO: Needs Lander placement based on window size!
-    this.landerModel = new Lander(0, 0, 0.5, 0, 0, 100);
+    this.landerModel = new Lander(0, 0, 0.1, 0, 0, 150);
     group.getChildren().addAll(moonSurface, landerModel.landerGroup);
 
     this.gamePane = new Pane();
@@ -154,7 +154,7 @@ public class GamePane {
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
-  private double g = 1;
+  private double g = 0.1;
 
   //TODO: Nitro flame
 }
