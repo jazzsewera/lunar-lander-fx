@@ -10,11 +10,25 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Credits window class rendering VBox of Labeles
+ * containing credits of the game. Class contains
+ * event handlers in order to support window operating.
+ *
+ * @author Błażej Sewera
+ * @author Mateusz Winnicki
+ */
 public class CreditsWindow {
 
+  /**
+   * Constructor creating bunch of Labels and
+   * gathering them in Vbox. Contains onMouseEntered and
+   * onMouseExited event handlers in order to bring visual
+   * effects to Back button and onMouseClicked event that is
+   * fired to Main class for changing scenes.
+   */
   public CreditsWindow() {
     this.creditsHeader = new Label("Credits");
     this.creditsHeader.getStyleClass().add("credits-label-primary");
@@ -76,6 +90,12 @@ public class CreditsWindow {
     });
   }
 
+  /**
+   * Method to get an actual scene that contains the root pane
+   * and can be rendered in the window.
+   *
+   * @return creditsScene, {@link Scene}
+   */
   public Scene getCreditsScene() {
     return creditsScene;
   }

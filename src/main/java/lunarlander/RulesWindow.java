@@ -10,11 +10,26 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+
+/**
+ * List of rules window class rendering VBox of Labeles
+ * containing set of rules in the stage. Class contains
+ * some event handlers in order to support window operating.
+ *
+ * @author Błażej Sewera
+ * @author Mateusz Winnicki
+ */
 public class RulesWindow {
 
+  /**
+   * Constructor creating bunch of Labels and
+   * gathering them in Vbox. Contains onMouseEntered and
+   * onMouseExited event handlers in order to bring visual
+   * effects to Back button and onMouseClicked event that is
+   * fired to Main class for changing scenes.
+   */
   public RulesWindow() {
     this.rulesFirstHeader = new Label("Rules");
     this.rulesFirstHeader.getStyleClass().add("rules-text-primary");
@@ -95,6 +110,12 @@ public class RulesWindow {
     });
   }
 
+  /**
+   * Method to get an actual scene that contains the root pane
+   * and can be rendered in the window.
+   *
+   * @return rulesScene, {@link Scene}
+   */
   public Scene getRulesScene() {
     return rulesScene;
   }

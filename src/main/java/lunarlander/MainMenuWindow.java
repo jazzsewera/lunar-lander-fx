@@ -1,7 +1,6 @@
 package lunarlander;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,12 +11,26 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Main menu window class rendering VBox of Labeles
+ * containing main menu options. Class contains event
+ * handlers in order to support window operating.
+ *
+ * @author Błażej Sewera
+ * @author Mateusz Winnicki
+ */
 public class MainMenuWindow {
 
+  /**
+   * Constructor creating Labels with menu options and
+   * gathering them in Vbox. Contains onMouseEntered and
+   * onMouseExited event handlers in order to bring visual
+   * effects to Back button and onMouseClicked event that
+   * for changing scenes to selected options.
+   */
   public MainMenuWindow() {
     this.menuLabel = new Label("Lunar Lander");
     this.menuLabel.getStyleClass().add("menu-label-primary");
@@ -109,6 +122,12 @@ public class MainMenuWindow {
     });
   }
 
+  /**
+   * Method to get an actual scene that contains the root pane
+   * and can be rendered in the window.
+   *
+   * @return mainMenuScene, {@link Scene}
+   */
   public Scene getMainMenuScene() {
     return mainMenuScene;
   }
