@@ -38,22 +38,22 @@ public class LunarServer {
         // Stream reader
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-      //  File file = new File("src/main/resources/lunarlander/configuration.json");
-      //  CharSource source = Files.asCharSource(file, Charsets.UTF_8);
-      //  String result = "Papież polak.";
-      //  try {
-      //    result = source.read();
-      //  } catch (IOException e) {
-      //    System.out.println("Something went wrong. Possible reasons: ");
-      //    System.out.println("1) Folder your are trying to open does not exist.");
-      //    System.out.println("2) You don't have permissions to open that file.");
-      //  }
+        //  File file = new File("src/main/resources/lunarlander/configuration.json");
+        //  CharSource source = Files.asCharSource(file, Charsets.UTF_8);
+        //  String result = "Papież polak.";
+        //  try {
+        //    result = source.read();
+        //  } catch (IOException e) {
+        //    System.out.println("Something went wrong. Possible reasons: ");
+        //    System.out.println("1) Folder your are trying to open does not exist.");
+        //    System.out.println("2) You don't have permissions to open that file.");
+        //  }
 
         // Data stream we are getting from the server
         OutputStream os = socket.getOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(os);
-        oos.writeObject("hej");
-        os.flush();
+        String test = "Papiez polak wita cie smiertelniku";
+        oos.writeObject(test);
         System.out.println("Downloaded from server maps configuration file");
 
         // Stream info writer
