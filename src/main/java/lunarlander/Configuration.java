@@ -125,8 +125,7 @@ public class Configuration {
       }
       saveFile(sb);
 
-      // Print StringBuffer to stdout
-      System.out.print(sb.toString());
+      System.out.print("Imported map configuration file from the server successfully.");
       socket.close();
       br.close();
     } catch (Exception e) {
