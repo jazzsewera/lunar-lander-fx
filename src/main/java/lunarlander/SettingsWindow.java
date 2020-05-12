@@ -73,17 +73,12 @@ public class SettingsWindow {
     this.settingsScene = new Scene(settingsRoot);
     this.settingsScene.getStylesheets().add("lunarlander/css/style.css");
 
-    this.backButton.setOnMouseClicked((event) -> {
-      backButton.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+    this.appConfigSettings.setOnMousePressed((event) -> {
+      this.appConfigSettings.getStyleClass().add("settings-click-effect");
     });
 
-    this.backButton.setOnMouseEntered((event) -> {
-      this.backButton.getStyleClass().add("back-button-hover-effect");
-    });
-
-    this.backButton.setOnMouseExited((event) -> {
-      this.backButton.getStyleClass().clear();
-      this.backButton.getStyleClass().add("back-button");
+    this.appConfigSettings.setOnMouseReleased((event) -> {
+      this.appConfigSettings.getStyleClass().add("settings-label-tertiary");
     });
 
     this.appConfigSettings.setOnMouseEntered((event) -> {
@@ -95,6 +90,14 @@ public class SettingsWindow {
       this.appConfigSettings.getStyleClass().add("settings-label-tertiary");
     });
 
+    this.serverConfigSettings.setOnMousePressed((event) -> {
+      this.serverConfigSettings.getStyleClass().add("settings-click-effect");
+    });
+
+    this.serverConfigSettings.setOnMouseReleased((event) -> {
+      this.serverConfigSettings.getStyleClass().add("settings-label-tertiary");
+    });
+
     this.serverConfigSettings.setOnMouseEntered((event) -> {
       this.serverConfigSettings.getStyleClass().add("settings-hover-effect");
     });
@@ -102,6 +105,19 @@ public class SettingsWindow {
     this.serverConfigSettings.setOnMouseExited((event) -> {
       this.serverConfigSettings.getStyleClass().clear();
       this.serverConfigSettings.getStyleClass().add("settings-label-tertiary");
+    });
+
+    this.backButton.setOnMouseClicked((event) -> {
+      backButton.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+    });
+
+    this.backButton.setOnMouseEntered((event) -> {
+      this.backButton.getStyleClass().add("back-button-hover-effect");
+    });
+
+    this.backButton.setOnMouseExited((event) -> {
+      this.backButton.getStyleClass().clear();
+      this.backButton.getStyleClass().add("back-button");
     });
 
     final KeyCombination ctrlQuit = new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN);

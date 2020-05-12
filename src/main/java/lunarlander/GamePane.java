@@ -24,7 +24,6 @@ public class GamePane {
    */
   public GamePane() {
     Configuration configuration = new Configuration();
-    // configuration.lunarClient();
     /*
      * for (int i = 1; i <= 3; i++) {
      *   configuration.generateLevel(i);
@@ -32,7 +31,11 @@ public class GamePane {
      * configuration.toFile();
      */
 
-    configuration.fromFile("src/main/resources/lunarlander/configuration.json");
+    if(!Configuration.isConfigDownloaded()) {
+      configuration.fromFile("src/main/resources/lunarlander/configuration.json");
+    } else {
+      configuration.fromFile("src/main/resources/lunarlander/configuration_fromserver.json");
+    }
 
     Moon moon = configuration.getMoonMap(3);
     this.moonSurface = new Polygon();

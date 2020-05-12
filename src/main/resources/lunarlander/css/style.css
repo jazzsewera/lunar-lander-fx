@@ -142,6 +142,10 @@
 
 .settings-hover-effect {
   -fx-text-fill: #ffffff;
-  -fx-font-size: 20px;
+  -fx-font-size: 18px;
 }
 
+.settings-click-effect {
+  -fx-text-fill: #32CD32;
+  -fx-font-size: 20px;
+}
