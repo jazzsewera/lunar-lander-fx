@@ -110,17 +110,22 @@
   -fx-padding: 50px 0 50px 50px;
 }
 
-.credits-label-primary {
+.settings-label-primary {
   -fx-text-fill: #ffffff;
   -fx-font-size: 36px;
 }
 
-.credits-label-secondary {
-  -fx-text-fill: #828282;
-  -fx-font-size: 24px;
+.settings-label-secondary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 28px;
 }
 
-.credits-vertical-layout {
+.settings-label-tertiary {
+  -fx-text-fill: #828282;
+  -fx-font-size: 18px;
+}
+
+.settings-vertical-layout {
   -fx-spacing: 20px;
   -fx-padding: 50px 0 50px 50px;
 }
@@ -133,5 +138,10 @@
 .back-button-hover-effect {
   -fx-text-fill: #ffffff;
   -fx-font-size: 28px;
+}
+
+.settings-hover-effect {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 20px;
 }
 

@@ -53,8 +53,8 @@ public class MainMenuWindow {
     this.rulesLabel = new Label("Rules");
     this.rulesLabel.getStyleClass().add("menu-label-secondary");
 
-    this.creditsLabel = new Label("Credits");
-    this.creditsLabel.getStyleClass().add("menu-label-secondary");
+    this.settingsLabel = new Label("Settings");
+    this.settingsLabel.getStyleClass().add("menu-label-secondary");
 
     this.exitLabel = new Label("Exit");
     this.exitLabel.getStyleClass().add("menu-label-secondary");
@@ -64,9 +64,9 @@ public class MainMenuWindow {
     mainMenuVBox.getChildren().addAll(
       menuHBox,
       newGameLabel,
+      settingsLabel,
       scoreboardLabel,
       rulesLabel,
-      creditsLabel,
       exitLabel
     );
 
@@ -96,8 +96,8 @@ public class MainMenuWindow {
     this.rulesLabel.setOnMouseClicked((event) -> {
       newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.RULES));
     });
-    this.creditsLabel.setOnMouseClicked((event) -> {
-      newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.CREDITS));
+    this.settingsLabel.setOnMouseClicked((event) -> {
+      newGameLabel.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.SETTINGS));
     });
     this.exitLabel.setOnMouseClicked((event) -> {
       Platform.exit();
@@ -140,7 +140,7 @@ public class MainMenuWindow {
   private Label newGameLabel;
   private Label scoreboardLabel;
   private Label rulesLabel;
-  private Label creditsLabel;
+  private Label settingsLabel;
   private Label exitLabel;
   private Image logoImage;
   private HBox menuRoot;

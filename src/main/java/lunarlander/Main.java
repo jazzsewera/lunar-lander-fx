@@ -14,7 +14,7 @@ public class Main extends Application {
     GAME,
     SCORES,
     RULES,
-    CREDITS
+    SETTINGS
   }
 
   public static class ChangeSceneEvent extends Event {
@@ -54,9 +54,9 @@ public class Main extends Application {
           this.initRulesWindow();
           this.stage.setScene(this.rulesScene);
           break;
-        case CREDITS:
-          this.initCreditsWindow();
-          this.stage.setScene(this.creditsScene);
+        case SETTINGS:
+          this.initSettingsWindow();
+          this.stage.setScene(this.settingsScene);
           break;
         case SCORES:
           Configuration c = new Configuration();
@@ -91,11 +91,11 @@ public class Main extends Application {
     });
   }
 
-  private void initCreditsWindow() {
-    this.creditsWindow = new CreditsWindow();
-    this.creditsScene = creditsWindow.getCreditsScene();
+  private void initSettingsWindow() {
+    this.settingsWindow = new SettingsWindow();
+    this.settingsScene = settingsWindow.getSettingsScene();
 
-    this.creditsScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
+    this.settingsScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
       if(event.getSceneType() == SceneType.MAIN_MENU) {
         this.stage.setScene(this.mainMenuScene);
       }
@@ -108,10 +108,10 @@ public class Main extends Application {
   private Scene gameWindowScene;
   private Scene scoreboardScene;
   private Scene rulesScene;
-  private Scene creditsScene;
+  private Scene settingsScene;
 
   private GameWindow gameWindow;
   private RulesWindow rulesWindow;
-  private CreditsWindow creditsWindow;
+  private SettingsWindow settingsWindow;
   private MainMenuWindow mainMenuWindow;
 }
