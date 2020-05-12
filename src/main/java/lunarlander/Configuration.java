@@ -121,6 +121,7 @@ public class Configuration {
       while ((_line = br.readLine()) != null) {
         // Append every line to StringBuffer
         sb.append(_line);
+        sb.append('\n');
       }
       saveFile(sb);
 
