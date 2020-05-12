@@ -42,3 +42,8 @@ javafx {
   version = '11.0.2'
   modules = [ 'javafx.controls' ]
 }
+
+task runserver(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'lunarserver.LunarServer'
+}
