@@ -122,6 +122,7 @@ public class Configuration {
         // Append every line to StringBuffer
         sb.append(_line);
       }
+      saveFile(sb);
 
       // Print StringBuffer to stdout
       System.out.print(sb.toString());
@@ -132,14 +133,59 @@ public class Configuration {
     }
   }
 
+  /**
+   * Save configurations of maps received from the server in
+   * a configuration_fromserver.json file. After that method
+   * sets configDownloaded flag on true.
+   * @param serverMapsResponse Response we are getting from
+   *                           the server when we send GET request
+   */
+  public void saveFile(StringBuffer serverMapsResponse) {
+    String json = this.gson.toJson(serverMapsResponse);
+    // saving to file
+    File file = new File("src/main/resources/lunarlander/configuration_fromserver.json");
+    try {
+      CharSink sink = Files.asCharSink(file, Charsets.UTF_8);
+      sink.write(json);
+      setConfigDownloaded(true);
+    } catch (IOException e) {
+      System.out.println("Something went wrong. Possible reasons: ");
+      System.out.println("1) Folder you are trying to place file in does not exist.");
+      System.out.println("2) You are running out of disk space.");
+      System.out.println("3) You don't have permissions to place a file here.");
+    }
+  }
+
   public void generateLevel(int lvl) {
     this.moonMaps.add(new Moon(lvl));
+  }
+
+  /**
+   * @return true if maps are the latest ones from
+   * the server otherwise false
+   */
+  public static boolean isConfigDownloaded() { return configDownloaded; }
+
+  /**
+   * Set 'configDownloaded' status
+   * @param configDownloaded true if maps are the
+   * latest ones from the server otherwise false
+   */
+  public static void setConfigDownloaded(boolean configDownloaded) {
+    Configuration.configDownloaded = configDownloaded;
   }
 
 
   private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
   private ArrayList<Moon> moonMaps;
+
+  /**
+   * Flag controlling whether current maps are
+   * the same as the ones from the latest
+   * config file from the server
+   */
+  static boolean configDownloaded = false;
 
   // For future use:
   // private HashMap<String, String> params; // for example for server ip and port
