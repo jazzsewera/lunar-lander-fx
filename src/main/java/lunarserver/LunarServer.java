@@ -37,7 +37,7 @@ public class LunarServer {
         InputStream is = socket.getInputStream();
         // Stream reader
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        
+
         String clientRequest = br.readLine();
         RequestType requestType = getTypeFromRequest(clientRequest);
 
@@ -94,11 +94,11 @@ public class LunarServer {
   }
 
   private static String getConfigJson() {
-    File configFile = new File("src/main/resources/lunarlander/configuration.json");
+    File configFile = new File("src/main/resources/lunarserver/configuration.json");
     CharSource source = Files.asCharSource(configFile, Charsets.UTF_8);
     String configJson = "";
     try {
-      configJson = source.read();
+      configJson =  source.read();
     } catch (IOException e) {
       System.out.println("Something went wrong. Possible reasons: ");
       System.out.println("1) Folder your are trying to open does not exist.");
