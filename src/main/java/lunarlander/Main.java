@@ -34,19 +34,17 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) {
+    this.configuration = new Configuration();
     this.stage = stage;
-
     this.mainMenuWindow = new MainMenuWindow();
-
     this.mainMenuScene = this.mainMenuWindow.getMainMenuScene();
-
     this.mainMenuScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
       switch (event.getSceneType()) {
         case MAIN_MENU:
           this.stage.setScene(this.mainMenuScene);
           break;
         case GAME:
-          this.gameWindow = new GameWindow();
+          this.gameWindow = new GameWindow(this.configuration);
           this.gameWindowScene = this.gameWindow.getMainGameScene();
           this.stage.setScene(this.gameWindowScene);
           break;
@@ -92,7 +90,7 @@ public class Main extends Application {
   }
 
   private void initSettingsWindow() {
-    this.settingsWindow = new SettingsWindow();
+    this.settingsWindow = new SettingsWindow(this.configuration);
     this.settingsScene = settingsWindow.getSettingsScene();
 
     this.settingsScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
@@ -110,6 +108,7 @@ public class Main extends Application {
   private Scene rulesScene;
   private Scene settingsScene;
 
+  private Configuration configuration;
   private GameWindow gameWindow;
   private RulesWindow rulesWindow;
   private SettingsWindow settingsWindow;

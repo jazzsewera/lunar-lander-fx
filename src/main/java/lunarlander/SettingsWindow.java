@@ -31,29 +31,36 @@ public class SettingsWindow {
    * effects to Back button and onMouseClicked event that is
    * fired to Main class for changing scenes.
    */
-  public SettingsWindow() {
+  public SettingsWindow(Configuration configuration) {
     this.settingsHeader = new Label("Settings");
     this.settingsHeader.getStyleClass().add("settings-label-primary");
 
-    this.configSettingsHeader = new Label("Map configuration:");
+    this.configSettingsHeader = new Label("Map configuration");
     this.configSettingsHeader.getStyleClass().add("settings-label-secondary");
 
-    this.appConfigSettings = new Label("Load default maps from an app.");
+    this.appConfigSettings = new Label("Load local maps");
     this.appConfigSettings.getStyleClass().add("settings-label-tertiary");
 
-    this.serverConfigSettings = new Label("Load set of maps from a server.");
+    this.serverConfigSettings = new Label("Load maps from a server");
     this.serverConfigSettings.getStyleClass().add("settings-label-tertiary");
 
     this.backButton = new Label("Back");
     this.backButton.getStyleClass().add("back-button");
 
+    VBox mapConfigurationVbox = new VBox();
+    mapConfigurationVbox.getChildren().addAll(
+        configSettingsHeader,
+        appConfigSettings,
+        serverConfigSettings
+    );
+    mapConfigurationVbox.getStyleClass().add("settings-subsection-layout");
+
     VBox settingsVBox = new VBox();
     settingsVBox.getChildren().addAll(
       settingsHeader,
-      configSettingsHeader,
-      appConfigSettings,
-      serverConfigSettings
+      mapConfigurationVbox
     );
+
     settingsVBox.getStyleClass().addAll("settings-vertical-layout", "menu-root");
     settingsVBox.setAlignment(Pos.CENTER_LEFT);
     settingsVBox.setMinWidth(400);

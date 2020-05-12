@@ -23,8 +23,8 @@ public class GameWindow {
    * Constructor setting up all the necessary components of
    * the Game Window.
    */
-  public GameWindow() {
-    GamePane _gamePane = new GamePane();
+  public GameWindow(Configuration configuration) {
+    GamePane _gamePane = new GamePane(configuration);
     SidePane _sidePane = new SidePane();
 
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();

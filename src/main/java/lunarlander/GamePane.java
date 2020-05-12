@@ -22,22 +22,22 @@ public class GamePane {
    * Constructor reading configuration.json file, {@link Configuration},
    * and creating a Pane of moonSurface of chosen Moon, {@link Moon}.
    */
-  public GamePane() {
-    Configuration configuration = new Configuration();
+  public GamePane(Configuration configuration) {
+    this.configuration = configuration;
     /*
      * for (int i = 1; i <= 3; i++) {
-     *   configuration.generateLevel(i);
+     *   this.configuration.generateLevel(i);
      * }
-     * configuration.toFile();
+     * this.configuration.toFile();
      */
 
     if(!Configuration.isConfigDownloaded()) {
-      configuration.fromFile("src/main/resources/lunarlander/configuration.json");
+      this.configuration.fromFile("src/main/resources/lunarlander/configuration.json");
     } else {
-      configuration.fromFile("src/main/resources/lunarlander/configuration_fromserver.json");
+      this.configuration.fromFile("src/main/resources/lunarlander/configuration_fromserver.json");
     }
 
-    Moon moon = configuration.getMoonMap(3);
+    Moon moon = this.configuration.getMoonMap(3);
     this.moonSurface = new Polygon();
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
@@ -158,6 +158,8 @@ public class GamePane {
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
   private double g = 0.1;
+
+  private Configuration configuration;
 
   //TODO: Nitro flame
 }
