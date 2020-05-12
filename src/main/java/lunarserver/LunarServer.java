@@ -34,9 +34,9 @@ public class LunarServer {
         // Accept incoming call
         Socket socket = serverSocket.accept();
         // Stream of data on socket
-        InputStream is = socket.getInputStream();
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
         // Stream reader
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        BufferedReader br = new BufferedReader(new InputStreamReader(ois));
 
         //  File file = new File("src/main/resources/lunarlander/configuration.json");
         //  CharSource source = Files.asCharSource(file, Charsets.UTF_8);
@@ -50,14 +50,13 @@ public class LunarServer {
         //  }
 
         // Data stream we are getting from the server
-        OutputStream os = socket.getOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(os);
-        String test = "Papiez polak wita cie smiertelniku";
-        oos.writeObject(test);
+        //OutputStream os = socket.getOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+        oos.writeObject("Hi client");
         System.out.println("Downloaded from server maps configuration file");
 
         // Stream info writer
-        PrintWriter pw = new PrintWriter(os, true);
+        PrintWriter pw = new PrintWriter(oos, true);
         String clientRequest = br.readLine();
         System.out.println("Client request: '" + clientRequest + "'");
         // Response info
@@ -67,8 +66,8 @@ public class LunarServer {
         // Closing all streams
         br.close();
         pw.close();
-        is.close();
-        os.close();
+        ois.close();
+        oos.close();
       } catch (Exception e) {
         System.err.println("Server exception: " + e);
       }

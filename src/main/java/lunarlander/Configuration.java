@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 
 import java.io.*;
 // import java.util.HashMap;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.io.BufferedReader;
@@ -100,16 +101,19 @@ public class Configuration {
       Socket socket = new Socket("localhost", 21370);
 
       // Data stream we are directing to server
-      OutputStream os = socket.getOutputStream();
+      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+      System.out.println("Sending request");
 
       // Stream writer
-      PrintWriter pw = new PrintWriter(os, true);
+      PrintWriter pw = new PrintWriter(oos, true);
 
       // Response stream
-      InputStream is = socket.getInputStream();
+      ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+      String message = (String) ois.readObject();
 
       // Stream reader
-      BufferedReader br = new BufferedReader(new InputStreamReader(is));
+      BufferedReader br = new BufferedReader(new InputStreamReader(ois));
+      System.out.println("Received: " + br);
 
       System.out.println(br.readLine());
       socket.close();
