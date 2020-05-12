@@ -141,7 +141,7 @@ public class Configuration {
    *                           the server when we send GET request
    */
   public void saveFile(StringBuffer serverMapsResponse) {
-    String json = this.gson.toJson(serverMapsResponse);
+    String json = serverMapsResponse.toString();
     // saving to file
     File file = new File("src/main/resources/lunarlander/configuration_fromserver.json");
     try {
