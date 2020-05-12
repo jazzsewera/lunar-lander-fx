@@ -57,8 +57,6 @@ public class Main extends Application {
           this.stage.setScene(this.settingsScene);
           break;
         case SCORES:
-          Configuration c = new Configuration();
-          c.lunarClient();
           break;
         default:
           this.stage.setScene(this.mainMenuScene);
