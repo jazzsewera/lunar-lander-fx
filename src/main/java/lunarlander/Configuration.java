@@ -13,6 +13,7 @@ import java.io.*;
 // import java.util.HashMap;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -101,21 +102,29 @@ public class Configuration {
       Socket socket = new Socket("localhost", 21370);
 
       // Data stream we are directing to server
-      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-      System.out.println("Sending request");
+      OutputStream os = socket.getOutputStream();
 
       // Stream writer
-      PrintWriter pw = new PrintWriter(oos, true);
+      PrintWriter pw = new PrintWriter(os, true);
+      System.out.println("Sending request");
+      pw.println("GET");
 
       // Response stream
-      ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-      String message = (String) ois.readObject();
+      InputStream is = socket.getInputStream();
+      // Reader from stream
+      BufferedReader br = new BufferedReader(new InputStreamReader(is));
+      // StringBuffer if we are going to put it on a different thread
+      StringBuffer sb = new StringBuffer();
+      // Helper variable holding current line
+      String _line = "";
+      // Read all the response lines to the end
+      while ((_line = br.readLine()) != null) {
+        // Append every line to StringBuffer
+        sb.append(_line);
+      }
 
-      // Stream reader
-      BufferedReader br = new BufferedReader(new InputStreamReader(ois));
-      System.out.println("Received: " + br);
-
-      System.out.println(br.readLine());
+      // Print StringBuffer to stdout
+      System.out.print(sb.toString());
       socket.close();
       br.close();
     } catch (Exception e) {

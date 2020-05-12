@@ -34,43 +34,77 @@ public class LunarServer {
         // Accept incoming call
         Socket socket = serverSocket.accept();
         // Stream of data on socket
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        InputStream is = socket.getInputStream();
         // Stream reader
-        BufferedReader br = new BufferedReader(new InputStreamReader(ois));
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        
+        String clientRequest = br.readLine();
+        RequestType requestType = getTypeFromRequest(clientRequest);
 
-        //  File file = new File("src/main/resources/lunarlander/configuration.json");
-        //  CharSource source = Files.asCharSource(file, Charsets.UTF_8);
-        //  String result = "Papież polak.";
-        //  try {
-        //    result = source.read();
-        //  } catch (IOException e) {
-        //    System.out.println("Something went wrong. Possible reasons: ");
-        //    System.out.println("1) Folder your are trying to open does not exist.");
-        //    System.out.println("2) You don't have permissions to open that file.");
-        //  }
+        String response;
+
+        switch (requestType) {
+          case GET_MAP:
+            response = getConfigJson();
+            break;
+          case PUSH_SCORE:
+            response = "OK";
+            break;
+          default:
+            response = "Invalid request";
+            break;
+        }
 
         // Data stream we are getting from the server
-        //OutputStream os = socket.getOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-        oos.writeObject("Hi client");
-        System.out.println("Downloaded from server maps configuration file");
+        OutputStream os = socket.getOutputStream();
 
         // Stream info writer
-        PrintWriter pw = new PrintWriter(oos, true);
-        String clientRequest = br.readLine();
-        System.out.println("Client request: '" + clientRequest + "'");
+        PrintWriter pw = new PrintWriter(os, true);
+        System.out.println("Client request: `" + clientRequest + "'");
         // Response info
-        pw.println("Server response: Request was: '" + clientRequest + "'");
+        pw.print(response);
+        pw.println();
         // Closing socket
         socket.close();
         // Closing all streams
         br.close();
         pw.close();
-        ois.close();
-        oos.close();
+        is.close();
+        os.close();
       } catch (Exception e) {
         System.err.println("Server exception: " + e);
       }
     }
+  }
+
+  private static enum RequestType {
+    GET_MAP,
+    PUSH_SCORE,
+    INVALID
+  }
+
+  private static RequestType getTypeFromRequest(String request) {
+    if (request.matches("(?i)^GET.*")) {
+      return RequestType.GET_MAP;
+    } else if (request.matches("(?i)^PUSH.*")) {
+      return RequestType.PUSH_SCORE;
+    } else {
+      return RequestType.INVALID;
+    }
+  }
+
+  private static String getConfigJson() {
+    File configFile = new File("src/main/resources/lunarlander/configuration.json");
+    CharSource source = Files.asCharSource(configFile, Charsets.UTF_8);
+    String configJson = "";
+    try {
+      configJson = source.read();
+    } catch (IOException e) {
+      System.out.println("Something went wrong. Possible reasons: ");
+      System.out.println("1) Folder your are trying to open does not exist.");
+      System.out.println("2) You don't have permissions to open that file.");
+    }
+
+    return configJson;
   }
 }

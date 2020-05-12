@@ -58,6 +58,10 @@ public class Main extends Application {
           this.initCreditsWindow();
           this.stage.setScene(this.creditsScene);
           break;
+        case SCORES:
+          Configuration c = new Configuration();
+          c.lunarClient();
+          break;
         default:
           this.stage.setScene(this.mainMenuScene);
           break;

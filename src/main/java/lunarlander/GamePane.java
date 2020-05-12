@@ -24,7 +24,7 @@ public class GamePane {
    */
   public GamePane() {
     Configuration configuration = new Configuration();
-    configuration.lunarClient();
+    // configuration.lunarClient();
     /*
      * for (int i = 1; i <= 3; i++) {
      *   configuration.generateLevel(i);
