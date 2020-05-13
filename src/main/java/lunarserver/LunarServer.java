@@ -8,6 +8,8 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LunarServer {
   LunarServer(Socket socket) throws Exception {}
@@ -49,6 +51,8 @@ public class LunarServer {
             break;
           case PUSH_SCORE:
             response = "OK";
+            Score score = getScoreFromRequest(clientRequest);
+            System.out.println("Score: { nick: `" + score.nick + "', score: " + score.score + " }");
             break;
           default:
             response = "Invalid request";
@@ -83,6 +87,15 @@ public class LunarServer {
     INVALID
   }
 
+  public static class Score {
+    Score(String nick, int score) {
+      this.nick = nick;
+      this.score = score;
+    }
+    public String nick;
+    public int score;
+  }
+
   private static RequestType getTypeFromRequest(String request) {
     if (request.matches("(?i)^GET.*")) {
       return RequestType.GET_MAP;
@@ -106,5 +119,23 @@ public class LunarServer {
     }
 
     return configJson;
+  }
+
+  private static Score getScoreFromRequest(String request) {
+    String nick = null;
+    int score = -1;
+    Pattern p = Pattern.compile("^([Pp][Uu][Ss][Hh]) +\"?([A-Za-z0-9]+)\"? +([0-9]+)");
+    Matcher m = p.matcher(request);
+    while (m.find()) {
+      nick = m.group(2);
+      try {
+        score = Integer.valueOf(m.group(3));
+      } catch(NumberFormatException e) {
+        System.out.println("Score number cannot be parsed");
+        score = -1;
+      }
+    }
+
+    return new Score(nick, score);
   }
 }
