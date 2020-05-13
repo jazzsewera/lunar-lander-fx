@@ -100,6 +100,7 @@ public class SettingsWindow {
     this.serverConfigSettings.setOnMousePressed((event) -> {
       configuration.lunarClient();
       configuration.setConfigDownloaded(true);
+
     });
 
     this.serverConfigSettings.setOnMouseReleased((event) -> {

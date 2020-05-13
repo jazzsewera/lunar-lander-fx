@@ -29,7 +29,7 @@ public class SidePane {
   /**
    * Constructor setting up all the components of the pane.
    */
-  public SidePane() {
+  public SidePane(Configuration configuration) {
     this.levelLabel = new Label("Level 2");
     this.levelLabel.getStyleClass().add("ctrl-label-primary");
     this.optionalLevelCaption = new Label("");
@@ -145,7 +145,11 @@ public class SidePane {
 
     Label networkCaptionLabel = new Label("Network sync: ");
     networkCaptionLabel.getStyleClass().add("ctrl-label-status-bar-secondary");
-    this.networkStatusLabel = new Label("disabled");
+    if(configuration.isConfigDownloaded()) {
+      this.networkStatusLabel = new Label("enabled");
+    } else {
+      this.networkStatusLabel = new Label("disabled");
+    }
     this.networkStatusLabel.getStyleClass().add("ctrl-label-status-bar-primary");
 
     HBox networkStatusHbox = new HBox();
