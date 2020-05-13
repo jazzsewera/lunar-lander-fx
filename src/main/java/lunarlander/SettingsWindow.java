@@ -81,7 +81,6 @@ public class SettingsWindow {
     this.settingsScene.getStylesheets().add("lunarlander/css/style.css");
 
     this.appConfigSettings.setOnMousePressed((event) -> {
-      this.appConfigSettings.getStyleClass().add("settings-click-effect");
       configuration.setConfigDownloaded(false);
     });
 
@@ -99,7 +98,6 @@ public class SettingsWindow {
     });
 
     this.serverConfigSettings.setOnMousePressed((event) -> {
-      this.serverConfigSettings.getStyleClass().add("settings-click-effect");
       configuration.lunarClient();
     });
 
