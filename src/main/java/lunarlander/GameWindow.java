@@ -25,7 +25,7 @@ public class GameWindow {
    */
   public GameWindow(Configuration configuration) {
     GamePane _gamePane = new GamePane(configuration);
-    SidePane _sidePane = new SidePane();
+    SidePane _sidePane = new SidePane(configuration);
 
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
     // Pane landerPane = gamePane.getLanderPane();
