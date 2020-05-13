@@ -31,7 +31,7 @@ public class GamePane {
      * this.configuration.toFile();
      */
 
-    if(!Configuration.isConfigDownloaded()) {
+    if(!this.configuration.isConfigDownloaded()) {
       this.configuration.fromFile("src/main/resources/lunarlander/configuration.json");
     } else {
       this.configuration.fromFile("src/main/resources/lunarlander/configuration_fromserver.json");

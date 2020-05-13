@@ -164,15 +164,15 @@ public class Configuration {
    * @return true if maps are the latest ones from
    * the server otherwise false
    */
-  public static boolean isConfigDownloaded() { return configDownloaded; }
+  public boolean isConfigDownloaded() { return configDownloaded; }
 
   /**
    * Set 'configDownloaded' status
    * @param configDownloaded true if maps are the
    * latest ones from the server otherwise false
    */
-  public static void setConfigDownloaded(boolean configDownloaded) {
-    Configuration.configDownloaded = configDownloaded;
+  public void setConfigDownloaded(boolean configDownloaded) {
+    this.configDownloaded = configDownloaded;
   }
 
 
@@ -185,7 +185,7 @@ public class Configuration {
    * the same as the ones from the latest
    * config file from the server
    */
-  static boolean configDownloaded = false;
+  boolean configDownloaded = false;
 
   // For future use:
   // private HashMap<String, String> params; // for example for server ip and port
