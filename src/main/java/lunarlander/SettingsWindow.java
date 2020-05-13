@@ -101,8 +101,6 @@ public class SettingsWindow {
     this.serverConfigSettings.setOnMousePressed((event) -> {
       this.serverConfigSettings.getStyleClass().add("settings-click-effect");
       configuration.lunarClient();
-      configuration.setConfigDownloaded(true);
-
     });
 
     this.serverConfigSettings.setOnMouseReleased((event) -> {

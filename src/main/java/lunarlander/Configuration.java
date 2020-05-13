@@ -126,10 +126,12 @@ public class Configuration {
       saveFile(sb);
 
       System.out.print("Imported map configuration file from the server successfully.");
+      setConfigDownloaded(true);
       socket.close();
       br.close();
     } catch (Exception e) {
       System.err.println("Client exception: " + e);
+      setConfigDownloaded(false);
     }
   }
 
@@ -147,7 +149,6 @@ public class Configuration {
     try {
       CharSink sink = Files.asCharSink(file, Charsets.UTF_8);
       sink.write(json);
-      setConfigDownloaded(true);
     } catch (IOException e) {
       System.out.println("Something went wrong. Possible reasons: ");
       System.out.println("1) Folder you are trying to place file in does not exist.");
