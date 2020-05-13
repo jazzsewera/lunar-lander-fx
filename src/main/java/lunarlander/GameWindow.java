@@ -1,6 +1,5 @@
 package lunarlander;
 
-
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -24,9 +23,9 @@ public class GameWindow {
    * Constructor setting up all the necessary components of
    * the Game Window.
    */
-  public GameWindow() {
-    GamePane _gamePane = new GamePane();
-    SidePane _sidePane = new SidePane();
+  public GameWindow(Configuration configuration) {
+    GamePane _gamePane = new GamePane(configuration);
+    SidePane _sidePane = new SidePane(configuration);
 
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
     // Pane landerPane = gamePane.getLanderPane();
@@ -47,13 +46,13 @@ public class GameWindow {
     this.mainGameScene.getStylesheets().add("lunarlander/css/style.css");
 
     final KeyCombination ctrlQuit = new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN);
-    this.mainGameScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+    this.mainGameScene.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
       if (ctrlQuit.match(event)) {
         Platform.exit();
       }
     });
 
-    this.mainGameScene.setOnKeyPressed(event -> {
+    this.mainGameScene.setOnKeyPressed((event) -> {
       if (event.getCode() == KeyCode.UP) {
         _sidePane.setKbdUpPressed();
         _gamePane.startLanderThrustOn();
@@ -69,7 +68,7 @@ public class GameWindow {
       // Only for presentation purposes
       if (event.getCode() == KeyCode.L) _sidePane.setLevel(5);
     });
-    this.mainGameScene.setOnKeyReleased(event -> {
+    this.mainGameScene.setOnKeyReleased((event) -> {
       if (event.getCode() == KeyCode.UP) {
         _sidePane.setKbdUpReleased();
         _gamePane.stopLanderThrustOn();

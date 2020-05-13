@@ -63,3 +63,90 @@
 .ctrl-kbd-indicator-hbox {
   -fx-spacing: 8px;
 }
+
+.menu-root {
+  -fx-background-color: #2a2a2a;
+  -fx-font-family: "Roboto";
+  -fx-font-weight: 700;
+}
+
+.menu-label-primary,
+.menu-label-secondary,
+.menu-label-hover-effect {
+}
+
+.menu-label-primary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 48px;
+}
+
+.menu-label-secondary {
+  -fx-text-fill: #828282;
+  -fx-font-size: 36px;
+}
+
+.menu-label-hover-effect {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 36px;
+}
+
+.menu-main-vertical-layout {
+  -fx-spacing: 10px;
+  -fx-padding: 50px 0 50px 50px;
+}
+
+.rules-text-primary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 36px;
+}
+
+.rules-text-secondary {
+  -fx-text-fill: #828282;
+  -fx-font-size: 28px;
+}
+
+.rules-vertical-layout {
+  -fx-spacing: 20px;
+  -fx-padding: 50px 0 50px 50px;
+}
+
+.settings-label-primary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 36px;
+}
+
+.settings-label-secondary {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 28px;
+}
+
+.settings-label-tertiary {
+  -fx-text-fill: #828282;
+  -fx-font-size: 28px;
+}
+
+.settings-vertical-layout {
+  -fx-spacing: 28px;
+  -fx-padding: 50px 0 50px 50px;
+}
+
+.settings-subsection-layout {
+  -fx-spacing: 14px;
+}
+
+.back-button {
+  -fx-text-fill: #828282;
+  -fx-font-size: 28px;
+}
+
+.back-button-hover-effect {
+  -fx-text-fill: #ffffff;
+}
+
+.settings-hover-effect {
+  -fx-text-fill: #ffffff;
+}
+
+.settings-click-effect {
+  -fx-text-fill: #009688;
+}
