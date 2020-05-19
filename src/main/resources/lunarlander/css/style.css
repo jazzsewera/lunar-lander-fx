@@ -41,6 +41,11 @@
   -fx-font-size: 20px;
 }
 
+.ctrl-label-caption-hover-effect {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 20px;
+}
+
 .ctrl-lives-state-hbox {
   -fx-spacing: 10px;
 }
