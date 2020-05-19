@@ -1,6 +1,7 @@
 package lunarlander;
 
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +31,7 @@ public class SidePane {
    * Constructor setting up all the components of the pane.
    */
   public SidePane(Configuration configuration) {
+
     this.levelLabel = new Label("Level 2");
     this.levelLabel.getStyleClass().add("ctrl-label-primary");
     this.optionalLevelCaption = new Label("");
@@ -38,7 +40,6 @@ public class SidePane {
     VBox levelVbox = new VBox();
     levelVbox.getChildren().addAll(this.levelLabel, this.optionalLevelCaption);
     levelVbox.getStyleClass().add("ctrl-gauge-vbox");
-
 
     // There will be images of Landers indicating number of lives
     this.landerImage = new Image("lunarlander/assets/lander.png");
@@ -179,7 +180,6 @@ public class SidePane {
     // Variable margin between network and kbd labels, so that kbd stays on the right
     HBox.setHgrow(networkStatusHbox, Priority.ALWAYS);
 
-
     this.sideBorderPane = new BorderPane();
     this.sideBorderPane.getStyleClass().add("ctrl-root");
     this.sideBorderPane.setCenter(verticalLayoutVbox);
@@ -197,6 +197,37 @@ public class SidePane {
    */
   public void setLevel(int lvl) {
     this.levelLabel.setText("Level " + lvl);
+  }
+
+  /**
+   * Method setting head Label of sidePane to display Pause
+   * text. What is more Go-to-main-menu button appears which
+   * allows us to leave paused game.
+   */
+  public void headLabelPaused() {
+    this.levelLabel.setText("Paused");
+    this.optionalLevelCaption.setText("Go to main menu");
+
+    this.optionalLevelCaption.setOnMouseEntered((event) -> {
+      this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption-hover-effect");
+    });
+
+    this.optionalLevelCaption.setOnMouseExited((event) -> {
+      this.optionalLevelCaption.getStyleClass().clear();
+      this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
+    });
+
+  }
+
+  /**
+   * Method setting head Label of sidePane back to displaying
+   * current level we are in when we unpause game.
+   *
+   * @param lvl a level number to set, integer
+   */
+  public void headLabelUnpaused(int lvl) {
+    this.levelLabel.setText("Level " + lvl);
+    this.optionalLevelCaption.setText("");
   }
 
   /**
@@ -303,6 +334,11 @@ public class SidePane {
   public BorderPane getSideBorderPane() {
     return sideBorderPane;
   }
+
+  public Label getOptionalLevelCaption() {
+    return optionalLevelCaption;
+  }
+
 
   private Label levelLabel;
   private Label optionalLevelCaption;

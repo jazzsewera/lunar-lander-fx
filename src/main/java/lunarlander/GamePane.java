@@ -107,6 +107,12 @@ public class GamePane {
         landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
 
+      if(isPaused) {
+        timeline.pause();
+      } else {
+        timeline.play();
+      }
+
       vertical.setByY(landerModel.getVy());
       vertical.setByX(landerModel.getVx());
       vertical.stop();
@@ -134,6 +140,10 @@ public class GamePane {
 
   public void stopRotateLanderAnticlockwise() { this.isLeftRotate = false; }
 
+  public void pauseGame() { this.isPaused = true; }
+
+  public void unpauseGame() { this.isPaused = false; }
+
 
   /**
    * Getter used in ApplicationWindow class in order to put
@@ -149,6 +159,8 @@ public class GamePane {
 
   public boolean isThrustON() { return isThrustON; }
 
+  public boolean isPaused() { return isPaused; }
+
   private Pane gamePane;
   private Lander landerModel;
   private Timeline timeline = new Timeline();
@@ -157,6 +169,7 @@ public class GamePane {
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
+  private boolean isPaused = false;
   private double g = 0.1;
 
   private Configuration configuration;
