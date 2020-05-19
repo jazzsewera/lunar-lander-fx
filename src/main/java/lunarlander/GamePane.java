@@ -107,12 +107,6 @@ public class GamePane {
         landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
 
-      if(isPaused) {
-        timeline.pause();
-      } else {
-        timeline.play();
-      }
-
       vertical.setByY(landerModel.getVy());
       vertical.setByX(landerModel.getVx());
       vertical.stop();
@@ -140,9 +134,15 @@ public class GamePane {
 
   public void stopRotateLanderAnticlockwise() { this.isLeftRotate = false; }
 
-  public void pauseGame() { this.isPaused = true; }
+  public void pauseGame() {
+    this.isPaused = true;
+    this.timeline.pause();
+  }
 
-  public void unpauseGame() { this.isPaused = false; }
+  public void unpauseGame() {
+    this.isPaused = false;
+    this.timeline.play();
+  }
 
 
   /**
