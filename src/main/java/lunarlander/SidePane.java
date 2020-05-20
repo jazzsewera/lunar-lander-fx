@@ -217,6 +217,10 @@ public class SidePane {
       this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
     });
 
+    this.optionalLevelCaption.setOnMouseClicked((event) -> {
+      optionalLevelCaption.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+    });
+
   }
 
   /**

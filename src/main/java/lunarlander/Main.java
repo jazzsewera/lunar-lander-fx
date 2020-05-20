@@ -44,8 +44,7 @@ public class Main extends Application {
           this.stage.setScene(this.mainMenuScene);
           break;
         case GAME:
-          this.gameWindow = new GameWindow(this.configuration);
-          this.gameWindowScene = this.gameWindow.getMainGameScene();
+          this.initGameWindow();
           this.stage.setScene(this.gameWindowScene);
           break;
         case RULES:
@@ -92,6 +91,17 @@ public class Main extends Application {
     this.settingsScene = settingsWindow.getSettingsScene();
 
     this.settingsScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
+      if(event.getSceneType() == SceneType.MAIN_MENU) {
+        this.stage.setScene(this.mainMenuScene);
+      }
+    });
+  }
+
+  private void initGameWindow() {
+    this.gameWindow = new GameWindow(this.configuration);
+    this.gameWindowScene = this.gameWindow.getMainGameScene();
+
+    this.gameWindowScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
       if(event.getSceneType() == SceneType.MAIN_MENU) {
         this.stage.setScene(this.mainMenuScene);
       }

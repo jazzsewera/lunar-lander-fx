@@ -71,7 +71,7 @@ public class GameWindow {
           _sidePane.headLabelPaused();
           System.out.println("PAUSED");
         } else {
-          _gamePane.unpauseGame(); //TODO WHY NOT UNPAUSING
+          _gamePane.unpauseGame();
           _sidePane.headLabelUnpaused(5);
           System.out.println("UNPAUSED");
         }
@@ -94,10 +94,6 @@ public class GameWindow {
       }
       // Only for presentation purposes
       if (event.getCode() == KeyCode.L) _sidePane.setLevel(2);
-    });
-
-    _sidePane.getOptionalLevelCaption().setOnMouseClicked((event) -> { //TODO I HAVE NO GREEN IDEA WHERE TO PLACE IT
-      _sidePane.getOptionalLevelCaption().fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
     });
   }
 
