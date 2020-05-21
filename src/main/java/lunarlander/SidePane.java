@@ -1,5 +1,7 @@
 package lunarlander;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -30,7 +32,7 @@ public class SidePane {
   /**
    * Constructor setting up all the components of the pane.
    */
-  public SidePane(Configuration configuration) {
+  public SidePane(Configuration configuration, Lander lander) {
 
     this.levelLabel = new Label("Level 2");
     this.levelLabel.getStyleClass().add("ctrl-label-primary");
@@ -70,7 +72,9 @@ public class SidePane {
     livesVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    this.fuelStateLabel = new Label("350");
+    this.fuelGauge = lander.getFuel();
+
+    this.fuelStateLabel = new Label(Integer.toString((int) fuelGauge));
     this.fuelStateLabel.getStyleClass().add("ctrl-label-primary");
     this.fuelMaxCapacityLabel = new Label("/400");
     this.fuelMaxCapacityLabel.getStyleClass().add("ctrl-label-secondary");
@@ -358,4 +362,6 @@ public class SidePane {
   private Label upKbdIndicatorLabel;
   private Label rightKbdIndicatorLabel;
   private final BorderPane sideBorderPane;
+
+  private double fuelGauge;
 }

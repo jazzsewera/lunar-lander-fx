@@ -22,7 +22,7 @@ public class GamePane {
    * Constructor reading configuration.json file, {@link Configuration},
    * and creating a Pane of moonSurface of chosen Moon, {@link Moon}.
    */
-  public GamePane(Configuration configuration) {
+  public GamePane(Configuration configuration, Lander landerModel) {
     this.configuration = configuration;
     /*
      * for (int i = 1; i <= 3; i++) {
@@ -43,7 +43,7 @@ public class GamePane {
 
     Group group = new Group();
     // TODO: Needs Lander placement based on window size!
-    this.landerModel = new Lander(0, 0, 0.1, 0, 0, 150);
+    //this.landerModel = new Lander(0, 0, 0.1, 0, 0, 400);
     group.getChildren().addAll(moonSurface, landerModel.landerGroup);
 
     this.gamePane = new Pane();
@@ -70,7 +70,7 @@ public class GamePane {
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
 
-      if (((Path)Shape.intersect(this.landerModel.lander, this.moonSurface)).getElements().size() > 0) {
+      if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
         timeline.stop();
         // TODO: Game ending
       }
