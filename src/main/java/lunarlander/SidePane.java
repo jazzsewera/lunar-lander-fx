@@ -2,6 +2,8 @@ package lunarlander;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -39,6 +41,7 @@ public class SidePane {
     this.optionalLevelCaption = new Label("");
     this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
 
+    //TODO potrzebny jeden handler który odbiera pakiet informacji o Landerze i updatuje LAabele
     VBox levelVbox = new VBox();
     levelVbox.getChildren().addAll(this.levelLabel, this.optionalLevelCaption);
     levelVbox.getStyleClass().add("ctrl-gauge-vbox");
@@ -191,6 +194,36 @@ public class SidePane {
     this.sideBorderPane.setMinWidth(280);
     this.sideBorderPane.setPrefWidth(280);
     this.sideBorderPane.setMaxWidth(280);
+
+    this.sideBorderPane.addEventHandler(UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
+      this.fuelStateLabel.setText(Integer.toString((int) event.fuelState));
+      this.fuelStateLabel.setText("xd");
+    });
+  }
+
+
+  public static class UpdateLanderInfoEvent extends Event {
+    UpdateLanderInfoEvent(double fuelState) {
+      super(UPDATE_INFO);
+      this.fuelState = fuelState;
+    }
+    //todo firowanie eventu co keyframe który sprawdza czy elementy sie zmieniają
+    public landerInfoType getInfoType() { return infoType; }
+
+    private landerInfoType infoType;
+    private double fuelState;
+
+    public static final EventType<SidePane.UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
+
+    public static final long serialVersionUID = 1234;
+  }
+
+  public static enum landerInfoType {
+    LIVES,
+    FUEL,
+    VELOCITY,
+    HEIGHT,
+    SCORE
   }
 
   /**

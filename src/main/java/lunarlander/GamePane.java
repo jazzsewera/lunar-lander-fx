@@ -1,6 +1,8 @@
 package lunarlander;
 
 import javafx.animation.*;
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -75,14 +77,14 @@ public class GamePane {
         // TODO: Game ending
       }
 
-      if (isLeftRotate() && !isRightRotate() &&landerModel.getAngle() >= -150) {
+      if (isLeftRotate() && !isRightRotate() && landerModel.getAngle() >= -150) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
         landerModel.setAngle(landerModel.getAngle()-4);
         leftRotate.setAutoReverse(false);
         leftRotate.play();
       }
-      if (isRightRotate() && !isLeftRotate() &&landerModel.getAngle() <= 150) {
+      if (isRightRotate() && !isLeftRotate() && landerModel.getAngle() <= 150) {
         rightRotate.setAxis(Rotate.Z_AXIS);
         rightRotate.setByAngle(4);
         landerModel.setAngle(landerModel.getAngle()+4);
@@ -106,6 +108,8 @@ public class GamePane {
       if(!isThrustON() || landerModel.getFuel() == 0) {
         landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
+
+      this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(landerModel.getFuel()));
 
       vertical.setByY(landerModel.getVy());
       vertical.setByX(landerModel.getVx());
