@@ -31,6 +31,22 @@ import javafx.scene.paint.Color;
  * @see BorderPane
  */
 public class SidePane {
+
+  public static class UpdateLanderInfoEvent extends Event {
+    UpdateLanderInfoEvent(double fuelState) {
+      super(UPDATE_INFO);
+      this.fuelState = fuelState;
+      // TODO: Put MOOOOOOORE things in constructor
+    }
+
+    public double fuelState;
+    // TODO: Put MOOOOOOORE things to update in SidePane
+
+    public static final EventType<UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
+
+    public static final long serialVersionUID = 12345;
+  }
+
   /**
    * Constructor setting up all the components of the pane.
    */
@@ -194,37 +210,9 @@ public class SidePane {
     this.sideBorderPane.setMinWidth(280);
     this.sideBorderPane.setPrefWidth(280);
     this.sideBorderPane.setMaxWidth(280);
-
-    this.sideBorderPane.addEventHandler(UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
-      this.fuelStateLabel.setText(Integer.toString((int) event.fuelState));
-      this.fuelStateLabel.setText("xd");
-    });
   }
 
 
-  public static class UpdateLanderInfoEvent extends Event {
-    UpdateLanderInfoEvent(double fuelState) {
-      super(UPDATE_INFO);
-      this.fuelState = fuelState;
-    }
-    //todo firowanie eventu co keyframe który sprawdza czy elementy sie zmieniają
-    public landerInfoType getInfoType() { return infoType; }
-
-    private landerInfoType infoType;
-    private double fuelState;
-
-    public static final EventType<SidePane.UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
-
-    public static final long serialVersionUID = 1234;
-  }
-
-  public static enum landerInfoType {
-    LIVES,
-    FUEL,
-    VELOCITY,
-    HEIGHT,
-    SCORE
-  }
 
   /**
    * Method setting current level number on the Level indicator
@@ -365,6 +353,11 @@ public class SidePane {
    */
   public void setKbdRightReleased() {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
+  }
+
+  public void updateSidePane(double fuelState) {
+    this.fuelStateLabel.setText(Integer.toString((int) fuelState));
+    // TODO: MOOOOOOORE THINGS
   }
 
   /**

@@ -12,6 +12,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import lunarlander.SidePane.UpdateLanderInfoEvent;
 
 
 /**
@@ -110,6 +111,7 @@ public class GamePane {
       }
 
       this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(landerModel.getFuel()));
+      // TODO: MOOOOOOORE THINGS
 
       vertical.setByY(landerModel.getVy());
       vertical.setByX(landerModel.getVx());

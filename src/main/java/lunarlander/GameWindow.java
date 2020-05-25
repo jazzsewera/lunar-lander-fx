@@ -97,6 +97,10 @@ public class GameWindow {
       // Only for presentation purposes
       if (event.getCode() == KeyCode.L) _sidePane.setLevel(2);
     });
+
+    this.mainGameScene.addEventHandler(SidePane.UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
+      _sidePane.updateSidePane(event.fuelState); // TODO: MOOOOOOORE things
+    });
   }
 
   /**
