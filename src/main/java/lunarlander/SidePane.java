@@ -33,13 +33,17 @@ import javafx.scene.paint.Color;
 public class SidePane {
 
   public static class UpdateLanderInfoEvent extends Event {
-    UpdateLanderInfoEvent(double fuelState) {
+    UpdateLanderInfoEvent(double fuelState, double currentVelocity, double altitude) {
       super(UPDATE_INFO);
       this.fuelState = fuelState;
+      this.currentVelocity = currentVelocity;
+      this.altitude = altitude;
       // TODO: Put MOOOOOOORE things in constructor
     }
 
     public double fuelState;
+    public double currentVelocity;
+    public double altitude;
     // TODO: Put MOOOOOOORE things to update in SidePane
 
     public static final EventType<UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
@@ -90,10 +94,7 @@ public class SidePane {
     livesVbox.getChildren().addAll(livesStateHbox, livesCaptionLabel);
     livesVbox.getStyleClass().add("ctrl-gauge-vbox");
 
-
-    this.fuelGauge = lander.getFuel();
-
-    this.fuelStateLabel = new Label(Integer.toString((int) fuelGauge));
+    this.fuelStateLabel = new Label(Integer.toString((int) lander.getFuel()));
     this.fuelStateLabel.getStyleClass().add("ctrl-label-primary");
     this.fuelMaxCapacityLabel = new Label("/400");
     this.fuelMaxCapacityLabel.getStyleClass().add("ctrl-label-secondary");
@@ -109,7 +110,7 @@ public class SidePane {
     fuelVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    this.velocityStateLabel = new Label("2.5");
+    this.velocityStateLabel = new Label(Double.toString(lander.getV()));
     this.velocityStateLabel.getStyleClass().add("ctrl-label-primary");
     Label velocityUnitLabel = new Label(" m/s");
     velocityUnitLabel.getStyleClass().add("ctrl-label-secondary");
@@ -133,7 +134,7 @@ public class SidePane {
     heightHbox.getChildren().addAll(this.heightStateLabel, heightUnitLabel);
     heightHbox.getStyleClass().add("ctrl-label-hbox");
 
-    Label heightCaptionLabel = new Label("Height");
+    Label heightCaptionLabel = new Label("Altitude");
     heightCaptionLabel.getStyleClass().add("ctrl-label-caption");
 
     VBox heightVbox = new VBox();
@@ -355,8 +356,14 @@ public class SidePane {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
   }
 
-  public void updateSidePane(double fuelState) {
+  public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude) {
+    double velocity = Math.round(currentVelocity * 10.0) / 10.0;
+    double altitude = Math.round(currentAltitude * 100.0) / 100.0;
+
     this.fuelStateLabel.setText(Integer.toString((int) fuelState));
+    this.velocityStateLabel.setText(Double.toString(velocity));
+    this.heightStateLabel.setText(Double.toString(altitude));
+
     // TODO: MOOOOOOORE THINGS
   }
 
@@ -388,6 +395,4 @@ public class SidePane {
   private Label upKbdIndicatorLabel;
   private Label rightKbdIndicatorLabel;
   private final BorderPane sideBorderPane;
-
-  private double fuelGauge;
 }

@@ -45,7 +45,7 @@ public class Lander {
       this.xCoord+14.0+8.0, this.yCoord+28.0+47.0,
       this.xCoord+14.0+8.0, this.yCoord+28.0,
     });
-    
+
     this.landerGroup.getChildren().addAll(this.lander, this.flame);
     lander.setFill(new ImagePattern(this.landerImage));
     flame.setFill(this.noFlameImagePattern);
@@ -67,9 +67,13 @@ public class Lander {
 
   public double getVy() { return vy; }
 
+  public double getV() { return v; }
+
   public void setVx(double vx) { this.vx = vx; }
 
   public void setVy(double vy) { this.vy = vy; }
+
+  public void setV(double v) { this.v = v; }
 
   public double getAx() { return ax; }
 
@@ -127,6 +131,7 @@ public class Lander {
   private double yCoord;
   private double vx;
   private double vy;
+  private double v;
   private double ax;
   private double ay;
 

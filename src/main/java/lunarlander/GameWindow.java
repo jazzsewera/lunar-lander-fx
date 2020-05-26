@@ -99,7 +99,7 @@ public class GameWindow {
     });
 
     this.mainGameScene.addEventHandler(SidePane.UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
-      _sidePane.updateSidePane(event.fuelState); // TODO: MOOOOOOORE things
+      _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude); // TODO: MOOOOOOORE things
     });
   }
 

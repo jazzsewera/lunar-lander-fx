@@ -110,7 +110,9 @@ public class GamePane {
         landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
 
-      this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(landerModel.getFuel()));
+      landerModel.setV(Math.sqrt(Math.pow(landerModel.getVx(), 2)+Math.pow(landerModel.getVy(), 2)));
+
+      this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(landerModel.getFuel(), landerModel.getV(), landerModel.getyCoords()));
       // TODO: MOOOOOOORE THINGS
 
       vertical.setByY(landerModel.getVy());
@@ -177,6 +179,7 @@ public class GamePane {
   private boolean isThrustON = false;
   private boolean isPaused = false;
   private double g = 0.1;
+  private double v;
 
   private Configuration configuration;
 
