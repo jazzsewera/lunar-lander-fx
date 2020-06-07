@@ -41,6 +41,7 @@ public class GamePane {
     }
 
     Moon moon = this.configuration.getMoonMap(3);
+    this.landingHeight = moon.getScaledLandingHeight();
     this.moonSurface = new Polygon();
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
@@ -58,10 +59,12 @@ public class GamePane {
     this.gamePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
       moon.recalculateWidth(newSceneWidth.doubleValue());
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
+      this.landingHeight = moon.getScaledLandingHeight();
     });
     this.gamePane.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
       moon.recalculateHeight(newSceneHeight.doubleValue());
       moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
+      this.landingHeight = moon.getScaledLandingHeight();
     });
 
 
@@ -73,50 +76,56 @@ public class GamePane {
 
     KeyFrame keyframe = new KeyFrame(Duration.millis(32), event -> {
 
+      landerModel.xCoord = landerModel.landerGroup.getLayoutX() + landerModel.landerGroup.getTranslateX();
+      landerModel.yCoord = landerModel.landerGroup.getLayoutY() + landerModel.landerGroup.getTranslateY();
+
       if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
         timeline.stop();
         // TODO: Game ending
       }
 
-      if (isLeftRotate() && !isRightRotate() && landerModel.getAngle() >= -150) {
+      if (isLeftRotate() && !isRightRotate() && landerModel.angle >= -150) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
-        landerModel.setAngle(landerModel.getAngle()-4);
+        landerModel.angle = landerModel.angle-4;
         leftRotate.setAutoReverse(false);
         leftRotate.play();
       }
-      if (isRightRotate() && !isLeftRotate() && landerModel.getAngle() <= 150) {
+      if (isRightRotate() && !isLeftRotate() && landerModel.angle <= 150) {
         rightRotate.setAxis(Rotate.Z_AXIS);
         rightRotate.setByAngle(4);
-        landerModel.setAngle(landerModel.getAngle()+4);
+        landerModel.angle = landerModel.angle+4;
         rightRotate.setAutoReverse(false);
         rightRotate.play();
       }
 
-      if(isThrustON() && landerModel.getFuel() > 0) {
-        landerModel.setAx(Math.sin(landerModel.getAngle() * (Math.PI / 180)) * 0.1);
-        landerModel.setAy(Math.cos(landerModel.getAngle() * (Math.PI / 180)) * 0.2);
-        landerModel.setVy(landerModel.getVy() + g - landerModel.getAy());
-        landerModel.setVx(landerModel.getVx() + landerModel.getAx());
-        landerModel.setFuel(landerModel.getFuel()-0.25);
+      if(isThrustON() && landerModel.fuel > 0) {
+        landerModel.ax = Math.sin(landerModel.angle * (Math.PI / 180)) * 0.1;
+        landerModel.ay = Math.cos(landerModel.angle * (Math.PI / 180)) * 0.2;
+        landerModel.vy = landerModel.vy + g - landerModel.ay;
+        landerModel.vx = landerModel.vx + landerModel.ax;
+        landerModel.fuel = landerModel.fuel-0.25;
         landerModel.setFlameImage(Lander.FlameImageType.FLAME);
-        System.out.println(landerModel.getFuel());
+        System.out.println(landerModel.fuel);
       } else {
-        landerModel.setVy(landerModel.getVy() + g);
+        landerModel.vy = landerModel.vy + g;
         landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
 
-      if(!isThrustON() || landerModel.getFuel() == 0) {
+      if(!isThrustON() || landerModel.fuel == 0) {
         landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
       }
 
-      landerModel.setV(Math.sqrt(Math.pow(landerModel.getVx(), 2)+Math.pow(landerModel.getVy(), 2)));
+      landerModel.v = Math.sqrt(Math.pow(landerModel.vx, 2)+Math.pow(landerModel.vy, 2));
 
-      this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(landerModel.getFuel(), landerModel.getV(), landerModel.getyCoords()));
+      this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(
+            landerModel.fuel,
+            landerModel.v,
+            this.landingHeight - landerModel.getBottomCoord()));
       // TODO: MOOOOOOORE THINGS
 
-      vertical.setByY(landerModel.getVy());
-      vertical.setByX(landerModel.getVx());
+      vertical.setByY(landerModel.vy);
+      vertical.setByX(landerModel.vx);
       vertical.stop();
       vertical.play();
     });
@@ -173,6 +182,7 @@ public class GamePane {
   private Lander landerModel;
   private Timeline timeline = new Timeline();
   private Polygon moonSurface;
+  private double landingHeight;
 
   private boolean isLeftRotate = false;
   private boolean isRightRotate = false;

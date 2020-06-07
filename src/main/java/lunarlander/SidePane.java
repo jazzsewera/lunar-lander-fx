@@ -94,7 +94,7 @@ public class SidePane {
     livesVbox.getChildren().addAll(livesStateHbox, livesCaptionLabel);
     livesVbox.getStyleClass().add("ctrl-gauge-vbox");
 
-    this.fuelStateLabel = new Label(Integer.toString((int) lander.getFuel()));
+    this.fuelStateLabel = new Label(Integer.toString((int) lander.fuel));
     this.fuelStateLabel.getStyleClass().add("ctrl-label-primary");
     this.fuelMaxCapacityLabel = new Label("/400");
     this.fuelMaxCapacityLabel.getStyleClass().add("ctrl-label-secondary");
@@ -110,7 +110,7 @@ public class SidePane {
     fuelVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    this.velocityStateLabel = new Label(Double.toString(lander.getV()));
+    this.velocityStateLabel = new Label(Double.toString(lander.v));
     this.velocityStateLabel.getStyleClass().add("ctrl-label-primary");
     Label velocityUnitLabel = new Label(" m/s");
     velocityUnitLabel.getStyleClass().add("ctrl-label-secondary");
@@ -358,7 +358,9 @@ public class SidePane {
 
   public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude) {
     double velocity = Math.round(currentVelocity * 10.0) / 10.0;
-    double altitude = Math.round(currentAltitude * 100.0) / 100.0;
+    double altitude;
+    if (currentAltitude >= 0.0) altitude = Math.round(currentAltitude * 100.0) / 100.0;
+    else altitude = 0.0;
 
     this.fuelStateLabel.setText(Integer.toString((int) fuelState));
     this.velocityStateLabel.setText(Double.toString(velocity));

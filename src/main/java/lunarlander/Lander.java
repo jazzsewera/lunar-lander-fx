@@ -39,6 +39,9 @@ public class Lander {
       this.xCoord+35.0, this.yCoord,
     });
 
+    this.landerWidth = 35.0;
+    this.landerHeight = 35.0;
+
     this.flame.getPoints().addAll(new Double[] {
       this.xCoord+14.0, this.yCoord+28.0,
       this.xCoord+14.0, this.yCoord+28.0+47.0,
@@ -51,52 +54,17 @@ public class Lander {
     flame.setFill(this.noFlameImagePattern);
   }
 
-  public double getxCoords() { return xCoord; }
-
-  public void setxCoords(double xCoord) { this.xCoord = xCoord; }
-
-  public double getyCoords() {
-    return yCoord;
+  public double getLeftCoord() {
+    return this.lander.getPoints().get(0);
   }
-
-  public void setyCoords(double yCoord) {
-    this.yCoord = yCoord;
+  public double getRightCoord() {
+    return this.lander.getPoints().get(4);
   }
-
-  public double getVx() { return vx; }
-
-  public double getVy() { return vy; }
-
-  public double getV() { return v; }
-
-  public void setVx(double vx) { this.vx = vx; }
-
-  public void setVy(double vy) { this.vy = vy; }
-
-  public void setV(double v) { this.v = v; }
-
-  public double getAx() { return ax; }
-
-  public void setAx(double ax) { this.ax = ax; }
-
-  public double getAy() { return ay; }
-
-  public void setAy(double ay) { this.ay = ay; }
-
-  public double getAngle() {
-    return angle;
+  public double getTopCoord() {
+    return this.lander.getPoints().get(1);
   }
-
-  public void setAngle(double angle) {
-    this.angle = angle;
-  }
-
-  public double getFuel() {
-    return fuel;
-  }
-
-  public void setFuel(double fuel) {
-    this.fuel = fuel;
+  public double getBottomCoord() {
+    return yCoord + landerHeight;
   }
 
   public Image getLanderImage() { return landerImage; }
@@ -127,16 +95,19 @@ public class Lander {
 
   //public void setLanderONImage(Image landerONImage) { this.landerONImage = landerONImage; }
 
-  private double xCoord;
-  private double yCoord;
-  private double vx;
-  private double vy;
-  private double v;
-  private double ax;
-  private double ay;
+  double xCoord;
+  double yCoord;
+  double vx;
+  double vy;
+  double v;
+  double ax;
+  double ay;
 
-  private double angle;
-  private double fuel;
+  double angle;
+  double fuel;
+
+  double landerHeight;
+  double landerWidth;
 
   private Image landerImage;
   private Image flameImage;

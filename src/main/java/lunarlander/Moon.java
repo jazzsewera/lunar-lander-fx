@@ -16,12 +16,14 @@ public class Moon {
    * @param lvl Specifies which Moon we are referring to, int.
    * @param initialMoonSurfacePoints List of points forming shape of Moon, Double[].
    */
-  public Moon(int lvl, Double[] initialMoonSurfacePoints) {
+  public Moon(int lvl, Double[] initialMoonSurfacePoints, double scaledLandingHeight) {
     this.initialWidth = 800.0;
     this.initialHeight = 600.0;
     this.lvl = lvl;
     this.initialMoonSurfacePoints = initialMoonSurfacePoints;
     this.moonSurfacePoints = this.initialMoonSurfacePoints.clone();
+    this.scaledLandingHeight = scaledLandingHeight;
+    this.scaledLandingHeight = scaledLandingHeight;
   }
 
   /**
@@ -110,6 +112,9 @@ public class Moon {
       points.set(landingRandomCenter - 2*distanceFromCenter, points.get(landingRandomCenter));
     }
 
+    this.scaledLandingHeight = points.get(landingRandomCenter);
+    this.landingHeight = this.scaledLandingHeight;
+
     // we go back with List to double array, because polygon accepts only that container
     Double[] result = points.toArray(new Double[points.size()]);
     return result;
@@ -134,6 +139,7 @@ public class Moon {
     // needs some viable resizing idea
     for (int currentIndexY = 3; currentIndexY < this.initialMoonSurfacePoints.length - 1; currentIndexY += 2) {
       moonSurfacePoints[currentIndexY] = initialMoonSurfacePoints[currentIndexY] * factor + 50*factor;
+      this.scaledLandingHeight = this.landingHeight * factor + 50*factor;
     }
   }
 
@@ -142,9 +148,13 @@ public class Moon {
     this.moonSurfacePoints[this.moonSurfacePoints.length - 1] = newHeight;
   }
 
+  public double getScaledLandingHeight() { return this.scaledLandingHeight; }
+
   private Double[] initialMoonSurfacePoints;
   private Double[] moonSurfacePoints;
   private int lvl;
   private double initialWidth;
   private double initialHeight;
+  private double scaledLandingHeight;
+  private double landingHeight;
 }

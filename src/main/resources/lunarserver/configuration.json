@@ -58,7 +58,10 @@
       800.0,
       600.0
     ],
-    "lvl": 1
+    "lvl": 1,
+    "landingHeight": 410.4831590697795,
+    "initialWidth": 800,
+    "initialHeight": 600
   },
   {
     "moonSurfacePoints": [
@@ -119,7 +122,10 @@
       800.0,
       600.0
     ],
-    "lvl": 2
+    "lvl": 2,
+    "landingHeight": 452.04588206040324,
+    "initialWidth": 800,
+    "initialHeight": 600
   },
   {
     "moonSurfacePoints": [
@@ -239,6 +245,7 @@
       600.0
     ],
     "lvl": 3,
+    "landingHeight": 423.7946851624054,
     "initialWidth": 800,
     "initialHeight": 600
   }
