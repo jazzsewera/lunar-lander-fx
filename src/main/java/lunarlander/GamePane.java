@@ -12,6 +12,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import lunarlander.SidePane.UpdateLanderInfoEvent;
 
@@ -53,6 +54,8 @@ public class GamePane {
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
 
+    Translate trPaneCenter = new Translate();
+
     Scale scale = new Scale();
     scale.setPivotX(0);
     scale.setPivotY(0);
@@ -67,6 +70,9 @@ public class GamePane {
       if (_width/_height < aspectRatio) {
         scale.setX(newSceneWidth.doubleValue()/800);
         scale.setY(newSceneWidth.doubleValue()/800);
+        double _trOffset = (_height - _width/aspectRatio)/2.0;
+        if (_trOffset < 0) _trOffset = 0;
+        trPaneCenter.setY(_trOffset);
       }
     });
     this.gamePane.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
@@ -75,10 +81,13 @@ public class GamePane {
       if (_width/_height >= aspectRatio) {
         scale.setX(newSceneHeight.doubleValue()/650);
         scale.setY(newSceneHeight.doubleValue()/650);
+        double _trOffset = (_width - _height*aspectRatio)/2.0;
+        if (_trOffset < 0) _trOffset = 0;
+        trPaneCenter.setX(_trOffset);
       }
     });
 
-    group.getTransforms().add(scale);
+    group.getTransforms().addAll(scale, trPaneCenter);
 
     TranslateTransition vertical = new TranslateTransition(Duration.millis(32), landerModel.landerGroup);
     vertical.setInterpolator(Interpolator.LINEAR);
