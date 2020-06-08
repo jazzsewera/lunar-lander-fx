@@ -47,8 +47,6 @@ public class GamePane {
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
 
     Group group = new Group();
-    // TODO: Needs Lander placement based on window size!
-    //this.landerModel = new Lander(0, 0, 0.1, 0, 0, 400);
     group.getChildren().addAll(moonSurface, landerModel.landerGroup);
 
     this.gamePane = new Pane();
