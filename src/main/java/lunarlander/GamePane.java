@@ -11,6 +11,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
 import javafx.util.Duration;
 import lunarlander.SidePane.UpdateLanderInfoEvent;
 
@@ -27,12 +28,11 @@ public class GamePane {
    */
   public GamePane(Configuration configuration, Lander landerModel) {
     this.configuration = configuration;
-    /*
-     * for (int i = 1; i <= 3; i++) {
-     *   this.configuration.generateLevel(i);
-     * }
-     * this.configuration.toFile();
-     */
+
+    // for (int i = 1; i <= 3; i++) {
+    //   this.configuration.generateLevel(i);
+    // }
+    // this.configuration.toFile();
 
     if(!this.configuration.isConfigDownloaded()) {
       this.configuration.fromFile("src/main/resources/lunarlander/configuration.json");
@@ -53,20 +53,32 @@ public class GamePane {
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
 
+    Scale scale = new Scale();
+    scale.setPivotX(0);
+    scale.setPivotY(0);
+    double aspectRatio = 800.0/650.0;
+
     moonSurface.setFill(Color.LIGHTGRAY);
     this.gamePane.setStyle("-fx-background-color: black;");
 
     this.gamePane.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
-      moon.recalculateWidth(newSceneWidth.doubleValue());
-      moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
-      this.landingHeight = moon.getScaledLandingHeight();
+      double _width = newSceneWidth.doubleValue();
+      double _height = this.gamePane.heightProperty().doubleValue();
+      if (_width/_height < aspectRatio) {
+        scale.setX(newSceneWidth.doubleValue()/800);
+        scale.setY(newSceneWidth.doubleValue()/800);
+      }
     });
     this.gamePane.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
-      moon.recalculateHeight(newSceneHeight.doubleValue());
-      moonSurface.getPoints().setAll(moon.getMoonSurfacePoints());
-      this.landingHeight = moon.getScaledLandingHeight();
+      double _width = this.gamePane.widthProperty().doubleValue();
+      double _height = newSceneHeight.doubleValue();
+      if (_width/_height >= aspectRatio) {
+        scale.setX(newSceneHeight.doubleValue()/650);
+        scale.setY(newSceneHeight.doubleValue()/650);
+      }
     });
 
+    group.getTransforms().add(scale);
 
     TranslateTransition vertical = new TranslateTransition(Duration.millis(32), landerModel.landerGroup);
     vertical.setInterpolator(Interpolator.LINEAR);

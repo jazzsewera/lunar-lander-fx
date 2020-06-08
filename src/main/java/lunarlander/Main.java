@@ -66,7 +66,7 @@ public class Main extends Application {
     this.stage.setScene(this.mainMenuScene);
     this.stage.setTitle("Lunar Lander");
     this.stage.setWidth(1080);
-    this.stage.setHeight(630);
+    this.stage.setHeight(670); // 650 for gameWindow + 20px on Linux
     this.stage.show();
   }
 

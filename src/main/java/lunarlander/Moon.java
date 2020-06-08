@@ -18,7 +18,7 @@ public class Moon {
    */
   public Moon(int lvl, Double[] initialMoonSurfacePoints, double scaledLandingHeight) {
     this.initialWidth = 800.0;
-    this.initialHeight = 600.0;
+    this.initialHeight = 650.0;
     this.lvl = lvl;
     this.initialMoonSurfacePoints = initialMoonSurfacePoints;
     this.moonSurfacePoints = this.initialMoonSurfacePoints.clone();
@@ -34,9 +34,9 @@ public class Moon {
    */
   public Moon(int lvl) {
     this.initialWidth = 800.0;
-    this.initialHeight = 600.0;
+    this.initialHeight = 650.0;
     this.lvl = lvl;
-    this.initialMoonSurfacePoints = calculateSurfacePoints(800.0, 600.0, lvl);
+    this.initialMoonSurfacePoints = calculateSurfacePoints(800.0, 650.0, lvl);
     this.moonSurfacePoints = this.initialMoonSurfacePoints.clone();
   }
 
