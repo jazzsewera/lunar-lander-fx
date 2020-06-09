@@ -68,7 +68,7 @@ public class GameWindow {
         _gamePane.startRotateLanderClockwise();
       }
       if (event.getCode() == KeyCode.ESCAPE) {
-        if(!_gamePane.isPaused()) {
+        if(!_gamePane.isPaused() && !_gamePane.isLost()) {
           _gamePane.pauseGame();
           _sidePane.headLabelPaused();
           System.out.println("PAUSED");

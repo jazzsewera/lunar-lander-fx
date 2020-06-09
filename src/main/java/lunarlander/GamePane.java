@@ -157,6 +157,7 @@ public class GamePane {
             landerModel.yCoord = 5550.0;
             landerModel.landerGroup.setTranslateX(5550.0);
             landerModel.landerGroup.setTranslateY(5550.0);
+            loseGame();
             timeline.stop();
           }
         } else {
@@ -202,6 +203,9 @@ public class GamePane {
     this.timeline.play();
   }
 
+  public void loseGame() {
+    this.isLost = true;
+  }
 
   /**
    * Getter used in ApplicationWindow class in order to put
@@ -219,6 +223,8 @@ public class GamePane {
 
   public boolean isPaused() { return isPaused; }
 
+  public boolean isLost() { return isLost; }
+
 
   private Pane gamePane;
   private Lander landerModel;
@@ -230,6 +236,7 @@ public class GamePane {
   private boolean isRightRotate = false;
   private boolean isThrustON = false;
   private boolean isPaused = false;
+  private boolean isLost = false;
   private double g = 0.1;
   private int shipsLeft = 3;
   private double v;
