@@ -3,6 +3,7 @@ package lunarlander;
 import javafx.animation.*;
 import javafx.event.Event;
 import javafx.event.EventType;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -98,11 +99,6 @@ public class GamePane {
       landerModel.xCoord = landerModel.landerGroup.getLayoutX() + landerModel.landerGroup.getTranslateX();
       landerModel.yCoord = landerModel.landerGroup.getLayoutY() + landerModel.landerGroup.getTranslateY();
 
-      if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
-        timeline.stop();
-        // TODO: Game ending
-      }
-
       if (isLeftRotate() && !isRightRotate() && landerModel.angle >= -150) {
         leftRotate.setAxis(Rotate.Z_AXIS);
         leftRotate.setByAngle(-4);
@@ -140,8 +136,27 @@ public class GamePane {
       this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(
             landerModel.fuel,
             landerModel.v,
-            this.landingHeight - landerModel.getBottomCoord()));
-      // TODO: MOOOOOOORE THINGS
+            this.landingHeight - landerModel.getBottomCoord(),
+            shipsLeft));
+      // TODO: DISPLAYING SCORE
+
+      if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
+        if (landerModel.v >= 1.5) {
+          shipsLeft -= 1;
+
+          this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(
+            landerModel.fuel,
+            landerModel.v,
+            this.landingHeight - landerModel.getBottomCoord(),
+            shipsLeft));
+
+          landerModel.xCoord = landerModel.landerGroup.getLayoutX() + landerModel.landerGroup.getTranslateX();
+          landerModel.yCoord = landerModel.landerGroup.getLayoutY() + landerModel.landerGroup.getTranslateY();
+        }
+
+        //timeline.stop();
+        // TODO: Game ending
+      }
 
       vertical.setByY(landerModel.vy);
       vertical.setByX(landerModel.vx);
@@ -208,6 +223,7 @@ public class GamePane {
   private boolean isThrustON = false;
   private boolean isPaused = false;
   private double g = 0.1;
+  private int shipsLeft = 3;
   private double v;
 
   private Configuration configuration;

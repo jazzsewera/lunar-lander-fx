@@ -33,17 +33,19 @@ import javafx.scene.paint.Color;
 public class SidePane {
 
   public static class UpdateLanderInfoEvent extends Event {
-    UpdateLanderInfoEvent(double fuelState, double currentVelocity, double altitude) {
+    UpdateLanderInfoEvent(double fuelState, double currentVelocity, double altitude, int shipsLeft) {
       super(UPDATE_INFO);
       this.fuelState = fuelState;
       this.currentVelocity = currentVelocity;
       this.altitude = altitude;
+      this.shipsLeft = shipsLeft;
       // TODO: Put MOOOOOOORE things in constructor
     }
 
     public double fuelState;
     public double currentVelocity;
     public double altitude;
+    public int shipsLeft;
     // TODO: Put MOOOOOOORE things to update in SidePane
 
     public static final EventType<UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
@@ -61,7 +63,6 @@ public class SidePane {
     this.optionalLevelCaption = new Label("");
     this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
 
-    //TODO potrzebny jeden handler który odbiera pakiet informacji o Landerze i updatuje LAabele
     VBox levelVbox = new VBox();
     levelVbox.getChildren().addAll(this.levelLabel, this.optionalLevelCaption);
     levelVbox.getStyleClass().add("ctrl-gauge-vbox");
@@ -356,7 +357,7 @@ public class SidePane {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
   }
 
-  public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude) {
+  public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude, int shipsLeft) {
     double velocity = Math.round(currentVelocity * 10.0) / 10.0;
     double altitude;
     if (currentAltitude >= 0.0) altitude = Math.round(currentAltitude * 100.0) / 100.0;
@@ -366,6 +367,16 @@ public class SidePane {
     this.velocityStateLabel.setText(Double.toString(velocity));
     this.heightStateLabel.setText(Double.toString(altitude));
 
+    switch (shipsLeft) {
+      case 3:
+        break;
+      case 2:
+        livesStateLabels[2].setGraphic(null);
+        break;
+      case 1:
+        livesStateLabels[1].setGraphic(null);
+        break;
+    }
     // TODO: MOOOOOOORE THINGS
   }
 
