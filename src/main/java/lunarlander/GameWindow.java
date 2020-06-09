@@ -71,13 +71,9 @@ public class GameWindow {
         if(!_gamePane.isPaused() && !_gamePane.isLost()) {
           _gamePane.pauseGame();
           _sidePane.headLabelPaused();
-          System.out.println("PAUSED");
-        } else if (_gamePane.isLost()) {
-          System.out.println("Game is lost, cannot pause");
-        } else {
+        } else if (!_gamePane.isLost()) {
           _gamePane.unpauseGame();
           _sidePane.headLabelUnpaused(5);
-          System.out.println("UNPAUSED");
         }
       }
       // Only for presentation purposes
