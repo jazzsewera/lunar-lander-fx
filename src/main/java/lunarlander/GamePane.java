@@ -151,6 +151,14 @@ public class GamePane {
           landerModel.yCoord = 0.0;
           landerModel.landerGroup.setTranslateX(0.0);
           landerModel.landerGroup.setTranslateY(0.0);
+
+          if (shipsLeft == 0) {
+            landerModel.xCoord = 5550.0;
+            landerModel.yCoord = 5550.0;
+            landerModel.landerGroup.setTranslateX(5550.0);
+            landerModel.landerGroup.setTranslateY(5550.0);
+            timeline.stop();
+          }
         } else {
           timeline.stop();
         }
