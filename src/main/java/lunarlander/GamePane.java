@@ -1,12 +1,8 @@
 package lunarlander;
 
 import javafx.animation.*;
-import javafx.event.Event;
-import javafx.event.EventType;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
@@ -15,7 +11,6 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
-import lunarlander.SidePane.UpdateLanderInfoEvent;
 
 
 /**
@@ -121,7 +116,6 @@ public class GamePane {
         landerModel.vx = landerModel.vx + landerModel.ax;
         landerModel.fuel = landerModel.fuel-0.25;
         landerModel.setFlameImage(Lander.FlameImageType.FLAME);
-        System.out.println(landerModel.fuel);
       } else {
         landerModel.vy = landerModel.vy + g;
         landerModel.setFlameImage(Lander.FlameImageType.NO_FLAME);
@@ -150,13 +144,16 @@ public class GamePane {
             this.landingHeight - landerModel.getBottomCoord(),
             this.shipsLeft));
 
+          landerModel.vx = 3;
+          landerModel.vy = 0;
+
           landerModel.xCoord = 0.0;
           landerModel.yCoord = 0.0;
           landerModel.landerGroup.setTranslateX(0.0);
           landerModel.landerGroup.setTranslateY(0.0);
+        } else {
+          timeline.stop();
         }
-
-        //timeline.stop();
         // TODO: Game ending
       }
 

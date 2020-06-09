@@ -1,11 +1,8 @@
 package lunarlander;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -250,6 +247,25 @@ public class SidePane {
 
   }
 
+  public void headLabelLost() {
+    this.levelLabel.setText("Game Over");
+    this.optionalLevelCaption.setText("Save score");
+
+    this.optionalLevelCaption.setOnMouseEntered((event) -> {
+      this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption-hover-effect");
+    });
+
+    this.optionalLevelCaption.setOnMouseExited((event) -> {
+      this.optionalLevelCaption.getStyleClass().clear();
+      this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
+    });
+
+    this.optionalLevelCaption.setOnMouseClicked((event) -> {
+      optionalLevelCaption.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+    });
+
+  }
+
   /**
    * Method setting head Label of sidePane back to displaying
    * current level we are in when we unpause game.
@@ -375,6 +391,10 @@ public class SidePane {
         break;
       case 1:
         livesStateLabels[1].setGraphic(null);
+        break;
+      case 0:
+        livesStateLabels[0].setGraphic(null);
+        headLabelLost();
         break;
     }
     // TODO: MOOOOOOORE THINGS

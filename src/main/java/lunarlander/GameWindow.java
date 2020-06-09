@@ -24,7 +24,7 @@ public class GameWindow {
    * the Game Window.
    */
   public GameWindow(Configuration configuration) {
-    Lander lander = new Lander(0, 0, 0.1, 0, 0, 400);
+    Lander lander = new Lander(0, 0, 3, 0, 0, 400);
 
     GamePane _gamePane = new GamePane(configuration, lander);
     SidePane _sidePane = new SidePane(configuration, lander);
