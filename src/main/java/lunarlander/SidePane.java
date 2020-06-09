@@ -66,6 +66,7 @@ public class SidePane {
 
     // There will be images of Landers indicating number of lives
     this.landerImage = new Image("lunarlander/assets/lander.png");
+    this.landerDeadImage = new Image("lunarlander/assets/lander_dead.png");
     this.livesStateLabels = new Label[] {
         new Label("", new ImageView(this.landerImage)),
         new Label("", new ImageView(this.landerImage)),
@@ -387,13 +388,13 @@ public class SidePane {
       case 3:
         break;
       case 2:
-        livesStateLabels[2].setGraphic(null);
+        livesStateLabels[2].setGraphic(new ImageView(this.landerDeadImage));
         break;
       case 1:
-        livesStateLabels[1].setGraphic(null);
+        livesStateLabels[1].setGraphic(new ImageView(this.landerDeadImage));
         break;
       case 0:
-        livesStateLabels[0].setGraphic(null);
+        livesStateLabels[0].setGraphic(new ImageView(this.landerDeadImage));
         headLabelLost();
         break;
     }
@@ -417,6 +418,7 @@ public class SidePane {
   private Label levelLabel;
   private Label optionalLevelCaption;
   private final Image landerImage;
+  private final Image landerDeadImage;
   private Label[] livesStateLabels;
   private Label fuelStateLabel;
   private Label fuelMaxCapacityLabel;
