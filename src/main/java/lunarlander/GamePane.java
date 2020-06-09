@@ -142,16 +142,18 @@ public class GamePane {
 
       if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
         if (landerModel.v >= 1.5) {
-          shipsLeft -= 1;
+          this.shipsLeft-= 1;
 
           this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(
             landerModel.fuel,
             landerModel.v,
             this.landingHeight - landerModel.getBottomCoord(),
-            shipsLeft));
+            this.shipsLeft));
 
-          landerModel.xCoord = landerModel.landerGroup.getLayoutX() + landerModel.landerGroup.getTranslateX();
-          landerModel.yCoord = landerModel.landerGroup.getLayoutY() + landerModel.landerGroup.getTranslateY();
+          landerModel.xCoord = 0.0;
+          landerModel.yCoord = 0.0;
+          landerModel.landerGroup.setTranslateX(0.0);
+          landerModel.landerGroup.setTranslateY(0.0);
         }
 
         //timeline.stop();
@@ -211,6 +213,7 @@ public class GamePane {
   public boolean isThrustON() { return isThrustON; }
 
   public boolean isPaused() { return isPaused; }
+
 
   private Pane gamePane;
   private Lander landerModel;
