@@ -153,10 +153,7 @@ public class GamePane {
           landerModel.landerGroup.setTranslateY(0.0);
 
           if (shipsLeft == 0) {
-            landerModel.xCoord = 5550.0;
-            landerModel.yCoord = 5550.0;
-            landerModel.landerGroup.setTranslateX(5550.0);
-            landerModel.landerGroup.setTranslateY(5550.0);
+            landerModel.landerGroup.setVisible(false);
             loseGame();
             timeline.stop();
           }
