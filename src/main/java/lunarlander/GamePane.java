@@ -233,7 +233,6 @@ public class GamePane {
 
 
   private Pane gamePane;
-  private Lander landerModel;
   private Timeline timeline = new Timeline();
   private Polygon moonSurface;
   private double landingHeight;

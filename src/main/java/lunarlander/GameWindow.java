@@ -36,20 +36,22 @@ public class GameWindow {
    * the Game Window.
    */
   public GameWindow(Configuration configuration) {
-    Lander lander = new Lander(0, 0, 3, 0, 0, 400);
+    this.lander = new Lander(0, 0, 3, 0, 0, 400);
 
-    GamePane _gamePane = new GamePane(configuration, lander, currentLevel);
-    SidePane _sidePane = new SidePane(configuration, lander);
+    this.currentLevel = 1;
+
+    this._gamePane = new GamePane(configuration, lander, currentLevel);
+    this._sidePane = new SidePane(configuration, lander);
 
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
     // Pane landerPane = gamePane.getLanderPane();
-    sideBorderPane = _sidePane.getSideBorderPane();
-    gamePane = _gamePane.getGamePane();
+    this.sideBorderPane = _sidePane.getSideBorderPane();
+    this.gamePane = _gamePane.getGamePane();
 
-    HBox applicationWindowHbox = new HBox();
-    applicationWindowHbox.getChildren().addAll(
-      gamePane,
-      sideBorderPane
+    this.applicationWindowHbox = new HBox();
+    this.applicationWindowHbox.getChildren().addAll(
+      this.gamePane,
+      this.sideBorderPane
     );
 
     HBox.setHgrow(gamePane, Priority.ALWAYS);
@@ -113,7 +115,23 @@ public class GameWindow {
     });
 
     this.mainGameScene.addEventHandler(ChangeLevelEvent.CHANGE_LEVEL, (event) -> {
-      changeLevel(configuration);
+      this.currentLevel++;
+
+      this.lander = new Lander(0, 0, 3.0, 0, 0, 400);
+
+      this._gamePane = new GamePane(configuration, lander, currentLevel);
+      this.gamePane = this._gamePane.getGamePane();
+
+      this.applicationWindowHbox.getChildren().clear();
+
+      this.applicationWindowHbox.getChildren().addAll(
+          this.gamePane,
+          this.sideBorderPane);
+      HBox.setHgrow(this.gamePane, Priority.ALWAYS);
+      HBox.setHgrow(this.sideBorderPane, Priority.NEVER);
+
+      this.mainGameScene.setRoot(this.applicationWindowHbox);
+      this.applicationWindowHbox.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.GAME));
       System.out.println(currentLevel);
     });
   }
@@ -128,30 +146,15 @@ public class GameWindow {
     return mainGameScene;
   }
 
-  public void changeLevel(Configuration configuration) {
-    currentLevel++;
-    //TODO FUEL LEFT
-    Lander lander = new Lander(0, 0, 3, 0, 0, 400);
-
-    GamePane _gamePane = new GamePane(configuration, lander, currentLevel);
-    SidePane _sidePane = new SidePane(configuration, lander);
-
-    sideBorderPane = _sidePane.getSideBorderPane();
-    gamePane = _gamePane.getGamePane();
-
-    HBox applicationWindowHbox = new HBox();
-    applicationWindowHbox.getChildren().addAll(
-      gamePane,
-      sideBorderPane
-    );
-
-    HBox.setHgrow(gamePane, Priority.ALWAYS);
-    HBox.setHgrow(sideBorderPane, Priority.NEVER);
-  }
-
   private Scene mainGameScene;
   Pane gamePane;
   Pane sideBorderPane;
 
-  int currentLevel = 1;
+  HBox applicationWindowHbox;
+
+  GamePane _gamePane;
+  SidePane _sidePane;
+  Lander lander;
+
+  int currentLevel;
 }
