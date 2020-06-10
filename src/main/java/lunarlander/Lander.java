@@ -109,6 +109,8 @@ public class Lander {
   double landerHeight;
   double landerWidth;
 
+  int currentLevel = 1;
+
   private Image landerImage;
   private Image flameImage;
   private Image noFlameImage;

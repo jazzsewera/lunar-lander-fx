@@ -1,6 +1,9 @@
 package lunarlander;
 
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventType;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -19,6 +22,16 @@ import javafx.scene.layout.Priority;
  */
 public class GameWindow {
 
+  public static class ChangeLevelEvent extends Event {
+    ChangeLevelEvent() {
+      super(CHANGE_LEVEL);
+    }
+
+    public static final EventType<GameWindow.ChangeLevelEvent> CHANGE_LEVEL = new EventType<>("CHANGE_LEVEL");
+
+    public static final long serialVersionUID = 12345;
+  }
+
   /**
    * Constructor setting up all the necessary components of
    * the Game Window.
@@ -31,8 +44,8 @@ public class GameWindow {
 
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
     // Pane landerPane = gamePane.getLanderPane();
-    Pane sideBorderPane = _sidePane.getSideBorderPane();
-    Pane gamePane = _gamePane.getGamePane();
+    sideBorderPane = _sidePane.getSideBorderPane();
+    gamePane = _gamePane.getGamePane();
 
     HBox applicationWindowHbox = new HBox();
     applicationWindowHbox.getChildren().addAll(
@@ -99,6 +112,11 @@ public class GameWindow {
     this.mainGameScene.addEventHandler(SidePane.UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
       _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude, event.shipsLeft); // TODO: MOOOOOOORE things
     });
+
+    this.mainGameScene.addEventHandler(ChangeLevelEvent.CHANGE_LEVEL, (event) -> {
+      changeLevel(_gamePane, sideBorderPane, configuration, lander);
+      System.out.println("WON");
+    });
   }
 
   /**
@@ -111,5 +129,25 @@ public class GameWindow {
     return mainGameScene;
   }
 
-  private final Scene mainGameScene;
+  public void changeLevel(GamePane _gamePane, Pane sideBorderPane, Configuration configuration, Lander lander) {
+    _gamePane = new GamePane(configuration, lander);
+    gamePane = _gamePane.getGamePane();
+
+    HBox applicationWindowHbox = new HBox();
+    applicationWindowHbox.getChildren().addAll(
+      gamePane,
+      sideBorderPane
+    );
+
+    HBox.setHgrow(gamePane, Priority.ALWAYS);
+    HBox.setHgrow(sideBorderPane, Priority.NEVER);
+
+    this.mainGameScene = new Scene(applicationWindowHbox);
+
+    this.mainGameScene.getStylesheets().add("lunarlander/css/style.css");
+  }
+
+  private Scene mainGameScene;
+  Pane gamePane;
+  Pane sideBorderPane;
 }
