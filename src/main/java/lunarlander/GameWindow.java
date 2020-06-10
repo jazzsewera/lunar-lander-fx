@@ -3,7 +3,6 @@ package lunarlander;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventType;
-import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -39,7 +38,7 @@ public class GameWindow {
   public GameWindow(Configuration configuration) {
     Lander lander = new Lander(0, 0, 3, 0, 0, 400);
 
-    GamePane _gamePane = new GamePane(configuration, lander);
+    GamePane _gamePane = new GamePane(configuration, lander, currentLevel);
     SidePane _sidePane = new SidePane(configuration, lander);
 
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
@@ -114,8 +113,8 @@ public class GameWindow {
     });
 
     this.mainGameScene.addEventHandler(ChangeLevelEvent.CHANGE_LEVEL, (event) -> {
-      changeLevel(_gamePane, sideBorderPane, configuration, lander);
-      System.out.println("WON");
+      changeLevel(configuration);
+      System.out.println(currentLevel);
     });
   }
 
@@ -129,8 +128,15 @@ public class GameWindow {
     return mainGameScene;
   }
 
-  public void changeLevel(GamePane _gamePane, Pane sideBorderPane, Configuration configuration, Lander lander) {
-    _gamePane = new GamePane(configuration, lander);
+  public void changeLevel(Configuration configuration) {
+    currentLevel++;
+    //TODO FUEL LEFT
+    Lander lander = new Lander(0, 0, 3, 0, 0, 400);
+
+    GamePane _gamePane = new GamePane(configuration, lander, currentLevel);
+    SidePane _sidePane = new SidePane(configuration, lander);
+
+    sideBorderPane = _sidePane.getSideBorderPane();
     gamePane = _gamePane.getGamePane();
 
     HBox applicationWindowHbox = new HBox();
@@ -141,13 +147,11 @@ public class GameWindow {
 
     HBox.setHgrow(gamePane, Priority.ALWAYS);
     HBox.setHgrow(sideBorderPane, Priority.NEVER);
-
-    this.mainGameScene = new Scene(applicationWindowHbox);
-
-    this.mainGameScene.getStylesheets().add("lunarlander/css/style.css");
   }
 
   private Scene mainGameScene;
   Pane gamePane;
   Pane sideBorderPane;
+
+  int currentLevel = 1;
 }

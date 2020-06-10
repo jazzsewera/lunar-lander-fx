@@ -23,7 +23,7 @@ public class GamePane {
    * Constructor reading configuration.json file, {@link Configuration},
    * and creating a Pane of moonSurface of chosen Moon, {@link Moon}.
    */
-  public GamePane(Configuration configuration, Lander landerModel) {
+  public GamePane(Configuration configuration, Lander landerModel, int currentLevel) {
     this.configuration = configuration;
 
     // for (int i = 1; i <= 3; i++) {
@@ -36,8 +36,8 @@ public class GamePane {
     } else {
       this.configuration.fromFile("src/main/resources/lunarlander/configuration_fromserver.json");
     }
-
-    Moon moon = this.configuration.getMoonMap(landerModel.currentLevel);
+    
+    Moon moon = this.configuration.getMoonMap(currentLevel);
     this.landingHeight = moon.getScaledLandingHeight();
     this.moonSurface = new Polygon();
     moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
@@ -159,7 +159,6 @@ public class GamePane {
           }
 
         } else {
-          landerModel.currentLevel++;
 
           landerModel.vx = 3;
           landerModel.vy = 0;
