@@ -129,7 +129,6 @@ public class GameWindow {
 
       this.mainGameScene.setRoot(this.applicationWindowHbox);
       this.applicationWindowHbox.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.GAME));
-      System.out.println(currentLevel);
     });
   }
 

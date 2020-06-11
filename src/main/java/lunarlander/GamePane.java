@@ -37,10 +37,20 @@ public class GamePane {
       this.configuration.fromFile("src/main/resources/lunarlander/configuration_fromserver.json");
     }
 
-    Moon moon = this.configuration.getMoonMap(currentLevel);
-    this.landingHeight = moon.getScaledLandingHeight();
-    this.moonSurface = new Polygon();
-    moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
+    try {
+      Moon moon = this.configuration.getMoonMap(currentLevel);
+      this.landingHeight = moon.getScaledLandingHeight();
+      this.moonSurface = new Polygon();
+      moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
+    } catch (IndexOutOfBoundsException e) {
+      this.configuration.generateLevel(currentLevel);
+      this.configuration.toFile();
+
+      Moon moon = this.configuration.getMoonMap(currentLevel);
+      this.landingHeight = moon.getScaledLandingHeight();
+      this.moonSurface = new Polygon();
+      moonSurface.getPoints().addAll(moon.getMoonSurfacePoints());
+    }
 
     Group group = new Group();
     group.getChildren().addAll(moonSurface, landerModel.landerGroup);
