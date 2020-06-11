@@ -9,7 +9,7 @@ import javafx.scene.shape.Polygon;
 
 public class Lander {
 
-  public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel) {
+  public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel, int ships) {
 
     this.landerImage = new Image("lunarlander/assets/lander.png", 35, 35, false, false);
     this.flameImage = new Image("lunarlander/assets/flame.png", 8, 47, false, false);
@@ -24,6 +24,7 @@ public class Lander {
     this.vy = vy;
     this.angle = angle;
     this.fuel = fuel;
+    this.ships = ships;
 
     // lander.getPoints().addAll(new Double[]{
     //   0.0, 0.0,
@@ -108,6 +109,8 @@ public class Lander {
 
   double landerHeight;
   double landerWidth;
+
+  int ships;
 
   private Image landerImage;
   private Image flameImage;

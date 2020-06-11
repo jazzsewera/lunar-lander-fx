@@ -36,7 +36,7 @@ public class GamePane {
     } else {
       this.configuration.fromFile("src/main/resources/lunarlander/configuration_fromserver.json");
     }
-    
+
     Moon moon = this.configuration.getMoonMap(currentLevel);
     this.landingHeight = moon.getScaledLandingHeight();
     this.moonSurface = new Polygon();
@@ -131,18 +131,20 @@ public class GamePane {
             landerModel.fuel,
             landerModel.v,
             this.landingHeight - landerModel.getBottomCoord(),
-            shipsLeft));
+            landerModel.ships,
+            currentLevel));
       // TODO: DISPLAYING SCORE
 
       if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
         if (landerModel.v >= 1.5) {
-          this.shipsLeft-= 1;
+          landerModel.ships-= 1;
 
           this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(
             landerModel.fuel,
             landerModel.v,
             this.landingHeight - landerModel.getBottomCoord(),
-            this.shipsLeft));
+            landerModel.ships,
+            currentLevel));
 
           landerModel.vx = 3;
           landerModel.vy = 0;
@@ -152,7 +154,7 @@ public class GamePane {
           landerModel.landerGroup.setTranslateX(0.0);
           landerModel.landerGroup.setTranslateY(0.0);
 
-          if (shipsLeft == 0) {
+          if (landerModel.ships == 0) {
             landerModel.landerGroup.setVisible(false);
             loseGame();
             timeline.stop();
@@ -244,7 +246,6 @@ public class GamePane {
   private boolean isLost = false;
 
   private double g = 0.1;
-  private int shipsLeft = 3;
 
   private Configuration configuration;
 

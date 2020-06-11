@@ -30,12 +30,13 @@ import javafx.scene.paint.Color;
 public class SidePane {
 
   public static class UpdateLanderInfoEvent extends Event {
-    UpdateLanderInfoEvent(double fuelState, double currentVelocity, double altitude, int shipsLeft) {
+    UpdateLanderInfoEvent(double fuelState, double currentVelocity, double altitude, int shipsLeft, int level) {
       super(UPDATE_INFO);
       this.fuelState = fuelState;
       this.currentVelocity = currentVelocity;
       this.altitude = altitude;
       this.shipsLeft = shipsLeft;
+      this.level = level;
       // TODO: Put MOOOOOOORE things in constructor
     }
 
@@ -43,6 +44,7 @@ public class SidePane {
     public double currentVelocity;
     public double altitude;
     public int shipsLeft;
+    public int level;
     // TODO: Put MOOOOOOORE things to update in SidePane
 
     public static final EventType<UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
@@ -55,7 +57,7 @@ public class SidePane {
    */
   public SidePane(Configuration configuration, Lander lander) {
 
-    this.levelLabel = new Label("Level 2");
+    this.levelLabel = new Label("Level 1");
     this.levelLabel.getStyleClass().add("ctrl-label-primary");
     this.optionalLevelCaption = new Label("");
     this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
@@ -374,12 +376,13 @@ public class SidePane {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
   }
 
-  public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude, int shipsLeft) {
+  public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude, int shipsLeft, int level) {
     double velocity = Math.round(currentVelocity * 10.0) / 10.0;
     double altitude;
     if (currentAltitude >= 0.0) altitude = Math.round(currentAltitude * 100.0) / 100.0;
     else altitude = 0.0;
 
+    this.levelLabel.setText("Level " + level);
     this.fuelStateLabel.setText(Integer.toString((int) fuelState));
     this.velocityStateLabel.setText(Double.toString(velocity));
     this.heightStateLabel.setText(Double.toString(altitude));

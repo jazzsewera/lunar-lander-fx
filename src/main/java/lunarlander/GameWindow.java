@@ -36,7 +36,7 @@ public class GameWindow {
    * the Game Window.
    */
   public GameWindow(Configuration configuration) {
-    this.lander = new Lander(0, 0, 3, 0, 0, 400);
+    this.lander = new Lander(0, 0, 3, 0, 0, 400, 3);
 
     this.currentLevel = 1;
 
@@ -90,8 +90,6 @@ public class GameWindow {
           _sidePane.headLabelUnpaused(5);
         }
       }
-      // Only for presentation purposes
-      if (event.getCode() == KeyCode.L) _sidePane.setLevel(5);
     });
     this.mainGameScene.setOnKeyReleased((event) -> {
       if (event.getCode() == KeyCode.UP) {
@@ -106,18 +104,17 @@ public class GameWindow {
         _sidePane.setKbdRightReleased();
         _gamePane.stopRotateLanderClockwise();
       }
-      // Only for presentation purposes
-      if (event.getCode() == KeyCode.L) _sidePane.setLevel(2);
     });
 
     this.mainGameScene.addEventHandler(SidePane.UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
-      _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude, event.shipsLeft); // TODO: MOOOOOOORE things
+      _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude, event.shipsLeft, event.level); // TODO: MOOOOOOORE things
     });
 
     this.mainGameScene.addEventHandler(ChangeLevelEvent.CHANGE_LEVEL, (event) -> {
       this.currentLevel++;
-
-      this.lander = new Lander(0, 0, 3.0, 0, 0, 400);
+      this.fuelLeft = this.lander.fuel;
+      this.shipsLeft = this.lander.ships;
+      this.lander = new Lander(0, 0, 3.0, 0, 0, fuelLeft, shipsLeft);
 
       this._gamePane = new GamePane(configuration, lander, currentLevel);
       this.gamePane = this._gamePane.getGamePane();
@@ -157,4 +154,6 @@ public class GameWindow {
   Lander lander;
 
   int currentLevel;
+  double fuelLeft;
+  int shipsLeft;
 }
