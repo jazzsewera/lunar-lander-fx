@@ -151,16 +151,20 @@ public class GamePane {
       bonusPoints -= 0.03;
 
       if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
-        if (landerModel.v >= 1.5 || landerModel.angle >= 30 || landerModel.angle <= -30 || (this.landingHeight - landerModel.getBottomCoord() > 2)) {
+        if (landerModel.v >= 1.5
+            || landerModel.angle >= 30
+            || landerModel.angle <= -30
+            || this.landingHeight - landerModel.getBottomCoord() > 2
+            || this.landingHeight - landerModel.getBottomCoord() < -2) {
           landerModel.ships-= 1;
 
           this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(
-            landerModel.fuel,
-            landerModel.v,
-            this.landingHeight - landerModel.getBottomCoord(),
-            landerModel.ships,
-            currentLevel,
-            landerModel.score));
+                landerModel.fuel,
+                landerModel.v,
+                this.landingHeight - landerModel.getBottomCoord(),
+                landerModel.ships,
+                currentLevel,
+                landerModel.score));
 
           landerModel.vx = 3;
           landerModel.vy = 0;
