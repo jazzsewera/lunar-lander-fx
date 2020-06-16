@@ -55,7 +55,11 @@ public class SidePane {
   }
 
   /**
-   * Constructor setting up all the components of the pane.
+   * Constructor creating all the Labels displaying
+   * current parameters of the Lander.
+   *
+   * @param configuration set of config files and methods working on them: Configuration
+   * @param lander representation of our Lander with all its parameters : Lander
    */
   public SidePane(Configuration configuration, Lander lander) {
 

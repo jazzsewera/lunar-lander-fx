@@ -26,6 +26,7 @@ public class Lander {
    * @param angle initial angle: double
    * @param fuel initial fuel state: double
    * @param ships number of lives: int
+   * @param score score counter : int
    */
   public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel, int ships, int score) {
 
@@ -93,6 +94,8 @@ public class Lander {
 
   /**
    * Function setting current type of flame to a lander.
+   *
+   * @param type type of displayed flameImage : FlameImageType
    */
   public void setFlameImage(FlameImageType type) {
     switch (type) {

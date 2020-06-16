@@ -21,7 +21,14 @@ public class GamePane {
 
   /**
    * Constructor reading configuration.json file, {@link Configuration},
-   * and creating a Pane of moonSurface of chosen Moon, {@link Moon}.
+   * creating a Pane of moonSurface of chosen Moon and {@link Moon}
+   * putting Lander on it {@link Lander}.
+   *
+   * @param configuration set of config files and methods working on them: Configuration
+   * @param landerModel representation of our Lander with all its parameters : Lander
+   * @param currentLevel level counter : int
+   * @param width initial window width : double
+   * @param height initial window height : double
    */
   public GamePane(Configuration configuration, Lander landerModel, int currentLevel, double width, double height) {
     this.configuration = configuration;
@@ -209,7 +216,7 @@ public class GamePane {
 
   /**
    * Event handling in methods below
-   * Event triggering in GamePane setOnKeyPressed and setOnKeyReleased.
+   * Event triggering in GamePane setOnKeyPressed and setOnKeyReleassed.
    */
   public void startLanderThrustOn() { this.isThrustON = true; }
 

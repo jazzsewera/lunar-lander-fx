@@ -34,6 +34,10 @@ public class GameWindow {
   /**
    * Constructor setting up all the necessary components of
    * the Game Window.
+   *
+   * @param configuration set of config files and methods working on them: Configuration
+   * @param width initial window width : double
+   * @param height initial window height : double
    */
   public GameWindow(Configuration configuration, double width, double height) {
     this.lander = new Lander(0, 0, 3, 0, 0, 400, 3, 0);

@@ -30,6 +30,8 @@ public class SettingsWindow {
    * onMouseExited event handlers in order to bring visual
    * effects to Back button and onMouseClicked event that is
    * fired to Main class for changing scenes.
+   *
+   * @param configuration set of config files and methods working on them: Configuration
    */
   public SettingsWindow(Configuration configuration) {
     this.settingsHeader = new Label("Settings");

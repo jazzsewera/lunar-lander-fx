@@ -13,8 +13,9 @@ public class Moon {
    * Constructor with explicit initialMoonSurfacePoints declaration.
    * Used in reading moonMap from a configuration.json file.
    *
-   * @param lvl Specifies which Moon we are referring to, int.
-   * @param initialMoonSurfacePoints List of points forming shape of Moon, Double[].
+   * @param lvl Specifies which Moon we are referring to : int
+   * @param initialMoonSurfacePoints List of points forming shape of Moon : Double[]
+   * @param scaledLandingHeight landing spot altitude : double
    */
   public Moon(int lvl, Double[] initialMoonSurfacePoints, double scaledLandingHeight) {
     this.initialWidth = 800.0;
@@ -22,7 +23,6 @@ public class Moon {
     this.lvl = lvl;
     this.initialMoonSurfacePoints = initialMoonSurfacePoints;
     this.moonSurfacePoints = this.initialMoonSurfacePoints.clone();
-    this.scaledLandingHeight = scaledLandingHeight;
     this.scaledLandingHeight = scaledLandingHeight;
   }
 
