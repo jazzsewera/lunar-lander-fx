@@ -149,10 +149,9 @@ public class GamePane {
       // TODO: DISPLAYING SCORE
 
       bonusPoints -= 0.03;
-      System.out.println(bonusPoints);
 
       if (((Path)Shape.intersect(landerModel.lander, this.moonSurface)).getElements().size() > 0) {
-        if (landerModel.v >= 1.5 || landerModel.angle >= 30 || landerModel.angle <= -30) {
+        if (landerModel.v >= 1.5 || landerModel.angle >= 30 || landerModel.angle <= -30 || (this.landingHeight - landerModel.getBottomCoord() > 2)) {
           landerModel.ships-= 1;
 
           this.gamePane.fireEvent(new SidePane.UpdateLanderInfoEvent(
@@ -190,7 +189,6 @@ public class GamePane {
           landerModel.landerGroup.setTranslateX(0.0);
           landerModel.landerGroup.setTranslateY(0.0);
           this.gamePane.fireEvent(new GameWindow.ChangeLevelEvent());
-          //timeline.stop();
         }
       }
 
