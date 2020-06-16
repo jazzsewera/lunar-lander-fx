@@ -7,8 +7,26 @@ import javafx.scene.shape.Polygon;
 //import javafx.scene.paint.ImagePattern;
 //import java.awt.*;
 
+/**
+ * Class of a Lander which is both a graphical representation of an actual
+ * lander on the screen and a set of data of the position, velocity, fuel and
+ * lives left.
+ * What you want to display on the screen is landerGroup: Group.
+ */
 public class Lander {
 
+  /**
+   * Constructor of a Lander that assigns resources like images to an instance
+   * of lander. It also sets initial values like position and velocity.
+   *
+   * @param xCoord initial position (x-axis): double
+   * @param yCoord initial position (y-axis): double
+   * @param vx initial velocity (x-axis): double
+   * @param vy initial velocity (y-axis): double
+   * @param angle initial angle: double
+   * @param fuel initial fuel state: double
+   * @param ships number of lives: int
+   */
   public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel, int ships) {
 
     this.landerImage = new Image("lunarlander/assets/lander.png", 35, 35, false, false);
@@ -25,13 +43,6 @@ public class Lander {
     this.angle = angle;
     this.fuel = fuel;
     this.ships = ships;
-
-    // lander.getPoints().addAll(new Double[]{
-    //   0.0, 0.0,
-    //   0.0, 25.0,
-    //   25.0, 25.0,
-    //   25.0, 0.0,
-    // });
 
     this.lander.getPoints().addAll(new Double[] {
       this.xCoord, this.yCoord,
@@ -70,12 +81,18 @@ public class Lander {
 
   public Image getLanderImage() { return landerImage; }
 
+  /**
+   * Enum describing which flame to display.
+   */
   public enum FlameImageType {
     NO_FLAME,
     FLAME,
     NITRO_FLAME
   }
 
+  /**
+   * Function setting current type of flame to a lander.
+   */
   public void setFlameImage(FlameImageType type) {
     switch (type) {
       case FLAME:
@@ -89,12 +106,6 @@ public class Lander {
         break;
     }
   }
-
-  // public Group getLanderGroup() { return landerGroup; }
-
-  //public void setLanderOFFImage(Image landerImage) { this.landerImage = landerImage; }
-
-  //public void setLanderONImage(Image landerONImage) { this.landerONImage = landerONImage; }
 
   double xCoord;
   double yCoord;

@@ -23,7 +23,7 @@ public class GamePane {
    * Constructor reading configuration.json file, {@link Configuration},
    * and creating a Pane of moonSurface of chosen Moon, {@link Moon}.
    */
-  public GamePane(Configuration configuration, Lander landerModel, int currentLevel) {
+  public GamePane(Configuration configuration, Lander landerModel, int currentLevel, double width, double height) {
     this.configuration = configuration;
 
     // for (int i = 1; i <= 3; i++) {
@@ -58,12 +58,12 @@ public class GamePane {
     this.gamePane = new Pane();
     gamePane.getChildren().add(group);
 
-    Translate trPaneCenter = new Translate();
+    this.trPaneCenter = new Translate();
 
-    Scale scale = new Scale();
+    this.scale = new Scale();
     scale.setPivotX(0);
     scale.setPivotY(0);
-    double aspectRatio = 800.0/650.0;
+    this.aspectRatio = 800.0/650.0;
 
     moonSurface.setFill(Color.LIGHTGRAY);
     this.gamePane.setStyle("-fx-background-color: black;");
@@ -90,6 +90,8 @@ public class GamePane {
         trPaneCenter.setX(_trOffset);
       }
     });
+
+    this.resizeInitial(width, height);
 
     group.getTransforms().addAll(scale, trPaneCenter);
 
@@ -195,7 +197,7 @@ public class GamePane {
     timeline.play();
   }
 
-  /*
+  /**
    * Event handling in methods below
    * Event triggering in GamePane setOnKeyPressed and setOnKeyReleased.
    */
@@ -231,7 +233,30 @@ public class GamePane {
    *
    * @return gamePane - Pane presenting game view.
    */
-  public Pane getGamePane() { return gamePane; }
+  public Pane getGamePane() {
+    return gamePane;
+  }
+
+  /**
+   * Method setting the right map size when creating a new instance.
+   */
+  private void resizeInitial(double _initialWidth, double _initialHeight) {
+    if (_initialWidth/_initialHeight < this.aspectRatio) {
+      this.scale.setX(_initialWidth/800);
+      this.scale.setY(_initialWidth/800);
+      double _trOffset = (_initialHeight - _initialWidth/this.aspectRatio)/2.0;
+      if (_trOffset < 0) _trOffset = 0;
+      this.trPaneCenter.setY(_trOffset);
+    }
+    if (_initialWidth/_initialHeight >= this.aspectRatio) {
+      this.scale.setX(_initialHeight/650);
+      this.scale.setY(_initialHeight/650);
+      double _trOffset = (_initialWidth - _initialHeight*this.aspectRatio)/2.0;
+      if (_trOffset < 0) _trOffset = 0;
+      this.trPaneCenter.setX(_trOffset);
+    }
+    System.out.println(_initialWidth);
+  }
 
   public boolean isLeftRotate() { return isLeftRotate; }
 
@@ -242,7 +267,6 @@ public class GamePane {
   public boolean isPaused() { return isPaused; }
 
   public boolean isLost() { return isLost; }
-
 
   private Pane gamePane;
   private Timeline timeline = new Timeline();
@@ -258,6 +282,10 @@ public class GamePane {
   private double g = 0.1;
 
   private Configuration configuration;
+
+  private Scale scale;
+  private double aspectRatio;
+  private Translate trPaneCenter;
 
   //TODO: Nitro flame
 }

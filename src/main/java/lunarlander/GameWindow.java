@@ -35,12 +35,12 @@ public class GameWindow {
    * Constructor setting up all the necessary components of
    * the Game Window.
    */
-  public GameWindow(Configuration configuration) {
+  public GameWindow(Configuration configuration, double width, double height) {
     this.lander = new Lander(0, 0, 3, 0, 0, 400, 3);
 
     this.currentLevel = 1;
 
-    this._gamePane = new GamePane(configuration, lander, currentLevel);
+    this._gamePane = new GamePane(configuration, lander, currentLevel, width-280.0, height);
     this._sidePane = new SidePane(configuration, lander);
 
     // Pane moonSurfacePane = gamePane.getMoonSurfacePane();
@@ -116,7 +116,10 @@ public class GameWindow {
       this.shipsLeft = this.lander.ships;
       this.lander = new Lander(0, 0, 3.0, 0, 0, fuelLeft, shipsLeft);
 
-      this._gamePane = new GamePane(configuration, lander, currentLevel);
+      double _gamePaneWidth = this.mainGameScene.getWidth() - 280;
+      double _gamePaneHeight = this.mainGameScene.getHeight();
+
+      this._gamePane = new GamePane(configuration, lander, currentLevel, _gamePaneWidth, _gamePaneHeight);
       this.gamePane = this._gamePane.getGamePane();
 
       this.applicationWindowHbox.getChildren().clear();

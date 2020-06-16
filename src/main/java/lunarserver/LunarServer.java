@@ -11,6 +11,11 @@ import java.net.Socket;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/**
+ * Main server class. The protocol is defined in docs/network_protocol.md file.
+ * Its resources are located in resources/lunarserver namespace (directory).
+ */
 public class LunarServer {
   LunarServer(Socket socket) throws Exception {}
 

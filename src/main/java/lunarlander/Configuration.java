@@ -87,11 +87,9 @@ public class Configuration {
   }
 
   /**
-   * Method adding or overwriting moonMap of chosen level.
-   *
-   * @param lvl Number of level we want to create moon surface with, int.
+   * Method starting an on-socket client. It uses a SLAProtocol defined
+   * in docs/network_protocol.md.
    */
-
   public void lunarClient() {
     try {
       // Opening socket chosen by client
@@ -153,6 +151,11 @@ public class Configuration {
     }
   }
 
+  /**
+   * Method adding or overwriting moonMap of chosen level.
+   *
+   * @param lvl Number of level we want to create moon surface with, int.
+   */
   public void generateLevel(int lvl) {
     this.moonMaps.add(new Moon(lvl));
   }

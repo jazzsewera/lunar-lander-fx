@@ -7,8 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+/**
+ * Main class – the application will start here.
+ */
 public class Main extends Application {
 
+  /**
+   * Enum used in firing events which scene to put on stage.
+   */
   public static enum SceneType {
     MAIN_MENU,
     GAME,
@@ -17,6 +23,13 @@ public class Main extends Application {
     SETTINGS
   }
 
+  /**
+   * Event class to change scene on stage (to switch different views).
+   * Sample usage: 
+   * <pre>
+   * someNode.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+   * </pre>
+   */
   public static class ChangeSceneEvent extends Event {
     ChangeSceneEvent(SceneType sceneType) {
       super(CHANGE_SCENE);
@@ -98,7 +111,7 @@ public class Main extends Application {
   }
 
   private void initGameWindow() {
-    this.gameWindow = new GameWindow(this.configuration);
+    this.gameWindow = new GameWindow(this.configuration, this.stage.getWidth(), this.stage.getHeight());
     this.gameWindowScene = this.gameWindow.getMainGameScene();
 
     this.gameWindowScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {

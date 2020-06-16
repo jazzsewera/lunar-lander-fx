@@ -130,24 +130,6 @@ public class Moon {
     return moonSurfacePoints;
   }
 
-  public void recalculateWidth(double newWidth) {
-    // height stays the same but width is calculated with the same step but new
-    double factor = newWidth / this.initialWidth;
-    for (int currentIndexX = 2; currentIndexX < this.initialMoonSurfacePoints.length - 1; currentIndexX += 2) {
-      moonSurfacePoints[currentIndexX] = initialMoonSurfacePoints[currentIndexX] * factor;
-    }
-    // needs some viable resizing idea
-    for (int currentIndexY = 3; currentIndexY < this.initialMoonSurfacePoints.length - 1; currentIndexY += 2) {
-      moonSurfacePoints[currentIndexY] = initialMoonSurfacePoints[currentIndexY] * factor + 50*factor;
-      this.scaledLandingHeight = this.landingHeight * factor + 50*factor;
-    }
-  }
-
-  public void recalculateHeight(double newHeight) {
-    this.moonSurfacePoints[1] = newHeight;
-    this.moonSurfacePoints[this.moonSurfacePoints.length - 1] = newHeight;
-  }
-
   public double getScaledLandingHeight() { return this.scaledLandingHeight; }
 
   private Double[] initialMoonSurfacePoints;
