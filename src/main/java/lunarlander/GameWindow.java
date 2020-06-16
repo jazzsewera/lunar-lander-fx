@@ -36,7 +36,7 @@ public class GameWindow {
    * the Game Window.
    */
   public GameWindow(Configuration configuration, double width, double height) {
-    this.lander = new Lander(0, 0, 3, 0, 0, 400, 3);
+    this.lander = new Lander(0, 0, 3, 0, 0, 400, 3, 0);
 
     this.currentLevel = 1;
 
@@ -107,14 +107,15 @@ public class GameWindow {
     });
 
     this.mainGameScene.addEventHandler(SidePane.UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
-      _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude, event.shipsLeft, event.level); // TODO: MOOOOOOORE things
+      _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude, event.shipsLeft, event.level, event.score); // TODO: MOOOOOOORE things
     });
 
     this.mainGameScene.addEventHandler(ChangeLevelEvent.CHANGE_LEVEL, (event) -> {
       this.currentLevel++;
       this.fuelLeft = this.lander.fuel;
       this.shipsLeft = this.lander.ships;
-      this.lander = new Lander(0, 0, 3.0, 0, 0, fuelLeft, shipsLeft);
+      this.currentScore = this.lander.score;
+      this.lander = new Lander(0, 0, 3.0, 0, 0, fuelLeft, shipsLeft, currentScore);
 
       double _gamePaneWidth = this.mainGameScene.getWidth() - 280;
       double _gamePaneHeight = this.mainGameScene.getHeight();
@@ -158,4 +159,5 @@ public class GameWindow {
   int currentLevel;
   double fuelLeft;
   int shipsLeft;
+  int currentScore;
 }

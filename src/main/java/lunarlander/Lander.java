@@ -27,7 +27,7 @@ public class Lander {
    * @param fuel initial fuel state: double
    * @param ships number of lives: int
    */
-  public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel, int ships) {
+  public Lander(double xCoord, double yCoord, double vx, double vy, double angle, double fuel, int ships, int score) {
 
     this.landerImage = new Image("lunarlander/assets/lander.png", 35, 35, false, false);
     this.flameImage = new Image("lunarlander/assets/flame.png", 8, 47, false, false);
@@ -43,6 +43,7 @@ public class Lander {
     this.angle = angle;
     this.fuel = fuel;
     this.ships = ships;
+    this.score = score;
 
     this.lander.getPoints().addAll(new Double[] {
       this.xCoord, this.yCoord,
@@ -122,6 +123,7 @@ public class Lander {
   double landerWidth;
 
   int ships;
+  int score;
 
   private Image landerImage;
   private Image flameImage;

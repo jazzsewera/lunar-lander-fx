@@ -30,13 +30,14 @@ import javafx.scene.paint.Color;
 public class SidePane {
 
   public static class UpdateLanderInfoEvent extends Event {
-    UpdateLanderInfoEvent(double fuelState, double currentVelocity, double altitude, int shipsLeft, int level) {
+    UpdateLanderInfoEvent(double fuelState, double currentVelocity, double altitude, int shipsLeft, int level, int score) {
       super(UPDATE_INFO);
       this.fuelState = fuelState;
       this.currentVelocity = currentVelocity;
       this.altitude = altitude;
       this.shipsLeft = shipsLeft;
       this.level = level;
+      this.score = score;
       // TODO: Put MOOOOOOORE things in constructor
     }
 
@@ -45,6 +46,7 @@ public class SidePane {
     public double altitude;
     public int shipsLeft;
     public int level;
+    public int score;
     // TODO: Put MOOOOOOORE things to update in SidePane
 
     public static final EventType<UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
@@ -143,7 +145,7 @@ public class SidePane {
     heightVbox.getStyleClass().add("ctrl-gauge-vbox");
 
 
-    this.scoreStateLabel = new Label("69420");
+    this.scoreStateLabel = new Label("0");
     this.scoreStateLabel.getStyleClass().add("ctrl-label-primary");
 
     Label scoreCaptionLabel = new Label("Score");
@@ -376,7 +378,7 @@ public class SidePane {
     this.rightKbdIndicatorLabel.setTextFill(Color.web("#4B73D5"));
   }
 
-  public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude, int shipsLeft, int level) {
+  public void updateSidePane(double fuelState, double currentVelocity, double currentAltitude, int shipsLeft, int level, int currentScore) {
     double velocity = Math.round(currentVelocity * 10.0) / 10.0;
     double altitude;
     if (currentAltitude >= 0.0) altitude = Math.round(currentAltitude * 100.0) / 100.0;
@@ -386,6 +388,7 @@ public class SidePane {
     this.fuelStateLabel.setText(Integer.toString((int) fuelState));
     this.velocityStateLabel.setText(Double.toString(velocity));
     this.heightStateLabel.setText(Double.toString(altitude));
+    this.scoreStateLabel.setText(Integer.toString(currentScore));
 
     switch (shipsLeft) {
       case 3:
