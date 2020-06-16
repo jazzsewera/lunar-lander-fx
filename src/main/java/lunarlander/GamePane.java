@@ -272,7 +272,6 @@ public class GamePane {
       if (_trOffset < 0) _trOffset = 0;
       this.trPaneCenter.setX(_trOffset);
     }
-    System.out.println(_initialWidth);
   }
 
   public boolean isLeftRotate() { return isLeftRotate; }
