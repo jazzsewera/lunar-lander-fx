@@ -38,7 +38,6 @@ public class SidePane {
       this.shipsLeft = shipsLeft;
       this.level = level;
       this.score = score;
-      // TODO: Put MOOOOOOORE things in constructor
     }
 
     public double fuelState;
@@ -47,7 +46,6 @@ public class SidePane {
     public int shipsLeft;
     public int level;
     public int score;
-    // TODO: Put MOOOOOOORE things to update in SidePane
 
     public static final EventType<UpdateLanderInfoEvent> UPDATE_INFO = new EventType<>("UPDATE_INFO");
 
@@ -408,7 +406,6 @@ public class SidePane {
         headLabelLost();
         break;
     }
-    // TODO: MOOOOOOORE THINGS
   }
 
   /**
@@ -418,10 +415,6 @@ public class SidePane {
    */
   public BorderPane getSideBorderPane() {
     return sideBorderPane;
-  }
-
-  public Label getOptionalLevelCaption() {
-    return optionalLevelCaption;
   }
 
 

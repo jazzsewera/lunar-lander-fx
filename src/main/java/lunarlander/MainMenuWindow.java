@@ -80,9 +80,6 @@ public class MainMenuWindow {
     this.menuRoot.getStyleClass().add("menu-root");
     this.menuRoot.getChildren().add(mainMenuVBox);
     this.menuRoot.setAlignment(Pos.CENTER);
-    // this.menuRoot.setMinWidth(280);
-    // this.menuRoot.setPrefWidth(280);
-    // this.menuRoot.setMaxWidth(280);
 
     this.mainMenuScene = new Scene(menuRoot);
     this.mainMenuScene.getStylesheets().add("lunarlander/css/style.css");

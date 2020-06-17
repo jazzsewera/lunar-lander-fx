@@ -186,7 +186,4 @@ public class Configuration {
    * config file from the server
    */
   boolean configDownloaded = false;
-
-  // For future use:
-  // private HashMap<String, String> params; // for example for server ip and port
 }

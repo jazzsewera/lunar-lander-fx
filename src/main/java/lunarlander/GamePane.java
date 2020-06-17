@@ -153,7 +153,6 @@ public class GamePane {
             landerModel.ships,
             currentLevel,
             landerModel.score));
-      // TODO: DISPLAYING SCORE
 
       bonusPoints -= 0.03;
 

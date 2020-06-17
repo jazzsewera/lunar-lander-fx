@@ -65,11 +65,6 @@ public class RulesWindow {
     rulesVBox.setPrefWidth(750);
     rulesVBox.setMaxWidth(1200);
 
-    //this.rulesRoot = new HBox();
-    //this.rulesRoot.getStyleClass().add("menu-root");
-    //this.rulesRoot.getChildren().addAll(rulesVBox, backButton);
-    //this.rulesRoot.setAlignment(Pos.CENTER);
-
     this.rulesRoot = new BorderPane();
     this.rulesRoot.getStyleClass().add("menu-root");
 

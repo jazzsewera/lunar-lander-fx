@@ -4,8 +4,6 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
-//import javafx.scene.paint.ImagePattern;
-//import java.awt.*;
 
 /**
  * Class of a Lander which is both a graphical representation of an actual
@@ -80,8 +78,6 @@ public class Lander {
   public double getBottomCoord() {
     return yCoord + landerHeight;
   }
-
-  public Image getLanderImage() { return landerImage; }
 
   /**
    * Enum describing which flame to display.

@@ -111,7 +111,7 @@ public class GameWindow {
     });
 
     this.mainGameScene.addEventHandler(SidePane.UpdateLanderInfoEvent.UPDATE_INFO, (event) -> {
-      _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude, event.shipsLeft, event.level, event.score); // TODO: MOOOOOOORE things
+      _sidePane.updateSidePane(event.fuelState, event.currentVelocity, event.altitude, event.shipsLeft, event.level, event.score);
     });
 
     this.mainGameScene.addEventHandler(ChangeLevelEvent.CHANGE_LEVEL, (event) -> {
