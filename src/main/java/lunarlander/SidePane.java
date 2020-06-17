@@ -81,8 +81,6 @@ public class SidePane {
     for (Label label : this.livesStateLabels) {
       label.getStyleClass().add("ctrl-label-primary");
     }
-    // You can quickly remove one lander with this statement:
-    // livesStateLabels[2].setGraphic(null);
 
     HBox livesStateHbox = new HBox();
     livesStateHbox.getChildren().addAll(

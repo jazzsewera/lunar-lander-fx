@@ -25,7 +25,7 @@ public class Main extends Application {
 
   /**
    * Event class to change scene on stage (to switch different views).
-   * Sample usage: 
+   * Sample usage:
    * <pre>
    * someNode.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
    * </pre>
@@ -69,6 +69,8 @@ public class Main extends Application {
           this.stage.setScene(this.settingsScene);
           break;
         case SCORES:
+          this.initScoreboardWindow();
+          this.stage.setScene(this.scoreboardScene);
           break;
         default:
           this.stage.setScene(this.mainMenuScene);
@@ -93,6 +95,17 @@ public class Main extends Application {
     this.rulesScene = this.rulesWindow.getRulesScene();
 
     this.rulesScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
+      if(event.getSceneType() == SceneType.MAIN_MENU) {
+        this.stage.setScene(this.mainMenuScene);
+      }
+    });
+  }
+
+  private void initScoreboardWindow() {
+    this.scoreboardWindow = new ScoreboardWindow();
+    this.scoreboardScene = this.scoreboardWindow.getScoreboardScene();
+
+    this.scoreboardScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {
       if(event.getSceneType() == SceneType.MAIN_MENU) {
         this.stage.setScene(this.mainMenuScene);
       }
@@ -134,4 +147,5 @@ public class Main extends Application {
   private RulesWindow rulesWindow;
   private SettingsWindow settingsWindow;
   private MainMenuWindow mainMenuWindow;
+  private ScoreboardWindow scoreboardWindow;
 }
