@@ -21,6 +21,13 @@ import javafx.scene.layout.Priority;
  */
 public class GameWindow {
 
+  /**
+   * Event class to fire when the level is passed.
+   * Sample usage:
+   * <pre>
+   * node.fireEvent(new GameWindow.ChangeLevelEvent());
+   * </pre>
+   */
   public static class ChangeLevelEvent extends Event {
     ChangeLevelEvent() {
       super(CHANGE_LEVEL);
@@ -29,6 +36,33 @@ public class GameWindow {
     public static final EventType<GameWindow.ChangeLevelEvent> CHANGE_LEVEL = new EventType<>("CHANGE_LEVEL");
 
     public static final long serialVersionUID = 12345;
+  }
+
+  /**
+   * Event class to fire when saving a score.
+   * Sample usage:
+   * <pre>
+   * node.fireEvent(new GameWindow.SaveScoreEvent(name, score));
+   * </pre>
+   */
+  public static class SaveScoreEvent extends Event {
+    /**
+     * Constructor for the {@link SaveScoreEvent}.
+     * @param name nickname of the person that accomplished that score: String
+     * @param score accomplished score: int
+     */
+    SaveScoreEvent(String name, int score) {
+      super(SAVE_SCORE);
+      this.name = name;
+      this.score = score;
+    }
+
+    public static final EventType<GameWindow.SaveScoreEvent> SAVE_SCORE = new EventType<>("SAVE_SCORE");
+
+    public String name;
+    public int score;
+
+    public static final long serialVersionUID = 11100;
   }
 
   /**
