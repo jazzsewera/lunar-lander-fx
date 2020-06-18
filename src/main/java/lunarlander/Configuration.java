@@ -201,6 +201,7 @@ public class Configuration {
   }
 
   public void readScoresFromFile() {
+    this.scoreBoard.clear();
     File file = new File("src/main/resources/lunarlander/scores.csv");
     try {
       CSVParser csvp = CSVParser.parse(file, Charset.forName("UTF-8"), CSVFormat.DEFAULT);
