@@ -268,12 +268,17 @@ public class SidePane {
 
     this.optionalLevelCaption.setOnMouseClicked((event) -> {
       this.levelVbox.getChildren().remove(this.levelLabel);
-      this.nameTextField = new TextField();
-      this.levelVbox.getChildren().add(0, this.nameTextField);
-      this.optionalLevelCaption.fireEvent(new GameWindow.SaveScoreEvent("abc", 513));
-      // TODO: Actually save actual score
-    });
 
+      this.nameTextField = new TextField();
+      this.optionalLevelCaption.setText("Enter your nickname \nand end session");
+      this.levelVbox.getChildren().add(0, this.nameTextField);
+
+      this.optionalLevelCaption.setOnMouseClicked((e) -> {
+        this.name = nameTextField.getText();
+        this.optionalLevelCaption.fireEvent(new GameWindow.SaveScoreEvent(this.name, this.score));
+        this.optionalLevelCaption.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+      });
+    });
   }
 
   /**
@@ -395,6 +400,8 @@ public class SidePane {
     this.heightStateLabel.setText(Double.toString(altitude));
     this.scoreStateLabel.setText(Integer.toString(currentScore));
 
+    this.score = currentScore;
+
     switch (shipsLeft) {
       case 3:
         break;
@@ -438,4 +445,7 @@ public class SidePane {
   private Label upKbdIndicatorLabel;
   private Label rightKbdIndicatorLabel;
   private final BorderPane sideBorderPane;
+
+  private int score = 0;
+  private String name = "name";
 }
