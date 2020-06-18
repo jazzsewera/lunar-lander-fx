@@ -166,4 +166,18 @@
   -fx-text-fill: #009688;
 }
 
+.scores-scrollpane {
+  -fx-border-style: none;
+  -fx-padding: 50px 0 50px 50px;
+  -fx-background-color: #2a2a2a;
+  -fx-background-insets: 0;
+}
 
+.scores-scrollpane > .viewport {
+  -fx-background-color: transparent;
+}
+
+.scores-gridpane {
+  -fx-spacing: 20px;
+  -fx-background-color: #2a2a2a;
+}

@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -73,13 +74,16 @@ public class ScoreboardWindow {
       gridPane.add(this.topScoresLabels[i], 1, i);
     }
 
-    gridPane.getStyleClass().addAll("rules-vertical-layout", "menu-root");
+    gridPane.getStyleClass().addAll("scores-gridpane");
     gridPane.setAlignment(Pos.CENTER_LEFT);
-    gridPane.setMinWidth(400);
-    gridPane.setPrefWidth(750);
-    gridPane.setMaxWidth(1200);
+    // gridPane.setMinWidth(400);
+    // gridPane.setPrefWidth(750);
+    // gridPane.setMaxWidth(1200);
     gridPane.setHgap(400);
     gridPane.setVgap(20);
+
+    ScrollPane scrollPane = new ScrollPane(gridPane);
+    scrollPane.getStyleClass().addAll("scores-scrollpane");
 
     this.backButton = new Label("Back");
     this.backButton.getStyleClass().add("back-button");
@@ -87,8 +91,8 @@ public class ScoreboardWindow {
     this.scoreboardRoot = new BorderPane();
     this.scoreboardRoot.getStyleClass().add("menu-root");
 
-    this.scoreboardRoot.setCenter(gridPane);
-    BorderPane.setAlignment(gridPane, Pos.CENTER);
+    this.scoreboardRoot.setCenter(scrollPane);
+    BorderPane.setAlignment(scrollPane, Pos.CENTER);
 
     this.scoreboardRoot.setBottom(backButton);
     BorderPane.setAlignment(backButton, Pos.BOTTOM_RIGHT);
