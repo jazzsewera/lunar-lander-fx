@@ -102,7 +102,7 @@ public class Main extends Application {
   }
 
   private void initScoreboardWindow() {
-    this.scoreboardWindow = new ScoreboardWindow();
+    this.scoreboardWindow = new ScoreboardWindow(this.configuration);
     this.scoreboardScene = this.scoreboardWindow.getScoreboardScene();
 
     this.scoreboardScene.addEventHandler(ChangeSceneEvent.CHANGE_SCENE, (event) -> {

@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -66,9 +67,9 @@ public class SidePane {
     this.optionalLevelCaption = new Label("");
     this.optionalLevelCaption.getStyleClass().add("ctrl-label-caption");
 
-    VBox levelVbox = new VBox();
-    levelVbox.getChildren().addAll(this.levelLabel, this.optionalLevelCaption);
-    levelVbox.getStyleClass().add("ctrl-gauge-vbox");
+    this.levelVbox = new VBox();
+    this.levelVbox.getChildren().addAll(this.levelLabel, this.optionalLevelCaption);
+    this.levelVbox.getStyleClass().add("ctrl-gauge-vbox");
 
     // There will be images of Landers indicating number of lives
     this.landerImage = new Image("lunarlander/assets/lander.png");
@@ -266,7 +267,10 @@ public class SidePane {
     });
 
     this.optionalLevelCaption.setOnMouseClicked((event) -> {
-      optionalLevelCaption.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+      this.levelVbox.getChildren().remove(this.levelLabel);
+      this.nameTextField = new TextField();
+      this.levelVbox.getChildren().add(0, this.nameTextField);
+      // optionalLevelCaption.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
     });
 
   }
@@ -416,6 +420,8 @@ public class SidePane {
   }
 
 
+  private VBox levelVbox;
+  private TextField nameTextField;
   private Label levelLabel;
   private Label optionalLevelCaption;
   private final Image landerImage;

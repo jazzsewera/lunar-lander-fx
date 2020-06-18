@@ -1,5 +1,19 @@
 package lunarlander;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+
+import com.google.common.base.Charsets;
+import com.google.common.io.CharSink;
+import com.google.common.io.CharSource;
+import com.google.common.io.Files;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,7 +43,23 @@ public class ScoreboardWindow {
    * effects to Back button and onMouseClicked event that is
    * fired to Main class for changing scenes.
    */
-  public ScoreboardWindow() {
+  public ScoreboardWindow(Configuration configuration) {
+    configuration.readScoresFromFile();
+    ArrayList<Configuration.Score> scoreBoard = configuration.getScoreBoard();
+    String[] names = new String[10];
+    int[] scores = new int[10];
+
+    for (int i = 0; i < 10; i++) {
+      try {
+        names[i] = scoreBoard.get(i).name;
+        scores[i] = scoreBoard.get(i).score;
+      } catch (IndexOutOfBoundsException e) {
+        names[i] = "-";
+        scores[i] = 0;
+      }
+    }
+
+
     this.topPlayersLabels = new Label[] {
       new Label("1. " + "XYZ"),
       new Label("2. " + "XYZ"),
@@ -66,12 +96,12 @@ public class ScoreboardWindow {
 
     GridPane gridPane = new GridPane();
 
-    for(int i = 0; i < 10; i++) {
-      gridPane.add(this.topPlayersLabels[i], 0, i);
+    for(int j = 0; j < 10; j++) {
+      gridPane.add(this.topPlayersLabels[j], 0, j);
     }
 
-    for(int i = 0; i < 10; i++) {
-      gridPane.add(this.topScoresLabels[i], 1, i);
+    for(int k = 0; k < 10; k++) {
+      gridPane.add(this.topScoresLabels[k], 1, k);
     }
 
     gridPane.getStyleClass().addAll("scores-gridpane");

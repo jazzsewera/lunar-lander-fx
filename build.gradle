@@ -29,6 +29,9 @@ dependencies {
   // to convert Java objects to JSON and vice-versa
   implementation 'com.google.code.gson:gson:2.8.6'
 
+  // This dep is providing csv utils
+  implementation 'org.apache.commons:commons-csv:1.8'
+
   // Use JUnit test framework
   testImplementation 'junit:junit:4.12'
 }

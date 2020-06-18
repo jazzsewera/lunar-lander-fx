@@ -6,10 +6,16 @@ import com.google.common.io.CharSink;
 import com.google.common.io.CharSource;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
 import com.google.common.io.Files;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -27,12 +33,25 @@ public class Configuration {
   // moonMaps and params
 
   /**
+   * Class making a simple structure for a score.
+   */
+  public class Score {
+    Score(String name, int score) {
+      this.name = name;
+      this.score = score;
+    }
+    public String name;
+    public int score;
+  }
+
+  /**
    * Constructor making ArrayList of Moon class objects {@link Moon} -
    * each Moon has its own surface shape. We will store
    * them in moonMaps.
    */
   public Configuration() {
     this.moonMaps = new ArrayList<Moon>();
+    this.scoreBoard = new ArrayList<Score>();
   }
 
   /**
@@ -175,10 +194,37 @@ public class Configuration {
     this.configDownloaded = configDownloaded;
   }
 
+  public ArrayList<Score> getScoreBoard() {
+    return this.scoreBoard;
+  }
+
+  public void readScoresFromFile() {
+    File file = new File("src/main/resources/lunarlander/scores.csv");
+    CSVParser csvp = null;
+    try {
+      csvp = CSVParser.parse(file, Charset.forName("UTF-8"), CSVFormat.DEFAULT);
+    } catch (IOException e) {
+      System.out.println("Something went wrong. Possible reasons: ");
+      System.out.println("1) Folder your are trying to open does not exist.");
+      System.out.println("2) You don't have permissions to open that file.");
+    }
+
+    for (CSVRecord csvRecord : csvp) {
+      String _name = csvRecord.get(0);
+      int _score = Integer.parseInt(csvRecord.get(1));
+      this.scoreBoard.add(new Score(_name, _score));
+    }
+
+    this.scoreBoard.sort((score2, score1) -> {
+      return score2.score - score1.score;
+    });
+  }
 
   private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
   private ArrayList<Moon> moonMaps;
+
+  private ArrayList<Score> scoreBoard;
 
   /**
    * Flag controlling whether current maps are
