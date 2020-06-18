@@ -270,6 +270,8 @@ public class SidePane {
       this.levelVbox.getChildren().remove(this.levelLabel);
 
       this.nameTextField = new TextField();
+      this.nameTextField.setPrefWidth(150);
+      this.nameTextField.setMaxWidth(150);
       this.nameTextField.getStyleClass().add("jfx-text-field");
       this.optionalLevelCaption.setText("Save and exit");
       this.levelVbox.getChildren().add(0, this.nameTextField);
