@@ -200,24 +200,22 @@ public class Configuration {
 
   public void readScoresFromFile() {
     File file = new File("src/main/resources/lunarlander/scores.csv");
-    CSVParser csvp = null;
     try {
-      csvp = CSVParser.parse(file, Charset.forName("UTF-8"), CSVFormat.DEFAULT);
+      CSVParser csvp = CSVParser.parse(file, Charset.forName("UTF-8"), CSVFormat.DEFAULT);
+      for (CSVRecord csvRecord : csvp) {
+        String _name = csvRecord.get(0);
+        int _score = Integer.parseInt(csvRecord.get(1));
+        this.scoreBoard.add(new Score(_name, _score));
+      }
+
+      this.scoreBoard.sort((score2, score1) -> {
+        return score1.score - score2.score;
+      });
     } catch (IOException e) {
       System.out.println("Something went wrong. Possible reasons: ");
       System.out.println("1) Folder your are trying to open does not exist.");
       System.out.println("2) You don't have permissions to open that file.");
     }
-
-    for (CSVRecord csvRecord : csvp) {
-      String _name = csvRecord.get(0);
-      int _score = Integer.parseInt(csvRecord.get(1));
-      this.scoreBoard.add(new Score(_name, _score));
-    }
-
-    this.scoreBoard.sort((score2, score1) -> {
-      return score2.score - score1.score;
-    });
   }
 
   private Gson gson = new GsonBuilder().setPrettyPrinting().create();

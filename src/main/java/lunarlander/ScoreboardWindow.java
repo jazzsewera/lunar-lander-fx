@@ -59,49 +59,24 @@ public class ScoreboardWindow {
       }
     }
 
+    this.topPlayersLabels = new Label[10];
+    this.topScoresLabels = new Label[10];
 
-    this.topPlayersLabels = new Label[] {
-      new Label("1. " + "XYZ"),
-      new Label("2. " + "XYZ"),
-      new Label("3. " + "XYZ"),
-      new Label("4. " + "XYZ"),
-      new Label("5. " + "XYZ"),
-      new Label("6. " + "XYZ"),
-      new Label("7. " + "XYZ"),
-      new Label("8. " + "XYZ"),
-      new Label("9. " + "XYZ"),
-      new Label("10. " + "XYZ")
-    };
-
-    for (Label label : this.topPlayersLabels) {
-      label.getStyleClass().add("name-label");
-    }
-
-    this.topScoresLabels = new Label[] {
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137"),
-      new Label("2137")
-    };
-
-    for (Label label : this.topScoresLabels) {
-      label.getStyleClass().add("score-label");
+    for (int i = 0; i < 10; i++) {
+      this.topPlayersLabels[i] = new Label(String.valueOf(i+1) + ". " + names[i]);
+      this.topPlayersLabels[i].getStyleClass().add("name-label");
+      this.topScoresLabels[i] = new Label(String.valueOf(scores[i]));
+      this.topScoresLabels[i].getStyleClass().add("score-label");
     }
 
     GridPane gridPane = new GridPane();
 
-    for(int j = 0; j < 10; j++) {
-      gridPane.add(this.topPlayersLabels[j], 0, j);
+    for(int i = 0; i < 10; i++) {
+      gridPane.add(this.topPlayersLabels[i], 0, i);
     }
 
-    for(int k = 0; k < 10; k++) {
-      gridPane.add(this.topScoresLabels[k], 1, k);
+    for(int i = 0; i < 10; i++) {
+      gridPane.add(this.topScoresLabels[i], 1, i);
     }
 
     gridPane.getStyleClass().addAll("scores-gridpane");
