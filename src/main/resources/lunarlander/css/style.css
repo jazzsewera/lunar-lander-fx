@@ -50,6 +50,11 @@
   -fx-spacing: 10px;
 }
 
+.ctrl-label-overline {
+  -fx-font-size: 14px;
+  -fx-text-fill: #828282;
+}
+
 .ctrl-bottom-status-bar {
   -fx-padding: 5px 10px 5px 10px;
   -fx-background-color: #1C3C8A;

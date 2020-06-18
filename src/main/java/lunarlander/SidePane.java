@@ -269,12 +269,15 @@ public class SidePane {
     this.optionalLevelCaption.setOnMouseClicked((event) -> {
       this.levelVbox.getChildren().remove(this.levelLabel);
 
+      Label enterNickLabel = new Label("Nickname");
+      enterNickLabel.getStyleClass().add("ctrl-label-overline");
       this.nameTextField = new TextField();
       this.nameTextField.setPrefWidth(150);
       this.nameTextField.setMaxWidth(150);
       this.nameTextField.getStyleClass().add("jfx-text-field");
       this.optionalLevelCaption.setText("Save and exit");
-      this.levelVbox.getChildren().add(0, this.nameTextField);
+      this.levelVbox.getChildren().add(0, enterNickLabel);
+      this.levelVbox.getChildren().add(1, this.nameTextField);
 
       this.optionalLevelCaption.setOnMouseClicked((e) -> {
         this.name = nameTextField.getText();
