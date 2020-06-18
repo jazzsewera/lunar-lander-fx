@@ -9,9 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 
 /**
@@ -45,7 +43,7 @@ public class ScoreboardWindow {
     };
 
     for (Label label : this.topPlayersLabels) {
-      label.getStyleClass().add("ctrl-label-primary");
+      label.getStyleClass().add("name-label");
     }
 
     this.topScoresLabels = new Label[] {
@@ -62,7 +60,7 @@ public class ScoreboardWindow {
     };
 
     for (Label label : this.topScoresLabels) {
-      label.getStyleClass().add("ctrl-label-primary");
+      label.getStyleClass().add("score-label");
     }
 
     GridPane gridPane = new GridPane();
@@ -80,6 +78,8 @@ public class ScoreboardWindow {
     gridPane.setMinWidth(400);
     gridPane.setPrefWidth(750);
     gridPane.setMaxWidth(1200);
+    gridPane.setHgap(400);
+    gridPane.setVgap(20);
 
     this.backButton = new Label("Back");
     this.backButton.getStyleClass().add("back-button");

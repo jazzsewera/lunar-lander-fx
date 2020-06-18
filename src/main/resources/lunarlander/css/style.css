@@ -139,6 +139,16 @@
   -fx-spacing: 14px;
 }
 
+.name-label {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 36px;
+}
+
+.score-label {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 36px;
+}
+
 .back-button {
   -fx-text-fill: #828282;
   -fx-font-size: 28px;
@@ -155,3 +165,5 @@
 .settings-click-effect {
   -fx-text-fill: #009688;
 }
+
+
