@@ -270,7 +270,8 @@ public class SidePane {
       this.levelVbox.getChildren().remove(this.levelLabel);
 
       this.nameTextField = new TextField();
-      this.optionalLevelCaption.setText("Enter your nickname \nand end session");
+      this.nameTextField.getStyleClass().add("jfx-text-field");
+      this.optionalLevelCaption.setText("Save and exit");
       this.levelVbox.getChildren().add(0, this.nameTextField);
 
       this.optionalLevelCaption.setOnMouseClicked((e) -> {

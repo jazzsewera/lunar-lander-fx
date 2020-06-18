@@ -181,3 +181,20 @@
   -fx-spacing: 20px;
   -fx-background-color: #2a2a2a;
 }
+
+.jfx-text-field > .input-line {
+    -fx-background-color: #eeeeee;
+    -fx-pref-height: 1px;
+    -fx-translate-y: 1px;
+}
+
+.jfx-text-field > .input-focused-line {
+    -fx-background-color: #ffffff;
+    -fx-pref-height: 2px;
+}
+
+.jfx-text-field,
+.jfx-text-field:focused {
+    -fx-background-color: #b3b3b3;
+    -fx-prompt-text-fill: #2a2a2a;
+}
