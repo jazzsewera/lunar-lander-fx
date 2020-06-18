@@ -172,6 +172,10 @@ public class GameWindow {
       this.mainGameScene.setRoot(this.applicationWindowHbox);
       this.applicationWindowHbox.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.GAME));
     });
+
+    this.mainGameScene.addEventHandler(SaveScoreEvent.SAVE_SCORE, (event) -> {
+      configuration.saveScoreToFile(event.name, event.score);
+    });
   }
 
   /**

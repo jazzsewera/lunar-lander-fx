@@ -4,11 +4,13 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharSink;
 import com.google.common.io.CharSource;
+import com.google.common.io.FileWriteMode;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
 import com.google.common.io.Files;
@@ -215,6 +217,23 @@ public class Configuration {
       System.out.println("Something went wrong. Possible reasons: ");
       System.out.println("1) Folder your are trying to open does not exist.");
       System.out.println("2) You don't have permissions to open that file.");
+    }
+  }
+
+  public void saveScoreToFile(String name, int score) {
+    File file = new File("src/main/resources/lunarlander/scores.csv");
+    try {
+      StringBuilder sb = new StringBuilder();
+      CSVPrinter csvp = new CSVPrinter(sb, CSVFormat.DEFAULT);
+      csvp.printRecord(name, score);
+      CharSink sink = Files.asCharSink(file, Charsets.UTF_8, FileWriteMode.APPEND);
+      sink.write(sb);
+      csvp.close();
+    } catch (IOException e) {
+      System.out.println("Something went wrong. Possible reasons: ");
+      System.out.println("1) Folder you are trying to place file in does not exist.");
+      System.out.println("2) You are running out of disk space.");
+      System.out.println("3) You don't have permissions to place a file here.");
     }
   }
 

@@ -270,7 +270,8 @@ public class SidePane {
       this.levelVbox.getChildren().remove(this.levelLabel);
       this.nameTextField = new TextField();
       this.levelVbox.getChildren().add(0, this.nameTextField);
-      // optionalLevelCaption.fireEvent(new Main.ChangeSceneEvent(Main.SceneType.MAIN_MENU));
+      this.optionalLevelCaption.fireEvent(new GameWindow.SaveScoreEvent("abc", 513));
+      // TODO: Actually save actual score
     });
 
   }
