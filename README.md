@@ -1,15 +1,37 @@
 # Lunar Lander
 
-## First stage
+## How to get it going
 
-Project design brief and first stage details are specified in
-[design_brief](docs/design_brief.md) Markdown file.
+The game should run perfectly with any Java version 11 or higher. It may also
+run on lower versions, although we did not test it.
 
+The Gradle build system takes care of every dependency in the project, so to
+run the game, you can simply:
 
-## Second stage
+```bash
+./gradlew run
+```
 
-Project changelog and class diagram is specified in
-[second_stage](docs/second_stage.md) Markdown file.
+or in Windows:
+
+```batch
+gradlew.bat run
+```
+
+It will automatically build and run the game. You can also just build it with
+`./gradlew build`.
+
+And to run the server, just:
+
+```
+./gradlew runserver
+```
+
+in Windows:
+
+```
+gradlew.bat runserver
+```
 
 
 ## Description
@@ -18,7 +40,7 @@ A simple 2D game written in Java 11 and JavaFX 11 in which you
 have to touch down on the Moon with low enough velocity and
 angle to the ground until you run out of fuel.
 
-A GUI mockup is shown in `gui.png`.
+A GUI mockup is shown in `docs/gui_mockup` directory.
 
 
 ## Steering
@@ -27,17 +49,16 @@ Left/Right Arrows - control the rotation of the lander
 Up Arrow - control the thrust of the lander's engine
 
 
-## Usage
+## Javadoc
 
-Project is build with [Gradle](https://gradle.org/). To build it:
+We prepared a quite extensive documentation in Javadoc. To build it with
+Gradle, run:
+
 ```bash
-./gradlew build
+./gradlew javadoc
 ```
 
-To run it:
-```bash
-./gradlew run
-```
+or `gradle.bat javadoc` in Windows.
 
 
 ## Gradle integration
@@ -65,16 +86,14 @@ You also don't have to use the terminal to execute Gradle tasks. You can open Gr
 and go to `lunarlander > Tasks > [task_folder] > [task]`, for example `[application] > [run]`.
 
 
-## Known bugs
+## First stage
 
-On Arch Linux you cannot have JDK and JavaFX installed with pacman.
-To fix this, download [JDK](https://jdk.java.net/java-se-ri/11)
-and [JavaFX](https://gluonhq.com/products/javafx/), put them in a new
-directory, e.g. `/home/<your_username>/java` and set the environment variables
-as follows:
+Project design brief and first stage details are specified in
+[design_brief](docs/design_brief.md) Markdown file.
 
-File with env variables, e.g. `/etc/environment`:
-```
-JAVA_HOME=/home/<your_username>/java/jdk-11
-PATH_TO_FX=/home/<your_username>/java/javafx-sdk-11.0.2/lib
-```
+
+## Second stage
+
+Project changelog and class diagram is specified in
+[second_stage](docs/second_stage.md) Markdown file.
+
