@@ -1,5 +1,7 @@
 # Lunar Lander
 
+![Gameplay screenshot](./docs/gui_mockup/in_game.png)
+
 ## How to get it going
 
 The game should run perfectly with any Java version 11 or higher. It may also
