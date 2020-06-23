@@ -114,3 +114,6 @@ build
 .project
 .settings/
 bin/
+
+# Ignore scores file
+scores.csv
